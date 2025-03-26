@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages (Till I get my own server)
 
 on:
     push:
-        branches: [gh-pages]
+        branches: [main]
     workflow_dispatch:
 
 jobs:
