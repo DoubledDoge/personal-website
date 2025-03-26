@@ -1,31 +1,39 @@
 name: Bug Report
 description: File a bug report
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report for me! It helps a lot!
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: What happened?
-      description: What did you expect to happen?
-    validations:
-      required: true
-  - type: textarea
-    id: steps-to-reproduce
-    attributes:
-      label: Steps To Reproduce
-      description: Show how the behavior can be reproduced.
-    validations:
-      required: true
-  - type: input
-    id: vue-version
-    attributes:
-      label: Vue Version
-      description: What version of Vue.js are you running?
-    atrributes:
-      label: Tailwind Version
-        description: What version of Tailwind CSS are you running? (Project uses Tailwind CSS v3.4.17)
-    validations:
-      required: true
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this bug report!
+
+    - type: textarea
+      id: what-happened
+      attributes:
+          label: What happened?
+          description: Also tell us, what did you expect to happen?
+      validations:
+          required: true
+
+    - type: textarea
+      id: steps-to-reproduce
+      attributes:
+          label: Steps To Reproduce
+          description: Steps to reproduce the behavior
+      validations:
+          required: true
+
+    - type: input
+      id: vue-version
+      attributes:
+          label: Vue Version
+          description: What version of Vue.js are you running?
+      validations:
+          required: true
+
+    - type: input
+      id: tailwind-version
+      attributes:
+          label: Tailwind Version
+          description: What version of Tailwind CSS are you running? (Project uses Tailwind CSS v3.4.17)
+      validations:
+          required: true
