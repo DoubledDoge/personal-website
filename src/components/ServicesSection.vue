@@ -67,7 +67,7 @@ const services = ref([
     },
     {
         id: 2,
-        icon: "https://img.icons8.com/external-vectorslab-glyph-vectorslab/1000/fffeee/external-Technical-Writing-mobile-app-development-vectorslab-glyph-vectorslab.png",
+        icon: "https://img.icons8.com/external-vectorslab-glyph-vectorslab/100/fffeee/external-Technical-Writing-mobile-app-development-vectorslab-glyph-vectorslab.png",
         name: "Technical Writing",
         description:
             "Creating clear and concise documentation for software and applications. (Placeholder text)",
