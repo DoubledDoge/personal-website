@@ -28,7 +28,20 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, onMounted } from "vue";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+// Initialize AOS
+onMounted(() => {
+    AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+    });
+});
+
 //Import Components Asynchronously
 const Navbar = defineAsyncComponent(() => import("@/components/NavBar.vue"));
 const HeroSection = defineAsyncComponent(

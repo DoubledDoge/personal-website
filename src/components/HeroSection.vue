@@ -123,9 +123,3 @@
         </div>
     </section>
 </template>
-
-<script setup lang="ts">
-import AOS from "aos";
-import "aos/dist/aos";
-AOS.init();
-</script>
