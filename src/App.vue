@@ -4,6 +4,7 @@
         <HeroSection />
         <ServicesSection />
         <AboutSection />
+        <SkillsSection />
     </div>
 </template>
 
@@ -19,5 +20,8 @@ const ServicesSection = defineAsyncComponent(
 );
 const AboutSection = defineAsyncComponent(
     () => import("@/components/AboutSection.vue"),
+);
+const SkillsSection = defineAsyncComponent(
+    () => import("@/components/SkillsSection.vue"),
 );
 </script>
