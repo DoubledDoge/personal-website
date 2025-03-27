@@ -79,12 +79,5 @@ const services = ref([
         description:
             "Developing mobile applications for iOS and Android platforms. (Placeholder text)",
     },
-    {
-        id: 4,
-        icon: "https://img.icons8.com/ios-filled/100/ffffff/email-open.png",
-        name: "Mobile Development",
-        description:
-            "Developing mobile applications for iOS and Android platforms. (Placeholder text)",
-    },
 ]);
 </script>
