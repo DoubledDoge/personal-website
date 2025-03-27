@@ -1,15 +1,29 @@
 <template>
     <div class="bg-[#111827] min-h-screen">
-        <Navbar />
-        <HeroSection />
-        <ServicesSection />
-        <AboutSection />
-        <SkillsAndExperience />
-        <ProjectsSection />
-        <ContactSection />
-        <!-- Should I implement testimonial section? -->
-        <Footer />
-        <BackToTop />
+        <!-- Wrap Components in Suspense to handle loading -->
+        <Suspense>
+            <template #default>
+                <!--Wrap all Components inside a single root element-->
+                <div>
+                    <Navbar />
+                    <HeroSection />
+                    <ServicesSection />
+                    <AboutSection />
+                    <SkillsAndExperience />
+                    <ProjectsSection />
+                    <ContactSection />
+                    <!-- Should I implement testimonial section? -->
+                    <Footer />
+                    <BackToTop />
+                </div>
+            </template>
+
+            <template #fallback>
+                <div class="flex justify-center items-center min-h-screen">
+                    <loadingSpinner />
+                </div>
+            </template>
+        </Suspense>
     </div>
 </template>
 
@@ -40,4 +54,6 @@ const Footer = defineAsyncComponent(() => import("@/components/Footer.vue"));
 const BackToTop = defineAsyncComponent(
     () => import("@/components/BackToTop.vue"),
 );
+
+import loadingSpinner from "./components/loadingSpinner.vue";
 </script>
