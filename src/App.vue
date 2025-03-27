@@ -7,6 +7,7 @@
         <SkillsAndExperience />
         <ProjectsSection />
         <ContactSection />
+        <!-- Should I implement testimonial section? -->
     </div>
 </template>
 
