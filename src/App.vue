@@ -8,6 +8,8 @@
         <ProjectsSection />
         <ContactSection />
         <!-- Should I implement testimonial section? -->
+        <Footer />
+        <BackToTop />
     </div>
 </template>
 
@@ -32,5 +34,10 @@ const ProjectsSection = defineAsyncComponent(
 );
 const ContactSection = defineAsyncComponent(
     () => import("@/components/ContactSection.vue"),
+);
+// Testimonial Section?
+const Footer = defineAsyncComponent(() => import("@/components/Footer.vue"));
+const BackToTop = defineAsyncComponent(
+    () => import("@/components/BackToTop.vue"),
 );
 </script>
