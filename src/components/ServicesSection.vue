@@ -27,7 +27,7 @@
                 class="px-8 py-12 rounded-xl bg-[#111a3e] shadow-lg border border-[#1f1641]"
             >
                 <div
-                    class="mx-auto h-24 xl:h-28 xl:w-28 flex items-center justify-center"
+                    class="mx-auto h-24 w-24 xl:h-28 xl:w-28 flex items-center justify-center"
                 >
                     <div>
                         <img
