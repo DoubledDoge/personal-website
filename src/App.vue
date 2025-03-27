@@ -20,7 +20,7 @@
 
             <template #fallback>
                 <div class="flex justify-center items-center min-h-screen">
-                    <loadingSpinner />
+                    <LoadingSpinner />
                 </div>
             </template>
         </Suspense>
@@ -68,7 +68,7 @@ const BackToTop = defineAsyncComponent(
     () => import("@/components/BackToTop.vue"),
 );
 
-import loadingSpinner from "./components/loadingSpinner.vue";
+import LoadingSpinner from "./components/loadingSpinner.vue";
 </script>
 
 <style>
