@@ -40,7 +40,7 @@
 
                 <div class="text-center">
                     <h3
-                        class="pt-8 text-lg font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary lg:text-xl"
+                        class="pt-8 text-lg font-semibold uppercase text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary lg:text-xl"
                     >
                         {{ service.name }}
                     </h3>

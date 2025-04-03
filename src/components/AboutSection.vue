@@ -2,7 +2,7 @@
     <section class="text-white mt-18" id="about">
         <div class="absolute z-0 top-[93rem] inset-x-0 h-64 flex items-start">
             <div
-                class="h-24 w-64 bg-gradient-to-br from-primary via-secondary blur-2xl to-[#570cac] opacity-20"
+                class="h-24 w-64 bg-linear-to-br from-primary via-secondary blur-2xl to-[#570cac] opacity-20"
             ></div>
         </div>
 
@@ -29,7 +29,7 @@
 
                         <div class="w-3/4 pl-4">
                             <h3
-                                class="text-2xl font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary lg:text-xl"
+                                class="text-2xl font-semibold uppercase text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary lg:text-xl"
                             >
                                 {{ element.School }}
                             </h3>
@@ -55,7 +55,7 @@
                 >
                     More
                     <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+                        class="text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary"
                         >About</span
                     >
                     Me

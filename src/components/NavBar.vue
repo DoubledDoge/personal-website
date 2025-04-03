@@ -8,7 +8,7 @@
             <!-- Mobile Toggle Button -->
             <button
                 type="button"
-                class="block - focus:outline-none"
+                class="block - focus:outline-hidden"
                 @click="isMenuOpen = !isMenuOpen"
             >
                 <span v-if="isMenuOpen" class="text-5xl">
