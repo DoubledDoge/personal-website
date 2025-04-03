@@ -1,6 +1,7 @@
 {
     "prettier.configPath": {
         "plugins": ["prettier-plugin-tailwindcss"],
+        "tailwindStylesheet": "./src/style.css",
         "semi": true,
         "tabWidth": 4,
         "printWidth": 100,
