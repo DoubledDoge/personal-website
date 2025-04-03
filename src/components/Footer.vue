@@ -2,16 +2,18 @@
     <footer
         class="mt-8 border z-10 border-t-[#33353F] border-l-transparent border-r-transparent text-white"
     >
-        <div class="container p-12 flex justify-between">
-            <div class="text-white text-3xl font-bold">Dihan Britz</div>
-
-            <p class="text-slate-600">All rights reserved.</p>
+        <div class="container p-12 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-white text-3xl font-bold mb-4 md:mb-0">Dihan Britz</div>
+            <div class="text-slate-600 text-center md:text-right">
+                <p>© 2025 Dihan Britz</p>
+                <p class="text-sm">Open source under MIT License</p>
+            </div>
         </div>
     </footer>
 </template>
 
-<script>
-export default {
-    name: "SiteFooter",
-};
+<script setup lang="ts">
+defineOptions({
+    name: 'SiteFooter'
+});
 </script>

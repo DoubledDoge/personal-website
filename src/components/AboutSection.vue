@@ -61,15 +61,20 @@
                     Me
                 </h2>
 
-                <p class="text-base lg:text-lg mt-8 py-8">
-                    I am a passionate and dedicated individual with a strong
-                    background in Information Technology. I am currently
-                    pursuing my Bachelor of Science in Information Technology at
-                    Eduvos, where I am honing my skills and knowledge in the
-                    field. I have a keen interest in web development,
-                    programming, and technology trends. I am always eager to
-                    learn and grow, constantly seeking new challenges and
-                    opportunities to expand my expertise. (Placeholder text)
+                <p class="text-base lg:text-lg mt-4 mb-2">
+                    As you can see from the website already, I am still only a university student at a highly acclaimed private university called Eduvos. There, I am pursuing my lifelong dream of becoming a Software Engineer by studying for my Bachelor's degree in Information Technology.
+                </p>
+
+                <p class="text-base lg:text-lg mt-4 mb-2">
+                    My journey began with the programming language of C++, however this year I've switched over to C#, which remains my primary language for everything to do with desktop application development. I have also developed a particular interest in database design and enjoys creating efficient data solutions using SQL Server.
+                </p>
+
+                <p class="text-base lg:text-lg mt-4 mb-2">
+                    Outside of my coursework, I undertake some other personal hobbies such as video games, hiking and camping. At the same time, I also like to actively work on some personal projects to expand my programming knowledge as you can see in my projects section, where I'm recently learning about web development through the use of Vue.js, Typescript, TailwindCSS and more.
+                </p>
+
+                <p class="text-base lg:text-lg mt-4 mb-2">
+                    I firmly believe in writing clean and maintainable code as I'm constantly seeking to improve my problem-solving skills through practical applications of my learning. In the end, my goal is to develop into a well-rounded software engineer who can contribute meaningfully to challenging projects while continuing to learn and grow in this ever-evolving field.
                 </p>
 
                 <div class="grid grid-cols-3 gap-4 max-w-lg pt-8">
@@ -79,10 +84,10 @@
                         <h3
                             class="text-white font-bold text-xl sm:text-2xl lg:text-3xl"
                         >
-                            +200
+                            82.25%
                         </h3>
                         <p class="text-sm sm:text-base text-gray-300">
-                            Happy Client
+                            Average Mark
                         </p>
                     </div>
 
@@ -92,10 +97,10 @@
                         <h3
                             class="text-white font-bold text-xl sm:text-2xl lg:text-3xl"
                         >
-                            +300
+                            4
                         </h3>
                         <p class="text-sm sm:text-base text-gray-300">
-                            Project
+                            Programming Projects
                         </p>
                     </div>
 
@@ -105,10 +110,10 @@
                         <h3
                             class="text-white font-bold text-xl sm:text-2xl lg:text-3xl"
                         >
-                            +7
+                            6
                         </h3>
                         <p class="text-sm sm:text-base text-gray-300">
-                            Years Experience
+                            Programming Languages
                         </p>
                     </div>
                 </div>
@@ -124,7 +129,7 @@ const education = ref([
         id: 1,
         School: "Eduvos",
         Degree: "Bachelor of Science in Information Technology",
-        Year: "2023 - Present",
+        Year: "2024 - Present",
     },
 ]);
 </script>

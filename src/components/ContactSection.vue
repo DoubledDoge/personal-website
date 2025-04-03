@@ -29,14 +29,43 @@
                         >
                             <img
                                 src="https://img.icons8.com/metro/50/ffffff/new-post.png"
-                                alt="Email"
+                                alt="Primary Email"
                                 class="w-6"
                             />
                         </div>
 
                         <div class="ml-5 text-white">
-                            <h4>Email</h4>
+                            <h4>Primary Email</h4>
                             <p>dbritz22@proton.me</p>
+                        </div>
+                    </div>
+
+                    <div class="flex mb-10 items-center">
+                        <div
+                            class="p-2"
+                            style="
+                                background: #111a3e;
+                                width: 50px;
+                                height: 46px;
+                                display: flex;
+                                justify-content: center;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                border: 1px solid#111a3e;
+                                backdrop-filter: blur(9px);
+                                -webkit-backdrop-filter: blur(9px);
+                            "
+                        >
+                            <img
+                                src="https://img.icons8.com/metro/50/ffffff/new-post.png"
+                                alt="Secondary Email"
+                                class="w-6"
+                            />
+                        </div>
+
+                        <div class="ml-5 text-white">
+                            <h4>Secondary Email</h4>
+                            <p>dihanbritz05@gmail.com</p>
                         </div>
                     </div>
 
@@ -95,6 +124,35 @@
                         <div class="ml-5 text-white">
                             <h4>LinkedIn</h4>
                             <p>https://www.linkedin.com/in/dihan-britz/</p>
+                        </div>
+                    </div>
+
+                    <div class="flex mb-10 items-center">
+                        <div
+                            class="p-2"
+                            style="
+                                background: #111a3e;
+                                width: 50px;
+                                height: 46px;
+                                display: flex;
+                                justify-content: center;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                border: 1px solid#111a3e;
+                                backdrop-filter: blur(9px);
+                                -webkit-backdrop-filter: blur(9px);
+                            "
+                        >
+                            <img
+                                src="https://img.icons8.com/ios-filled/50/ffffff/github.png"
+                                alt="GitHub"
+                                class="w-6"
+                            />
+                        </div>
+
+                        <div class="ml-5 text-white">
+                            <h4>GitHub</h4>
+                            <p>https://github.com/DoubledDoge</p>
                         </div>
                     </div>
                 </div>

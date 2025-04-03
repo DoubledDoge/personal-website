@@ -32,9 +32,7 @@
                     <p
                         class="text-gray-300 pt-8 text-center lg:text-left mx-auto max-w-wl"
                     >
-                        I'm a passionate software engineer with a knack for
-                        creating innovative solutions. I love coding and
-                        exploring new technologies. (Placeholder text)
+                        I'm an aspiring Software Engineer and Information Technology student at Eduvos, focusing on C# development and database design. With a strong foundation in desktop applications and a growing interest in web technologies, I'm passionate about creating efficient, maintainable solutions while continuously expanding my technical expertise.
                     </p>
 
                     <div

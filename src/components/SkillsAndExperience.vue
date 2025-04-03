@@ -110,9 +110,9 @@ const Skills = ref([
 const Experiences = ref([
     {
         id: 1,
-        role: "University Student",
-        company: "EDUVOS",
-        date: "Feb 2024 - Present",
+        role: "None",
+        company: "",
+        date: "",
     },
 ]);
 </script>

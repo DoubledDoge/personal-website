@@ -60,24 +60,24 @@ import { ref } from "vue";
 const services = ref([
     {
         id: 1,
-        icon: "https://img.icons8.com/ios-filled/50/ffffff/google-code.png",
-        name: "Web Development",
+        icon: "https://img.icons8.com/ios-filled/50/ffffff/c-sharp-logo.png",
+        name: "C# Development",
         description:
-            "Building responsive and functional websites using modern technologies. (Placeholder text)",
+            "Development of desktop applications and basic software solutions using C# and .NET framework. Specializing in Windows Forms applications and console-based programs.",
     },
     {
         id: 2,
-        icon: "https://img.icons8.com/external-vectorslab-glyph-vectorslab/100/fffeee/external-Technical-Writing-mobile-app-development-vectorslab-glyph-vectorslab.png",
-        name: "Technical Writing",
+        icon: "https://img.icons8.com/ios-filled/50/ffffff/database.png",
+        name: "Database Design",
         description:
-            "Creating clear and concise documentation for software and applications. (Placeholder text)",
+            "Design and implementation of SQL databases, including data modeling, basic query optimization, and database management using Microsoft SQL Server.",
     },
     {
         id: 3,
-        icon: "https://img.icons8.com/external-glyph-design-circle/100/ffffff/external-Mobile-Development-digital-marketing-solid-design-circle.png",
-        name: "Mobile Development",
+        icon: "https://img.icons8.com/ios-filled/50/ffffff/code.png",
+        name: "Academic Projects",
         description:
-            "Developing mobile applications for iOS and Android platforms. (Placeholder text)",
-    },
+            "Collaboration on software engineering projects, with experience in version control (Git), documentation, and implementing solutions based on academic requirements.",
+    }
 ]);
 </script>
