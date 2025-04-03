@@ -154,7 +154,7 @@ const Projects = ref([
         image: calculatorWebsiteImg,
         title: "Calculator Website",
         description: "Its a extremely simplistic website that is meant to function as a calculator. Previously it served me as an introduction into web development as a whole.",
-        technologies: ["Vue", "SCSS", "TypeScript"],
+        technologies: ["Svelte", "SCSS", "TypeScript"],
         gitURL: "https://github.com/DoubledDoge/just-another-calculator-website",
         webURL: "https://doubleddoge.github.io/just-another-calculator-website/",
     },
