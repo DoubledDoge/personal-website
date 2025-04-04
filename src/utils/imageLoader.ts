@@ -7,11 +7,7 @@ export const lazyLoadImage = (imageSrc: string): Promise<string> => {
             console.error(`Failed to load image: ${imageSrc}`);
             reject(new Error(`Failed to load image: ${imageSrc}`));
         };
-
-        // Handle both URLs and imported images
-        img.src = imageSrc.startsWith('data:') || imageSrc.startsWith('blob:') || imageSrc.startsWith('http')
-            ? imageSrc
-            : new URL(imageSrc, import.meta.url).href;
+        img.src = imageSrc;
     });
 };
 

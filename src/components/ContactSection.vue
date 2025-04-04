@@ -170,7 +170,7 @@
                     -webkit-backdrop-filter: blur(9px);
                 "
             >
-                <form class="flex flex-col p-2" data-aos="zoom-in-up">
+                <form class="flex flex-col p-2" data-aos="zoom-in-up" @submit.prevent="handleSubmit">
                     <div class="mb-6">
                         <label
                             for="email"
@@ -179,11 +179,14 @@
                         >
 
                         <input
+                            v-model="formData.email"
                             type="email"
                             id="email"
+                            required
                             class="bg-[#111827] placeholder:[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                             placeholder="Please enter your email"
                             name="Email"
+                            autocomplete="email"
                         />
                     </div>
 
@@ -195,8 +198,10 @@
                         >
 
                         <input
+                            v-model="formData.subject"
                             type="subject"
                             id="subject"
+                            required
                             class="bg-[#111827] placeholder:[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                             placeholder="Please enter your subject"
                             name="Subject"
@@ -211,19 +216,28 @@
                         >
 
                         <textarea
-                            type="message"
+                            v-model="formData.message"
                             id="message"
+                            required
                             class="bg-[#111827] placeholder:[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                             placeholder="Let's talk about ..."
                             name="Message"
-                        />
+                            rows="4"
+                        ></textarea>
                     </div>
 
                     <button
-                        class="z-1 w-[100%!important] px-6 md:px-7 py-3 rounded-full sm:w-max flex justify-center text-white bg-primary border-2 border-transparent"
+                        type="submit"
+                        :disabled="isSubmitting"
+                        class="z-1 w-[100%!important] px-6 md:px-7 py-3 rounded-full sm:w-max flex justify-center text-white bg-primary border-2 border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Send Message
+                        {{ isSubmitting ? 'Sending...' : 'Send Message' }}
                     </button>
+
+                    <div v-if="submitStatus" :class="['mt-4 text-center p-2 rounded',
+                        submitStatus.type === 'success' ? 'bg-green-600' : 'bg-red-600']">
+                        {{ submitStatus.message }}
+                    </div>
                 </form>
             </div>
 
@@ -234,4 +248,74 @@
     </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+import emailjs from '@emailjs/browser';
+
+// Import environment variables for EmailJS
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+
+interface FormData {
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface SubmitStatus {
+  type: 'success' | 'error';
+  message: string;
+}
+
+const formData = ref<FormData>({
+  email: '',
+  subject: '',
+  message: ''
+});
+
+const isSubmitting = ref(false);
+const submitStatus = ref<SubmitStatus | null>(null);
+
+const handleSubmit = async () => {
+  try {
+    isSubmitting.value = true;
+    submitStatus.value = null;
+
+    const templateParams = {
+      from_email: formData.value.email,
+      subject: formData.value.subject,
+      message: formData.value.message,
+      to_email: 'dbritz22@proton.me'
+    };
+
+    await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams,
+      EMAILJS_PUBLIC_KEY
+    );
+
+    submitStatus.value = {
+      type: 'success',
+      message: 'Message sent successfully!'
+    };
+
+    // Reset form
+    formData.value = {
+      email: '',
+      subject: '',
+      message: ''
+    };
+
+  } catch (error) {
+    console.error('Failed to send email:', error);
+    submitStatus.value = {
+      type: 'error',
+      message: 'Failed to send message. Please try again.'
+    };
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+</script>

@@ -30,9 +30,12 @@
 <script setup lang="ts">
 import { defineAsyncComponent, onMounted } from "vue";
 import { preloadImages } from '@/utils/imageLoader';
+import emailjs from '@emailjs/browser';
 import LoadingSpinner from "./components/loadingSpinner.vue";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import topPicture from './assets/top_picture.png';
+import personalWebsiteImg from './assets/personal-website.png';
 
 // Initialize AOS and preload images
 onMounted(async () => {
@@ -43,12 +46,12 @@ onMounted(async () => {
         mirror: false,
     });
 
-    // Preload critical images
     await preloadImages([
-        '@/assets/top_picture.png',
-        '@/assets/personal-website.png',
-        // Add other critical images here
+        topPicture,
+        personalWebsiteImg
     ]);
+
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 });
 
 const componentOptions = {
