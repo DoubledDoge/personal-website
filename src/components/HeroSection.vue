@@ -39,6 +39,7 @@
                         class="flex items-center gap-3 pt-9 flex-col sm:flex-row sm:w-max sm:mx-auto lg:mx-0"
                     >
                         <button
+                            @click="scrollToContact"
                             class="px-6 md:px-7 py-3 rounded-full relative group w-full sm:w-max flex justify-center"
                         >
                             <span
@@ -46,8 +47,7 @@
                             ></span>
                             <span
                                 class="relative flex items-center justify-center text-white"
-                                >Hire Me</span
-                            >
+                            >Hire Me</span>
                         </button>
 
                         <button
@@ -86,7 +86,7 @@
                                     ></div>
                                 </div>
                                 <a
-                                    href="./assets/resume.pdf"
+                                    href="/resume.pdf"
                                     download="resume.pdf"
                                     class="pl-2 text-primary"
                                 >
@@ -141,4 +141,13 @@ onMounted(async () => {
         isImageLoading.value = false;
     }
 });
+
+const scrollToContact = () => {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+        contactSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+};
 </script>
