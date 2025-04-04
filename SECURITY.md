@@ -1,21 +1,54 @@
-# Security Policy
+# Security Policy 🔒
 
-## Supported Versions
+## Vulnerability Reporting 🛡️
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+I take security seriously as this website is open for everyone to see.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+If you discover a security vulnerability, please follow these steps:
 
-## Reporting a Vulnerability
+### Reporting Process
 
-Use this section to tell people how to report a vulnerability.
+1. **DO NOT** create a public GitHub issue
+2. Send details to dbritz22@proton.me
+3. Include:
+   - Description of the vulnerability
+   - Steps to reproduce
+   - Any possible solutions you've identified
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+### Response Timeline
+
+As soon as I can, as its only just me who manages this repository.
+
+## Security Measures 🛠️
+
+This project implements:
+
+- Dependency scanning with GitHub's Dependabot
+- Automated security updates
+- Semi-regular security audits
+- CodeQL analysis for code scanning
+
+## Best Practices 📚
+
+When contributing, please:
+
+1. Keep dependencies up to date
+2. Use secure coding practices
+3. Implement proper input validation
+4. Enable security features in development
+
+## Security Updates 📢
+
+Security updates are released as:
+
+- Patch versions for critical fixes
+- Minor versions for non-critical updates
+
+## Contact 📧
+
+For sensitive security matters:
+- Email: dbritz22@proton.me
+- Phone: +27663370662
+
+---
+*Last Updated: 2025*
