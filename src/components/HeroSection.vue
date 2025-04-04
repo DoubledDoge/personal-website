@@ -86,8 +86,8 @@
                                     ></div>
                                 </div>
                                 <a
-                                    href="/resume.pdf"
-                                    download="resume.pdf"
+                                    :href="getResumeUrl()"
+                                    @click="handleDownload"
                                     class="pl-2 text-primary"
                                 >
                                     Download resume</a
@@ -148,6 +148,30 @@ const scrollToContact = () => {
         contactSection.scrollIntoView({
             behavior: 'smooth'
         });
+    }
+};
+
+const getResumeUrl = () => {
+    return `${import.meta.env.BASE_URL}resume.pdf`;
+};
+
+const handleDownload = async (e: Event) => {
+    e.preventDefault();
+    try {
+        const response = await fetch(getResumeUrl());
+        if (!response.ok) throw new Error('Failed to download resume');
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'resume.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    } catch (error) {
+        console.error('Error downloading resume:', error);
     }
 };
 </script>
