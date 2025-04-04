@@ -123,7 +123,14 @@
 
                         <div class="ml-5 text-white">
                             <h4>LinkedIn</h4>
-                            <p>https://www.linkedin.com/in/dihan-britz/</p>
+                            <a
+                                href="https://www.linkedin.com/in/dihan-britz/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="hover:text-primary transition-colors"
+                            >
+                                linkedin.com/in/dihan-britz
+                            </a>
                         </div>
                     </div>
 
@@ -152,7 +159,14 @@
 
                         <div class="ml-5 text-white">
                             <h4>GitHub</h4>
-                            <p>https://github.com/DoubledDoge</p>
+                            <a
+                                href="https://github.com/DoubledDoge"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="hover:text-primary transition-colors"
+                            >
+                                github.com/DoubledDoge
+                            </a>
                         </div>
                     </div>
                 </div>
