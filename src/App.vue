@@ -29,46 +29,67 @@
 
 <script setup lang="ts">
 import { defineAsyncComponent, onMounted } from "vue";
+import { preloadImages } from '@/utils/imageLoader';
+import LoadingSpinner from "./components/loadingSpinner.vue";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Initialize AOS
-onMounted(() => {
+// Initialize AOS and preload images
+onMounted(async () => {
     AOS.init({
         duration: 800,
         easing: "ease-in-out",
         once: true,
         mirror: false,
     });
+
+    // Preload critical images
+    await preloadImages([
+        '@/assets/top_picture.png',
+        '@/assets/personal-website.png',
+        // Add other critical images here
+    ]);
 });
 
-//Import Components Asynchronously
-const Navbar = defineAsyncComponent(() => import("@/components/NavBar.vue"));
-const HeroSection = defineAsyncComponent(
-    () => import("@/components/HeroSection.vue"),
-);
-const ServicesSection = defineAsyncComponent(
-    () => import("@/components/ServicesSection.vue"),
-);
-const AboutSection = defineAsyncComponent(
-    () => import("@/components/AboutSection.vue"),
-);
-const SkillsAndExperience = defineAsyncComponent(
-    () => import("@/components/SkillsAndExperience.vue"),
-);
-const ProjectsSection = defineAsyncComponent(
-    () => import("@/components/ProjectsSection.vue"),
-);
-const ContactSection = defineAsyncComponent(
-    () => import("@/components/ContactSection.vue"),
-);
-// Testimonial Section?
-const Footer = defineAsyncComponent(() => import("@/components/Footer.vue"));
-const BackToTop = defineAsyncComponent(
-    () => import("@/components/BackToTop.vue"),
-);
+const componentOptions = {
+    delay: 200,
+    timeout: 5000,
+    loadingComponent: LoadingSpinner,
+    onError(error: Error, retry: () => void) {
+        console.error('Error loading component:', error);
+        retry();
+    }
+}
 
-import LoadingSpinner from "./components/loadingSpinner.vue";
+//Import Components Asynchronously
+const Navbar = defineAsyncComponent({
+    ...componentOptions, loader: () => import(/* webpackChunkName: "nav" */ "@/components/NavBar.vue")
+});
+const HeroSection = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "hero" */ "@/components/HeroSection.vue"),
+});
+const ServicesSection = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "service" */ "@/components/ServicesSection.vue"),
+});
+const AboutSection = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "about" */ "@/components/AboutSection.vue"),
+});
+const SkillsAndExperience = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "skills" */ "@/components/SkillsAndExperience.vue"),
+});
+const ProjectsSection = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "projects" */ "@/components/ProjectsSection.vue"),
+});
+const ContactSection = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "contact" */ "@/components/ContactSection.vue"),
+});
+// Testimonial Section?
+const Footer = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "footer" */ "@/components/Footer.vue"),
+});
+const BackToTop = defineAsyncComponent({
+   ...componentOptions, loader: () => import(/* webpackChunkName: "backtotop" */"@/components/BackToTop.vue"),
+});
 </script>
 
 <style>

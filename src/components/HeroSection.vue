@@ -103,15 +103,16 @@
                         <div
                             class="absolute z-0 top-1/2 -translate-y-1/2 w-5/6 right-0 h-[calc(80%+20px)] bg-linear-to-tr opacity-25 from-[#570cac] to-primary blur-2xl"
                         ></div>
-                        <div
-                            class="absolute h-full z-10 p-2 -translate-y-1/2 top-1/2 lg:right-3 md:right-40 sm:right-16 rounded-full shadow-lg border border-primary"
-                        >
+                        <div class="absolute h-full z-10 p-2 -translate-y-1/2 top-1/2 lg:right-3 md:right-40 sm:right-16 rounded-full shadow-lg border border-primary">
+                            <template v-if="isImageLoading">
+                                <div class="w-full h-full rounded-full bg-gray-700 animate-pulse"></div>
+                            </template>
                             <img
-                                src="@/assets/top_picture.png"
+                                v-else
+                                :src="profileImage"
                                 alt="Hero Picture"
                                 width="500"
                                 height="auto"
-                                loading="lazy"
                                 class="w-full h-full rounded-full object-cover"
                             />
                         </div>
@@ -121,3 +122,23 @@
         </div>
     </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { lazyLoadImage } from '@/utils/imageLoader';
+import topPicture from '../assets/top_picture.png';
+
+const profileImage = ref('');
+const isImageLoading = ref(true);
+
+onMounted(async () => {
+    try {
+        const loadedImage = await lazyLoadImage(topPicture);
+        profileImage.value = loadedImage;
+    } catch (error) {
+        console.error('Error loading profile image:', error);
+    } finally {
+        isImageLoading.value = false;
+    }
+});
+</script>
