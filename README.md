@@ -1,17 +1,6 @@
 # Personal Website 🌐
 A modern, responsive personal portfolio website built with Vue.js and TailwindCSS.
 
-## Table of Contents 📑
-- [Overview](#overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Setup Instructions](#setup-instructions)
-- [Project Structure](#project-structure)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
-- [Notes](#notes)
-
 ## Overview 📖
 This is a personal portfolio website showcasing skills, projects, and contact information. The site features a modern design with smooth animations, responsive layouts, and interactive components.
 
