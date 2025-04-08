@@ -8,7 +8,7 @@
             data-aos="zoom-in-up"
         >
             <div>
-                <p class="text-[#adb7be]">(Placeholder Text)</p>
+                <p class="text-[#adb7be]">You can contact me using one of these methods found below:</p>
 
                 <div class="col-lg-4 col-md-4 mb-lg-0 mt-5">
                     <div class="flex mb-10 items-center">
