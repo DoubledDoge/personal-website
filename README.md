@@ -1,4 +1,4 @@
-# Personal Website 🌐
+# Personal Website
 A modern, responsive personal portfolio website built with Vue.js and TailwindCSS.
 
 ## Overview 📖
