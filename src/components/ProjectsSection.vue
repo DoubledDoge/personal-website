@@ -1,11 +1,14 @@
 <template>
+    <!-- Projects portfolio section with filterable gallery -->
     <section class="text-white mt-20" id="projects">
+        <!-- Section header with title and category filters -->
         <div class="px-4 xl:pl-16">
             <div class="mb-4md:flex md:justify-between xl:pr-16">
                 <h2 class="text-4xl font-bold text-white">
                     My Latest Projects
                 </h2>
 
+                <!-- Project category filter buttons -->
                 <div class="flex space-x-4 mb-4 mt-5 md:mt-0">
                     <button
                         v-for="category in [
@@ -27,29 +30,33 @@
                 </div>
             </div>
 
+            <!-- Loading spinner shown while images are loading -->
             <div v-if="isLoading" class="flex justify-center items-center py-20">
                 <LoadingSpinner />
             </div>
+
+            <!-- Projects grid -->
             <div v-else>
                 <ul
                     class="px-4 sm:py-16 xl:pr-16 grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3"
                     data-aos="fade-right"
                 >
+                    <!-- Individual project card -->
                     <div v-for="project in filteredProjects" :key="project.id">
                         <div class="group relative">
-                            <!-- Project Image -->
+                            <!-- Project image/thumbnail -->
                             <div
                                 class="h-52 md:h-[24rem] rounded-t-xl bg-cover bg-center"
                                 :style="{
                                     backgroundImage: `url(${loadedImages.get(project.image) || project.image})`
                                 }"
                             >
-                                <!-- Single Overlay -->
+                                <!-- Hover overlay with action buttons -->
                                 <div
                                     class="absolute inset-0 bg-[#181818] opacity-0 group-hover:opacity-80 transition-all duration-500 flex items-center justify-center"
                                 >
                                     <div class="flex space-x-4">
-                                        <!-- Live Demo Button -->
+                                        <!-- Live Demo Button (conditional) -->
                                         <a
                                             v-if="project.webURL"
                                             :href="project.webURL"
@@ -74,7 +81,7 @@
                                             </svg>
                                         </a>
 
-                                        <!-- GitHub Button -->
+                                        <!-- GitHub Button (conditional) -->
                                         <a
                                             v-if="project.gitURL"
                                             :href="project.gitURL"
@@ -96,18 +103,21 @@
                                 </div>
                             </div>
 
-                            <!-- Project Info Card -->
+                            <!-- Project information card -->
                             <div class="text-white rounded-b-xl bg-[#111a3e] shadow-lg border border-[#1f1641] py-6 px-4">
+                                <!-- Project title -->
                                 <h3
                                     class="text-lg font-semibold uppercase lg:text-xl"
                                 >
                                     {{ project.title }}
                                 </h3>
 
+                                <!-- Project description -->
                                 <p class="text-[#ADB7BE]">
                                     {{ project.description }}
                                 </p>
 
+                                <!-- Technologies used tags -->
                                 <div class="flex flex-wrap p-2.5">
                                     <div
                                         v-for="technology in project.technologies"
@@ -136,6 +146,21 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * Projects Section Component
+ *
+ * Showcases the developer's portfolio of projects with filterable categories,
+ * detailed project cards, and links to live demos and source code.
+ *
+ * Features:
+ * - Category filtering to view projects by type
+ * - Image lazy loading for better performance
+ * - Interactive project cards with hover effects
+ * - Links to live demos and GitHub repositories
+ * - Technology tags for each project
+ * - Loading spinner while images are loading
+ */
+
 import { ref, computed, onMounted } from "vue";
 import { lazyLoadImage } from "@/utils/imageLoader";
 import LoadingSpinner from "./loadingSpinner.vue";
@@ -144,9 +169,27 @@ import calculatorWebsiteImg from '@/assets/calculator-website.png';
 import cSharpUniversityImg from '@/assets/cSharp-university.png';
 import cPlusPlusUniversityImg from '@/assets/cPlusPlus-university.png';
 
+// -----------------------------------------------------
+// State Management
+// -----------------------------------------------------
+
+/**
+ * Stores references to loaded images to prevent flickering
+ */
 const loadedImages = ref(new Map<string, string>());
+
+/**
+ * Tracks the loading state of project images
+ */
 const isLoading = ref(true);
 
+// -----------------------------------------------------
+// Lifecycle Hooks
+// -----------------------------------------------------
+
+/**
+ * Preloads all project images when component mounts
+ */
 onMounted(async () => {
     try {
         const imageSources = [
@@ -156,6 +199,7 @@ onMounted(async () => {
             cPlusPlusUniversityImg
         ];
 
+        // Load all images concurrently
         await Promise.all(
             imageSources.map(async (src) => {
                 const loadedSrc = await lazyLoadImage(src);
@@ -165,10 +209,20 @@ onMounted(async () => {
     } catch (error) {
         console.error('Error loading images:', error);
     } finally {
+        // Hide loading spinner when done, even if some images failed
         isLoading.value = false;
     }
 });
 
+// -----------------------------------------------------
+// Projects Data
+// -----------------------------------------------------
+
+/**
+ * Project portfolio data
+ * Contains information about each project including images, descriptions,
+ * technologies used, and links to demos/repositories
+ */
 const Projects = ref([
     {
         id: 1,
@@ -212,8 +266,19 @@ const Projects = ref([
     },
 ]);
 
+/**
+ * Currently selected project category for filtering
+ */
 const selectedCategory = ref("All");
 
+// -----------------------------------------------------
+// Computed Properties
+// -----------------------------------------------------
+
+/**
+ * Filtered projects based on the selected category
+ * Returns all projects when "All" is selected, otherwise filters by category
+ */
 const filteredProjects = computed(() => {
     if (selectedCategory.value === "All") {
         return Projects.value;
