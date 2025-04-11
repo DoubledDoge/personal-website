@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import type { UserConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import { compression } from 'vite-plugin-compression2';
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default defineConfig({
     plugins: [
@@ -11,9 +12,24 @@ export default defineConfig({
         tailwindcss(),
         compression({
             algorithm: 'gzip',
-            filename: '[path][base].gz', // Fixed: replaced 'ext' with 'filename'
+            filename: '[path][base].gz',
             threshold: 1024,
             deleteOriginalAssets: false
+        }),
+        createHtmlPlugin({
+            minify: true,
+            inject: {
+                data: {
+                    // These headers will be applied during build
+                    securityHeaders: {
+                        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://img.icons8.com data:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none';",
+                        "X-Content-Type-Options": "nosniff",
+                        "X-Frame-Options": "DENY",
+                        "Referrer-Policy": "strict-origin-when-cross-origin",
+                        "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+                    }
+                }
+            }
         })
     ],
     resolve: {

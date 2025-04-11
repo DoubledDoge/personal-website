@@ -352,6 +352,58 @@ const submitStatus = ref<SubmitStatus | null>(null);
 // -----------------------------------------------------
 
 /**
+ * Validate an email address
+ * @param email Email to validate
+ * @returns Boolean indicating if email is valid
+ */
+const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+};
+
+/**
+ * Sanitize input to prevent XSS attacks
+ * @param input String to sanitize
+ * @returns Sanitized string
+ */
+const sanitizeInput = (input: string): string => {
+    // Replace potentially dangerous characters
+    return input
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .trim();
+};
+
+/**
+ * Basic rate limiting using localStorage
+ * @returns Boolean indicating if rate limit is exceeded
+ */
+const isRateLimited = (): boolean => {
+    const now = Date.now();
+    const lastSubmit = localStorage.getItem('lastFormSubmit');
+    const submitCount = Number(localStorage.getItem('formSubmitCount') || '0');
+
+    // Reset counter if last submit was more than 24 hours ago
+    if (lastSubmit && now - Number(lastSubmit) > 24 * 60 * 60 * 1000) {
+        localStorage.setItem('formSubmitCount', '0');
+        localStorage.setItem('lastFormSubmit', now.toString());
+        return false;
+    }
+
+    // Allow max 5 submissions per day
+    if (submitCount >= 5) {
+        return true;
+    }
+
+    // Update submission count
+    localStorage.setItem('formSubmitCount', (submitCount + 1).toString());
+    localStorage.setItem('lastFormSubmit', now.toString());
+    return false;
+};
+
+/**
  * Handles the form submission
  * Sends the email via EmailJS and manages submission states
  */
@@ -362,11 +414,35 @@ const handleSubmit = async () => {
         submitStatus.value = null;
         console.info("Form submission started.");
 
-        // Prepare email parameters
+        // Check for rate limiting
+        if (isRateLimited()) {
+            throw new Error("Rate limit exceeded. Please try again later.");
+        }
+
+        // Validate email format
+        if (!validateEmail(formData.value.email)) {
+            throw new Error("Please enter a valid email address.");
+        }
+
+        // Sanitize inputs to prevent XSS
+        const sanitizedSubject = sanitizeInput(formData.value.subject);
+        const sanitizedMessage = sanitizeInput(formData.value.message);
+        const sanitizedEmail = sanitizeInput(formData.value.email);
+
+        // Validate input lengths
+        if (sanitizedSubject.length < 3 || sanitizedSubject.length > 100) {
+            throw new Error("Subject must be between 3 and 100 characters.");
+        }
+
+        if (sanitizedMessage.length < 10 || sanitizedMessage.length > 1000) {
+            throw new Error("Message must be between 10 and 1000 characters.");
+        }
+
+        // Prepare email parameters with sanitized inputs
         const templateParams = {
-            from_email: formData.value.email,
-            subject: formData.value.subject,
-            message: formData.value.message,
+            from_email: sanitizedEmail,
+            subject: sanitizedSubject,
+            message: sanitizedMessage,
             to_email: "dbritz22@proton.me",
         };
 
@@ -399,7 +475,7 @@ const handleSubmit = async () => {
         // Set error status
         submitStatus.value = {
             type: "error",
-            message: "Failed to send message. Please try again.",
+            message: error instanceof Error ? error.message : "Failed to send message. Please try again.",
         };
     } finally {
         // Reset loading state

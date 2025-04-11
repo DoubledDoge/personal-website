@@ -10,7 +10,11 @@
             <!-- Copyright and license information -->
             <div class="text-slate-600 text-center md:text-right">
                 <p>© 2025 Dihan Britz</p>
-                <p class="text-sm">Open source under MIT License</p>
+                <p class="text-sm">
+                    <a href="https://github.com/DoubledDoge/personal-website/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-white">
+                        Open source under MIT License
+                    </a>
+                </p>
             </div>
         </div>
     </footer>
