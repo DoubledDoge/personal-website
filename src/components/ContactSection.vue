@@ -8,7 +8,9 @@
             data-aos="zoom-in-up"
         >
             <div>
-                <p class="text-[#adb7be]">You can contact me using one of these methods found below:</p>
+                <p class="text-[#adb7be]">
+                    You can contact me using one of these methods found below:
+                </p>
 
                 <div class="col-lg-4 col-md-4 mb-lg-0 mt-5">
                     <div class="flex mb-10 items-center">
@@ -184,7 +186,11 @@
                     -webkit-backdrop-filter: blur(9px);
                 "
             >
-                <form class="flex flex-col p-2" data-aos="zoom-in-up" @submit.prevent="handleSubmit">
+                <form
+                    class="flex flex-col p-2"
+                    data-aos="zoom-in-up"
+                    @submit.prevent="handleSubmit"
+                >
                     <div class="mb-6">
                         <label
                             for="email"
@@ -245,11 +251,18 @@
                         :disabled="isSubmitting"
                         class="z-1 w-[100%!important] px-6 md:px-7 py-3 rounded-full sm:w-max flex justify-center text-white bg-primary border-2 border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                        {{ isSubmitting ? "Sending..." : "Send Message" }}
                     </button>
 
-                    <div v-if="submitStatus" :class="['mt-4 text-center p-2 rounded',
-                        submitStatus.type === 'success' ? 'bg-green-600' : 'bg-red-600']">
+                    <div
+                        v-if="submitStatus"
+                        :class="[
+                            'mt-4 text-center p-2 rounded',
+                            submitStatus.type === 'success'
+                                ? 'bg-green-600'
+                                : 'bg-red-600',
+                        ]"
+                    >
                         {{ submitStatus.message }}
                     </div>
                 </form>
@@ -263,8 +276,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import emailjs from '@emailjs/browser';
+import { ref } from "vue";
+import emailjs from "@emailjs/browser";
 
 // Import environment variables for EmailJS
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -272,64 +285,67 @@ const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 
 interface FormData {
-  email: string;
-  subject: string;
-  message: string;
+    email: string;
+    subject: string;
+    message: string;
 }
 
 interface SubmitStatus {
-  type: 'success' | 'error';
-  message: string;
+    type: "success" | "error";
+    message: string;
 }
 
 const formData = ref<FormData>({
-  email: '',
-  subject: '',
-  message: ''
+    email: "",
+    subject: "",
+    message: "",
 });
 
 const isSubmitting = ref(false);
 const submitStatus = ref<SubmitStatus | null>(null);
 
 const handleSubmit = async () => {
-  try {
-    isSubmitting.value = true;
-    submitStatus.value = null;
+    try {
+        isSubmitting.value = true;
+        submitStatus.value = null;
+        console.info("Form submission started.");
 
-    const templateParams = {
-      from_email: formData.value.email,
-      subject: formData.value.subject,
-      message: formData.value.message,
-      to_email: 'dbritz22@proton.me'
-    };
+        const templateParams = {
+            from_email: formData.value.email,
+            subject: formData.value.subject,
+            message: formData.value.message,
+            to_email: "dbritz22@proton.me",
+        };
 
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_PUBLIC_KEY
-    );
+        await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            templateParams,
+            EMAILJS_PUBLIC_KEY,
+        );
 
-    submitStatus.value = {
-      type: 'success',
-      message: 'Message sent successfully!'
-    };
+        console.info("Email sent successfully.");
+        submitStatus.value = {
+            type: "success",
+            message: "Message sent successfully!",
+        };
 
-    // Reset form
-    formData.value = {
-      email: '',
-      subject: '',
-      message: ''
-    };
-
-  } catch (error) {
-    console.error('Failed to send email:', error);
-    submitStatus.value = {
-      type: 'error',
-      message: 'Failed to send message. Please try again.'
-    };
-  } finally {
-    isSubmitting.value = false;
-  }
+        // Reset form
+        formData.value = {
+            email: "",
+            subject: "",
+            message: "",
+        };
+    } catch (error) {
+        console.error("Failed to send email:", error);
+        alert("Error: Failed to send message. Please try again.");
+        submitStatus.value = {
+            type: "error",
+            message: "Failed to send message. Please try again.",
+        };
+    } finally {
+        isSubmitting.value = false;
+        console.info("Form submission process completed.");
+    }
 };
 </script>

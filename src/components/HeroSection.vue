@@ -32,7 +32,13 @@
                     <p
                         class="text-gray-300 pt-8 text-center lg:text-left mx-auto max-w-wl"
                     >
-                        I'm an aspiring Software Engineer and Information Technology student at Eduvos, focusing on C# development and database design. With a strong foundation in desktop applications and a growing interest in web technologies, I'm passionate about creating efficient, maintainable solutions while continuously expanding my technical expertise.
+                        I'm an aspiring Software Engineer and Information
+                        Technology student at Eduvos, focusing on C# development
+                        and database design. With a strong foundation in desktop
+                        applications and a growing interest in web technologies,
+                        I'm passionate about creating efficient, maintainable
+                        solutions while continuously expanding my technical
+                        expertise.
                     </p>
 
                     <div
@@ -47,7 +53,8 @@
                             ></span>
                             <span
                                 class="relative flex items-center justify-center text-white"
-                            >Hire Me</span>
+                                >Hire Me</span
+                            >
                         </button>
 
                         <button
@@ -103,9 +110,13 @@
                         <div
                             class="absolute z-0 top-1/2 -translate-y-1/2 w-5/6 right-0 h-[calc(80%+20px)] bg-linear-to-tr opacity-25 from-[#570cac] to-primary blur-2xl"
                         ></div>
-                        <div class="absolute h-full z-10 p-2 -translate-y-1/2 top-1/2 lg:right-3 md:right-40 sm:right-16 rounded-full shadow-lg border border-primary">
+                        <div
+                            class="absolute h-full z-10 p-2 -translate-y-1/2 top-1/2 lg:right-3 md:right-40 sm:right-16 rounded-full shadow-lg border border-primary"
+                        >
                             <template v-if="isImageLoading">
-                                <div class="w-full h-full rounded-full bg-gray-700 animate-pulse"></div>
+                                <div
+                                    class="w-full h-full rounded-full bg-gray-700 animate-pulse"
+                                ></div>
                             </template>
                             <img
                                 v-else
@@ -124,29 +135,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { lazyLoadImage } from '@/utils/imageLoader';
-import topPicture from '../assets/top_picture.png';
+import { ref, onMounted } from "vue";
+import { lazyLoadImage } from "@/utils/imageLoader";
+import topPicture from "../assets/top_picture.png";
 
-const profileImage = ref('');
+const profileImage = ref("");
 const isImageLoading = ref(true);
 
 onMounted(async () => {
     try {
+        console.info("Loading profile image...");
         const loadedImage = await lazyLoadImage(topPicture);
         profileImage.value = loadedImage;
+        console.info("Profile image loaded successfully.");
     } catch (error) {
-        console.error('Error loading profile image:', error);
+        console.error("Error loading profile image:", error);
+        alert("Error: Unable to load profile image.");
     } finally {
         isImageLoading.value = false;
     }
 });
 
 const scrollToContact = () => {
-    const contactSection = document.querySelector('#contact');
+    const contactSection = document.querySelector("#contact");
     if (contactSection) {
         contactSection.scrollIntoView({
-            behavior: 'smooth'
+            behavior: "smooth",
         });
     }
 };
@@ -159,19 +173,19 @@ const handleDownload = async (e: Event) => {
     e.preventDefault();
     try {
         const response = await fetch(getResumeUrl());
-        if (!response.ok) throw new Error('Failed to download resume');
+        if (!response.ok) throw new Error("Failed to download resume");
 
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = 'resume.pdf';
+        a.download = "resume.pdf";
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
     } catch (error) {
-        console.error('Error downloading resume:', error);
+        console.error("Error downloading resume:", error);
     }
 };
 </script>
