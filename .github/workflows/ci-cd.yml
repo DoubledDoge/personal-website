@@ -10,17 +10,15 @@ jobs:
     build:
         runs-on: ubuntu-latest
         permissions:
-            # Required for checking out code
             contents: read
-            # Required for caching
             actions: write
-            # Required for commenting on PRs if needed
             pull-requests: write
-            # Required for checking security advisories
             security-events: write
         steps:
             - uses: actions/checkout@v4
-
+              with:
+                fetch-depth: 0
+                
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
