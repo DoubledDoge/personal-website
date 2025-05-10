@@ -1,6 +1,5 @@
 # Personal Website
 
-A modern, responsive personal portfolio website built with Vue.js and TailwindCSS.
 ![Personal Website Screenshot](/public/Preview-Image.png "Preview Screenshot")
 
 ## Overview 📖
