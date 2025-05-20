@@ -14,19 +14,6 @@ updates:
     assignees:
       - "Dihan Britz"
 
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    update-type: "security"
-    labels:
-      - "security"
-      - "dependencies"
-    reviewers:
-      - "Dihan Britz"
-    assignees:
-      - "DihanBritz"
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -37,4 +24,4 @@ updates:
     reviewers:
       - "Dihan Britz"
     assignees:
-      - "DihanBritz"
+      - "Dihan Britz"
