@@ -1,13 +1,33 @@
 version: 2
 updates:
-    - package-ecosystem: "npm"
-      directory: "/"
-      schedule:
-          interval: "weekly"
-      open-pull-requests-limit: 10
-      versioning-strategy: "auto"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    versioning-strategy: "auto"
+    labels:
+      - "dependencies"
+      - "npm"
+    reviewers:
+      - "Dihan Britz"
+    assignees:
+      - "Dihan Britz"
+    allow:
+      - dependency-type: "all"
+    ignore:
+      - dependency-type: "dev"
+    security-updates: true
 
-    - package-ecosystem: "github-actions"
-      directory: "/"
-      schedule:
-          interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    reviewers:
+      - "Dihan Britz"
+    assignees:
+      - "Dihan Britz"
+    security-updates: true
