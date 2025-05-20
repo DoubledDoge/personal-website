@@ -13,11 +13,19 @@ updates:
       - "Dihan Britz"
     assignees:
       - "Dihan Britz"
-    allow:
-      - dependency-type: "all"
-    ignore:
-      - dependency-type: "dev"
-    security-updates: true
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    update-type: "security"
+    labels:
+      - "security"
+      - "dependencies"
+    reviewers:
+      - "Dihan Britz"
+    assignees:
+      - "DihanBritz"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -29,5 +37,4 @@ updates:
     reviewers:
       - "Dihan Britz"
     assignees:
-      - "Dihan Britz"
-    security-updates: true
+      - "DihanBritz"
