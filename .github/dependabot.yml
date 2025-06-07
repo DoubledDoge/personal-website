@@ -10,9 +10,9 @@ updates:
       - "dependencies"
       - "npm"
     reviewers:
-      - "Dihan Britz"
+      - "DoubledDoge"
     assignees:
-      - "Dihan Britz"
+      - "DoubledDoge"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -22,6 +22,6 @@ updates:
       - "dependencies"
       - "github-actions"
     reviewers:
-      - "Dihan Britz"
+      - "DoubledDoge"
     assignees:
-      - "Dihan Britz"
+      - "DoubledDoge"
