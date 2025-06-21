@@ -164,7 +164,6 @@ import { ref, computed, onMounted } from "vue";
 import { lazyLoadImage } from "@/utils/imageLoader";
 import LoadingSpinner from "./loadingSpinner.vue";
 import personalWebsiteImg from "@/assets/personal-website.png";
-import calculatorWebsiteImg from "@/assets/calculator-website.png";
 import cSharpUniversityImg from "@/assets/cSharp-university.png";
 import cPlusPlusUniversityImg from "@/assets/cPlusPlus-university.png";
 
