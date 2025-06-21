@@ -8,7 +8,6 @@ updates:
     versioning-strategy: "auto"
     labels:
       - "dependencies"
-      - "npm"
     reviewers:
       - "DoubledDoge"
     assignees:
