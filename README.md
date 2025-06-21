@@ -72,11 +72,11 @@ npm run build
 Available scripts in the project:
 
 ```bash
-npm run dev         # Start development server
-npm run build      # Build for production
-npm run preview    # Preview production build
-npm run test       # Run unit tests
-npm run lint       # Lint and fix files
+npm run dev             # Start development server
+npm run build           # Build for production
+npm run preview         # Preview production build
+npm run format          # Format project
+npm run security-audit  # Audit project for vulnerabilities
 ```
 
 ## Contributing 🤝
