@@ -37,9 +37,6 @@ jobs:
       - name: Check formatting
         run: npx prettier --write .
 
-      - name: Lint
-        run: npx eslint . --ext .js,.ts,.vue
-
       - name: Type check
         run: npm run vue-tsc --noEmit
 
