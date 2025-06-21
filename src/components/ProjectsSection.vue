@@ -193,7 +193,6 @@ onMounted(async () => {
   try {
     const imageSources = [
       personalWebsiteImg,
-      calculatorWebsiteImg,
       cSharpUniversityImg,
       cPlusPlusUniversityImg,
     ];
