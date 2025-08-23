@@ -1,26 +1,72 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
-    versioning-strategy: "auto"
-    labels:
-      - "dependencies"
-    reviewers:
-      - "DoubledDoge"
-    assignees:
-      - "DoubledDoge"
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+          day: 'monday'
+          time: '09:00'
+      open-pull-requests-limit: 3
+      versioning-strategy: 'auto'
+      labels:
+          - 'dependencies'
+      reviewers:
+          - 'DoubledDoge'
+      assignees:
+          - 'DoubledDoge'
+      groups:
+          # Group all production dependencies together
+          production-dependencies:
+              patterns:
+                  - '@emailjs/*'
+                  - 'svelte'
+              update-types:
+                  - 'minor'
+                  - 'patch'
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    labels:
-      - "dependencies"
-      - "github-actions"
-    reviewers:
-      - "DoubledDoge"
-    assignees:
-      - "DoubledDoge"
+          # Group all development dependencies together
+          dev-dependencies:
+              patterns:
+                  - '@eslint/*'
+                  - '@sveltejs/*'
+                  - '@tailwindcss/*'
+                  - 'eslint*'
+                  - 'prettier*'
+                  - 'vite*'
+                  - 'husky'
+                  - 'lint-staged'
+                  - 'tailwindcss'
+                  - 'globals'
+              update-types:
+                  - 'minor'
+                  - 'patch'
+
+          # Keep major updates separate (more risky)
+          major-updates:
+              patterns:
+                  - '*'
+              update-types:
+                  - 'major'
+
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+          day: 'monday'
+          time: '09:00'
+      labels:
+          - 'dependencies'
+          - 'github-actions'
+      reviewers:
+          - 'DoubledDoge'
+      assignees:
+          - 'DoubledDoge'
+      groups:
+          # Group all GitHub Actions updates
+          actions-updates:
+              patterns:
+                  - '*'
+              update-types:
+                  - 'minor'
+                  - 'patch'
+                  - 'major'

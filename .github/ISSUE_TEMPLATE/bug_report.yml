@@ -23,10 +23,10 @@ body:
           required: true
 
     - type: input
-      id: vue-version
+      id: svelte-version
       attributes:
-          label: Vue Version
-          description: What version of Vue.js are you running?
+          label: Svelte Version
+          description: What version of Svelte are you running?
       validations:
           required: true
 
@@ -34,6 +34,6 @@ body:
       id: tailwind-version
       attributes:
           label: Tailwind Version
-          description: What version of Tailwind CSS are you running? (Project uses Tailwind CSS v3.4.17)
+          description: What version of Tailwind CSS are you running? (Project uses Tailwind CSS v4.1)
       validations:
           required: true

@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ES2022"],
+        "allowJs": true,
+        "checkJs": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "baseUrl": "./.config",
+        "paths": {
+            "@/*": ["src/*"],
+            "$lib/*": ["src/lib/*"]
+        }
+    },
+    "include": ["src/**/*.js", "src/**/*.svelte"],
+    "exclude": ["node_modules", "dist", "build", ".config"]
+}

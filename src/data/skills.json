@@ -1,0 +1,50 @@
+﻿{
+    "skills": [
+        {
+            "id": 1,
+            "name": "HTML & CSS",
+            "proficiency": 55,
+            "category": "Frontend"
+        },
+        {
+            "id": 2,
+            "name": "C# & .NET",
+            "proficiency": 75,
+            "category": "Backend"
+        },
+        {
+            "id": 3,
+            "name": "JavaScript",
+            "proficiency": 35,
+            "category": "Frontend"
+        },
+        {
+            "id": 4,
+            "name": "C++",
+            "proficiency": 60,
+            "category": "Backend"
+        },
+        {
+            "id": 5,
+            "name": "Svelte",
+            "proficiency": 40,
+            "category": "Frontend"
+        },
+        {
+            "id": 6,
+            "name": "SQL & Database Design",
+            "proficiency": 70,
+            "category": "Database"
+        }
+    ],
+    "experiences": [
+        {
+            "id": 1,
+            "role": "Student Developer",
+            "company": "University Projects",
+            "date": "2023 - Present",
+            "description": "Developing various academic projects and building foundational programming skills",
+            "icon": "https://img.icons8.com/ios-filled/100/ffffff/graduation-cap.png"
+        }
+    ]
+}

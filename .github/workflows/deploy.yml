@@ -1,36 +1,63 @@
-name: Deploy to GitHub Pages (Till I get my own server)
+name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+# Security: restrict permissions to the minimum required
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Ensure only one deployment runs at a time
+concurrency:
+    group: 'pages'
+    cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Install AOS types
-        run: npm install --save-dev @types/aos
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'npm'
 
-      - name: Install and Build
-        env:
-          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
-          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
-          VITE_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
-        run: |
-          npm ci
-          npm run build
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist
+            - name: Run security audit
+              run: npm run security-audit
+              continue-on-error: true # Don't fail deployment on audit warnings
+
+            - name: Lint code
+              run: npm run lint:check
+
+            - name: Build application
+              env:
+                  VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+                  VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+                  VITE_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+              run: npm run build
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v4
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: './dist'
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

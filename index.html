@@ -1,395 +1,272 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary Meta Tags -->
-    <title>Dihan Britz | University Student</title>
-    <meta name="title" content="Dihan Britz | University Student" />
-    <meta
-      name="description"
-      content="Personal website of Dihan Britz, a future software engineer who is still currently a university student. View my portfolio and get in touch."
-    />
-    <meta name="author" content="Dihan Britz" />
-    <meta
-      name="keywords"
-      content="Dihan Britz, software engineer, university, student, portfolio, web developer, Vue.js, TypeScript"
-    />
-    <meta name="language" content="English" />
-    <meta
-      name="theme-color"
-      content="#111827"
-      media="(prefers-color-scheme: dark)"
-    />
-    <meta
-      name="theme-color"
-      content="#ffffff"
-      media="(prefers-color-scheme: light)"
-    />
+        <!-- Primary Meta Tags -->
+        <title>Dihan Britz | University Student</title>
+        <meta name="title" content="Dihan Britz | University Student" />
+        <meta
+            name="description"
+            content="Personal website of Dihan Britz, a future software engineer who is still currently a university student. View my portfolio and get in touch."
+        />
+        <meta name="author" content="Dihan Britz" />
+        <meta
+            name="keywords"
+            content="Dihan Britz, software engineer, university, student, portfolio, web developer, Svelte, JavaScript"
+        />
+        <meta name="language" content="English" />
+        <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 
-    <!-- Additional Meta Tags -->
-    <meta name="robots" content="index, follow" />
-    <link
-      rel="canonical"
-      href="https://doubleddoge.github.io/personal-website/"
-    />
-    <meta
-      name="google-site-verification"
-      content="m8uw09_62imcW6Rr_GlmxxLFc2M9byksTKAzdsPVetM"
-    />
+        <!-- Additional Meta Tags -->
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://doubleddoge.github.io/personal-website/" />
+        <meta
+            name="google-site-verification"
+            content="m8uw09_62imcW6Rr_GlmxxLFc2M9byksTKAzdsPVetM"
+        />
 
-    <!-- Security Headers - Enhanced CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://emailjs.com https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://img.icons8.com data: blob:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta
-      http-equiv="Referrer-Policy"
-      content="strict-origin-when-cross-origin"
-    />
-    <meta
-      http-equiv="Permissions-Policy"
-      content="camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()"
-    />
+        <!-- Security Headers -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://emailjs.com https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://img.icons8.com data: blob:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+        />
+        <meta http-equiv="content-type" content="nosniff" />
+        <meta http-equiv="x-ua-compatible" content="DENY" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta
-      property="og:url"
-      content="https://doubleddoge.github.io/personal-website/"
-    />
-    <meta property="og:title" content="Dihan Britz | University Student" />
-    <meta
-      property="og:description"
-      content="Personal website of Dihan Britz, a future software engineer who is still currently a university student. View my portfolio and get in touch."
-    />
-    <meta
-      property="og:image"
-      content="https://doubleddoge.github.io/personal-website/src/assets/top_picture.png"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Dihan Britz - Software Engineering Student"
-    />
-    <meta property="og:site_name" content="Dihan Britz Portfolio" />
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:url" content="https://doubleddoge.github.io/personal-website/" />
+        <meta property="og:title" content="Dihan Britz | University Student" />
+        <meta
+            property="og:description"
+            content="Personal website of Dihan Britz, a future software engineer who is still currently a university student. View my portfolio and get in touch."
+        />
+        <meta
+            property="og:image"
+            content="https://doubleddoge.github.io/personal-website/assets/img/top_picture.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Dihan Britz - Software Engineering Student" />
+        <meta property="og:site_name" content="Dihan Britz Portfolio" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@DihanBritz" />
-    <meta
-      name="twitter:url"
-      content="https://doubleddoge.github.io/personal-website/"
-    />
-    <meta name="twitter:title" content="Dihan Britz | University Student" />
-    <meta
-      name="twitter:description"
-      content="Personal website of Dihan Britz, a future software engineer who is still currently a university student. View my portfolio and get in touch."
-    />
-    <meta
-      name="twitter:image"
-      content="https://doubleddoge.github.io/personal-website/src/assets/top_picture.png"
-    />
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@DihanBritz" />
+        <meta name="twitter:url" content="https://doubleddoge.github.io/personal-website/" />
+        <meta name="twitter:title" content="Dihan Britz | University Student" />
+        <meta
+            name="twitter:description"
+            content="Personal website of Dihan Britz, a future software engineer who is still currently a university student. View my portfolio and get in touch."
+        />
+        <meta
+            name="twitter:image"
+            content="https://doubleddoge.github.io/personal-website/assets/img/top_picture.png"
+        />
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#111827" />
-    <meta name="msapplication-TileColor" content="#111827" />
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#111827" />
+        <meta name="msapplication-TileColor" content="#111827" />
 
-    <!-- Performance optimizations -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="//api.emailjs.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- Performance optimizations -->
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//api.emailjs.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Critical resource hints -->
-    <link
-      rel="preload"
-      href="/src/assets/top_picture.png"
-      as="image"
-      fetchpriority="high"
-    />
-    <link rel="modulepreload" href="/src/main.ts" />
+        <!-- Critical resource hints -->
+        <link rel="preload" href="/src/assets/top_picture.png" as="image" />
+        <link rel="modulepreload" href="/src/main.js" />
 
-    <!-- Structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Dihan Britz",
-        "url": "https://doubleddoge.github.io/personal-website/",
-        "image": "https://doubleddoge.github.io/personal-website/src/assets/top_picture.png",
-        "sameAs": [
-          "https://github.com/DoubledDoge",
-          "https://www.linkedin.com/in/dihan-britz/"
-        ],
-        "jobTitle": "Software Engineering Student",
-        "worksFor": {
-          "@type": "EducationalOrganization",
-          "name": "Eduvos"
-        },
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "Eduvos"
-        },
-        "knowsAbout": [
-          "JavaScript",
-          "TypeScript",
-          "Vue.js",
-          "Web Development",
-          "Software Engineering"
-        ],
-        "description": "Future software engineer currently studying at university, passionate about web development and modern technologies."
-      }
-    </script>
-
-    <!-- Critical CSS for immediate render -->
-    <style>
-      #app {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      /* Initial loading state matching your Vue spinner design */
-      .initial-loading {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(
-          135deg,
-          #0f172a 0%,
-          #1e293b 50%,
-          #334155 100%
-        );
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease-out;
-      }
-
-      /* Spinner that matches your Vue component design */
-      .spinner-svg {
-        width: 4rem;
-        height: 4rem;
-        animation: spin 1s linear infinite;
-      }
-
-      .spinner-circle {
-        opacity: 0.25;
-        stroke-width: 4;
-        fill: none;
-      }
-
-      .spinner-path {
-        fill: #f59e0b;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Prevent flash of unstyled content */
-      body {
-        background: #0f172a;
-        margin: 0;
-        padding: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
-      }
-
-      /* Hide content until Vue app loads */
-      #app:empty + .initial-loading {
-        display: flex;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- App container -->
-    <div id="app"></div>
-
-    <!-- Initial loading state that matches your Vue spinner -->
-    <div id="initial-loading" class="initial-loading">
-      <svg
-        class="spinner-svg"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        aria-label="Loading content"
-        role="status"
-      >
-        <!-- Gradient definition matching your Vue component -->
-        <defs>
-          <linearGradient
-            id="loading-gradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stop-color="#f59e0b" />
-            <stop offset="100%" stop-color="#ec4899" />
-          </linearGradient>
-        </defs>
-
-        <!-- Spinner track (background circle) -->
-        <circle
-          class="spinner-circle"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="url(#loading-gradient)"
-        ></circle>
-
-        <!-- Spinner indicator (moving part) -->
-        <path
-          class="spinner-path"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-        ></path>
-      </svg>
-    </div>
-
-    <!-- Main application script -->
-    <script type="module" src="/src/main.ts"></script>
-
-    <!-- Enhanced loading management -->
-    <script>
-      // Remove initial loading spinner once Vue app mounts
-      function hideInitialLoader() {
-        const loader = document.getElementById("initial-loading");
-        if (loader) {
-          loader.style.opacity = "0";
-          setTimeout(() => {
-            loader.remove();
-            // Dispatch custom event for analytics or other tracking
-            window.dispatchEvent(
-              new CustomEvent("appLoaded", {
-                detail: { timestamp: Date.now() },
-              }),
-            );
-          }, 500);
-        }
-      }
-
-      // Performance monitoring
-      const loadStartTime = performance.now();
-
-      // Listen for Vue app mount
-      document.addEventListener("DOMContentLoaded", function () {
-        // More conservative fallback timeout since you have async components
-        setTimeout(() => {
-          console.warn(
-            "Fallback loader timeout reached - hiding initial loader",
-          );
-          hideInitialLoader();
-        }, 8000);
-
-        // Check if app has meaningful content (not just loading states)
-        const checkAppReady = setInterval(() => {
-          const app = document.getElementById("app");
-          // Check for actual content, not just the Suspense fallback
-          if (app && app.children.length > 0) {
-            const hasRealContent = app.querySelector(
-              "nav, main, header, section, .hero, .navbar",
-            );
-            if (hasRealContent) {
-              clearInterval(checkAppReady);
-              const loadTime = performance.now() - loadStartTime;
-              console.info(`App loaded in ${Math.round(loadTime)}ms`);
-              hideInitialLoader();
+        <!-- Structured data -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Dihan Britz",
+                "url": "https://doubleddoge.github.io/personal-website/",
+                "image": "https://doubleddoge.github.io/personal-website/assets/img/top_picture.png",
+                "sameAs": [
+                    "https://github.com/DoubledDoge",
+                    "https://www.linkedin.com/in/dihan-britz/"
+                ],
+                "jobTitle": "Software Engineering Student",
+                "worksFor": {
+                    "@type": "EducationalOrganization",
+                    "name": "Eduvos"
+                },
+                "alumniOf": {
+                    "@type": "EducationalOrganization",
+                    "name": "Eduvos"
+                },
+                "knowsAbout": ["JavaScript", "Svelte", "Web Development", "Software Engineering"],
+                "description": "Future software engineer currently studying at university, passionate about web development and modern technologies."
             }
-          }
-        }, 150);
-      });
+        </script>
 
-      // Global function that Vue can call when ready
-      window.hideInitialLoader = hideInitialLoader;
+        <!-- Critical CSS for immediate render -->
+        <style>
+            #app {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
 
-      // Performance API integration
-      window.getLoadTime = () => performance.now() - loadStartTime;
-    </script>
+            /* Initial loading state */
+            .initial-loading {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease-out;
+            }
 
-    <!-- Enhanced no-script fallback -->
-    <noscript>
-      <div
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-          padding: 2rem;
-          text-align: center;
-          font-family: system-ui, sans-serif;
-          background: linear-gradient(
-            135deg,
-            #0f172a 0%,
-            #1e293b 50%,
-            #334155 100%
-          );
-          color: white;
-        "
-      >
-        <div>
-          <h1 style="font-size: 2rem; margin-bottom: 1rem; color: #f59e0b">
-            Dihan Britz
-          </h1>
-          <p style="font-size: 1.125rem; color: #cbd5e1; margin-bottom: 2rem">
-            This website requires JavaScript to function properly. Please enable
-            JavaScript in your browser settings to view my portfolio.
-          </p>
-          <div
-            style="
-              display: flex;
-              gap: 1rem;
-              justify-content: center;
-              flex-wrap: wrap;
-            "
-          >
-            <a
-              href="https://github.com/DoubledDoge"
-              style="
-                color: #f59e0b;
-                text-decoration: none;
-                padding: 0.75rem 1.5rem;
-                border: 2px solid #f59e0b;
-                border-radius: 0.5rem;
-                transition: all 0.3s ease;
-              "
-              >GitHub</a
-            >
-            <a
-              href="https://www.linkedin.com/in/dihan-britz/"
-              style="
-                color: #ec4899;
-                text-decoration: none;
-                padding: 0.75rem 1.5rem;
-                border: 2px solid #ec4899;
-                border-radius: 0.5rem;
-                transition: all 0.3s ease;
-              "
-              >LinkedIn</a
-            >
-          </div>
+            /* Simple spinner for Svelte */
+            .spinner {
+                width: 4rem;
+                height: 4rem;
+                border: 4px solid #334155;
+                border-top: 4px solid #f59e0b;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* Prevent flash of unstyled content */
+            body {
+                background: #0f172a;
+                margin: 0;
+                padding: 0;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- App container -->
+        <div id="app"></div>
+
+        <!-- Initial loading state -->
+        <div id="initial-loading" class="initial-loading">
+            <div class="spinner" role="status" aria-label="Loading content"></div>
         </div>
-      </div>
-    </noscript>
-  </body>
+
+        <!-- Main application script -->
+        <script type="module" src="/src/main.js"></script>
+
+        <!-- Loading management for Svelte -->
+        <script>
+            // Performance timing
+            const startTime = performance.now()
+
+            function getLoadTime() {
+                return performance.now() - startTime
+            }
+
+            function hideInitialLoader() {
+                const loader = document.getElementById('initial-loading')
+                if (loader) {
+                    loader.style.opacity = '0'
+                    setTimeout(() => {
+                        loader.remove()
+                    }, 500)
+                }
+            }
+
+            // Simple content detection for Svelte
+            document.addEventListener('DOMContentLoaded', function () {
+                // Fallback timeout
+                setTimeout(hideInitialLoader, 5000)
+
+                // Check for app content
+                const checkAppReady = setInterval(() => {
+                    const app = document.getElementById('app')
+                    if (app && app.children.length > 0) {
+                        clearInterval(checkAppReady)
+                        setTimeout(hideInitialLoader, 100)
+                    }
+                }, 100)
+            })
+
+            // Global functions for manual control
+            window.hideInitialLoader = hideInitialLoader
+            window.getLoadTime = getLoadTime
+        </script>
+
+        <!-- No-script fallback -->
+        <noscript>
+            <div
+                style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 100vh;
+                    padding: 2rem;
+                    text-align: center;
+                    font-family: system-ui, sans-serif;
+                    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+                    color: white;
+                "
+            >
+                <div>
+                    <h1 style="font-size: 2rem; margin-bottom: 1rem; color: #f59e0b">
+                        Dihan Britz
+                    </h1>
+                    <p style="font-size: 1.125rem; color: #cbd5e1; margin-bottom: 2rem">
+                        This website requires JavaScript to function properly. Please enable
+                        JavaScript in your browser settings to view my portfolio.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap">
+                        <a
+                            href="https://github.com/DoubledDoge"
+                            style="
+                                color: #f59e0b;
+                                text-decoration: none;
+                                padding: 0.75rem 1.5rem;
+                                border: 2px solid #f59e0b;
+                                border-radius: 0.5rem;
+                            "
+                            >GitHub</a
+                        >
+                        <a
+                            href="https://www.linkedin.com/in/dihan-britz/"
+                            style="
+                                color: #ec4899;
+                                text-decoration: none;
+                                padding: 0.75rem 1.5rem;
+                                border: 2px solid #ec4899;
+                                border-radius: 0.5rem;
+                            "
+                            >LinkedIn</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </noscript>
+    </body>
 </html>

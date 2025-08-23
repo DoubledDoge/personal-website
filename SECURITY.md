@@ -11,9 +11,9 @@ If you discover a security vulnerability, please follow these steps:
 1. **DO NOT** create a public GitHub issue
 2. Send details to dbritz22@proton.me
 3. Include:
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Any possible solutions you've identified
+    - Description of the vulnerability
+    - Steps to reproduce
+    - Any possible solutions you've identified
 
 ### Response Timeline
 
@@ -47,8 +47,10 @@ Security updates are released as:
 ## Contact 📧
 
 For sensitive security matters:
+
 - Email: dbritz22@proton.me
 - Phone: +27663370662
 
 ---
-*Last Updated: 2025*
+
+_Last Updated: 2025_

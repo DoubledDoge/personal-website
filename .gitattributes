@@ -1,0 +1,96 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout
+*.js text eol=lf
+*.mjs text eol=lf
+*.svelte text eol=lf
+*.ts text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.txt text eol=lf
+*.env text eol=lf
+*.gitignore text eol=lf
+*.gitattributes text eol=lf
+
+# Configuration files
+*.config.js text eol=lf
+*.config.mjs text eol=lf
+*.config.json text eol=lf
+.prettierrc text eol=lf
+.prettierignore text eol=lf
+.eslintrc* text eol=lf
+jsconfig.json text eol=lf
+svelte.config.js text eol=lf
+vite.config.js text eol=lf
+package.json text eol=lf
+package-lock.json text eol=lf
+
+# License and documentation
+LICENSE text eol=lf
+README* text eol=lf
+SECURITY.md text eol=lf
+PULL_REQUEST_TEMPLATE.md text eol=lf
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.webp binary
+*.avif binary
+*.pdf binary
+
+# Fonts
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+*.rar binary
+
+# Audio/Video
+*.mp3 binary
+*.mp4 binary
+*.avi binary
+*.mov binary
+*.wmv binary
+*.wav binary
+
+# GitHub language detection improvements
+*.svelte linguist-language=Svelte
+*.css linguist-language=CSS
+docs/* linguist-documentation
+*.yml linguist-language=YAML
+*.md linguist-documentation
+*.json linguist-language=JSON
+*.js linguist-language=JavaScript
+*.html linguist-language=HTML
+
+# Export ignore for archive downloads
+.github/ export-ignore
+.husky/ export-ignore
+.idea/ export-ignore
+.vscode/ export-ignore
+docs/ export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+.prettierignore export-ignore
+.prettierrc export-ignore
+eslint.config.js export-ignore
+.env export-ignore
+.env.example export-ignore

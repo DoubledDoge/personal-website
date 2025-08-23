@@ -1,23 +1,31 @@
-{
-    "prettier.configPath": {
-        "plugins": ["prettier-plugin-tailwindcss"],
-        "tailwindStylesheet": "./src/style.css",
-        "semi": true,
-        "tabWidth": 4,
-        "printWidth": 100,
-        "singleQuote": false,
-        "trailingComma": "es5",
-        "bracketSpacing": true,
-        "arrowParens": "always",
-        "vueIndentScriptAndStyle": true,
-        "endOfLine": "auto"
-    },
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[vue]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+﻿{
+    "plugins": [
+        "prettier-plugin-svelte",
+        "prettier-plugin-tailwindcss",
+        "prettier-plugin-packagejson"
+    ],
+
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+
+    "overrides": [
+        {
+            "files": "*.svelte",
+            "options": {
+                "parser": "svelte",
+                "svelteStrictMode": false,
+                "svelteAllowShorthand": true,
+                "svelteIndentScriptAndStyle": true
+            }
+        },
+        {
+            "files": ".prettierrc",
+            "options": { "parser": "json" }
+        }
+    ]
 }
