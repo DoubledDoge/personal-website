@@ -1,30 +1,31 @@
 <script>
-    import emailjs from '@emailjs/browser'
     import { onMount } from 'svelte'
 
+    // Import images
     import personalWebsiteImg from './assets/personal-website.png'
     import topPicture from './assets/top_picture.png'
 
-    // Import components
-    import About from './components/About.svelte'
-    import BackToTop from './components/BackToTop.svelte'
-    import Contact from './components/Contact.svelte'
-    import Footer from './components/Footer.svelte'
+    // Critical components
     import Hero from './components/Hero.svelte'
     import LoadingSpinner from './components/LoadingSpinner.svelte'
     import Navigation from './components/Navigation.svelte'
-    import Projects from './components/Projects.svelte'
-    import Services from './components/Services.svelte'
-    import Skills from './components/Skills.svelte'
 
     // Import utilities
     import { preloadImages } from './lib/imagePreloader.js'
 
-    // Import font for use in CSS stylesheets
-    import '@fontsource-variable/inter'
+    // Lazy-loaded components
+    let About = $state(null)
+    let BackToTop = $state(null)
+    let Contact = $state(null)
+    let Footer = $state(null)
+    let Projects = $state(null)
+    let Services = $state(null)
+    let Skills = $state(null)
 
     let isLoading = $state(true)
     let loadingError = $state(null)
+    let componentsLoaded = $state(false)
+    let emailjsModule = $state(null)
 
     // Derived state for checking if the app is ready
     const isAppReady = $derived(!isLoading && !loadingError)
@@ -40,39 +41,92 @@
         console.info('🚀 Initializing Svelte app...')
 
         try {
-            // Initialize basic services
-            const imagePreloadPromise = preloadImages([topPicture, personalWebsiteImg])
-            const emailJSPromise = initializeEmailJS()
+            const imagePreloadPromise = preloadImages([topPicture])
+            const fontLoadPromise = loadFontsAsync()
 
-            await Promise.all([imagePreloadPromise, emailJSPromise])
+            await Promise.all([imagePreloadPromise, fontLoadPromise])
 
-            console.info('✅ Basic services initialized successfully')
+            console.info('✅ Critical resources loaded successfully')
 
-            // Show the app
+            // Show the app immediately with the hero section
             hideInitialLoader()
+
+            // Lazy load non-critical resources in the background
+            await loadNonCriticalResources()
 
             console.info('✅ App initialization complete')
         } catch (error) {
             console.error('❌ Error during app initialization:', error)
             loadingError = error?.message || 'Unknown initialization error'
-
-            // Still hide loader and show error state
             hideInitialLoader()
         }
     })
 
-    async function initializeEmailJS() {
+    async function loadFontsAsync() {
         try {
+            await import('@fontsource-variable/inter')
+            console.info('🎨 Fonts loaded asynchronously')
+        } catch (error) {
+            console.warn('⚠️ Font loading failed:', error)
+        }
+    }
+
+    async function loadNonCriticalResources() {
+        try {
+            const componentPromises = [
+                import('./components/Services.svelte').then(module => {
+                    Services = module.default
+                }),
+                import('./components/About.svelte').then(module => {
+                    About = module.default
+                }),
+                import('./components/Skills.svelte').then(module => {
+                    Skills = module.default
+                }),
+                import('./components/Projects.svelte').then(module => {
+                    Projects = module.default
+                }),
+                import('./components/Contact.svelte').then(module => {
+                    Contact = module.default
+                }),
+                import('./components/Footer.svelte').then(module => {
+                    Footer = module.default
+                }),
+                import('./components/BackToTop.svelte').then(module => {
+                    BackToTop = module.default
+                }),
+            ]
+
+            // Load EmailJS and remaining images in background
+            const emailJSPromise = loadEmailJSAsync()
+            const remainingImagesPromise = preloadImages([personalWebsiteImg])
+
+            // Wait for all non-critical resources
+            await Promise.all([...componentPromises, emailJSPromise, remainingImagesPromise])
+
+            componentsLoaded = true
+            console.info('🎯 All non-critical resources loaded')
+        } catch (error) {
+            console.warn('⚠️ Some non-critical resources failed to load:', error)
+            componentsLoaded = true
+        }
+    }
+
+    async function loadEmailJSAsync() {
+        try {
+            // Dynamically import EmailJS to avoid blocking the initial render
+            const emailjsImport = await import('@emailjs/browser')
+            emailjsModule = emailjsImport.default
+
             const publicKey = import.meta.env?.VITE_EMAILJS_PUBLIC_KEY
 
             if (!publicKey) {
-                const error = new Error('EmailJS public key not configured')
-                console.warn('⚠️ EmailJS initialization failed:', error.message)
+                console.warn('⚠️ EmailJS public key not configured')
                 return
             }
 
-            emailjs.init(publicKey)
-            console.info('📧 EmailJS initialized successfully')
+            emailjsModule.init(publicKey)
+            console.info('📧 EmailJS initialized asynchronously')
         } catch (error) {
             console.warn('⚠️ EmailJS initialization failed:', error)
         }
@@ -83,12 +137,10 @@
 
         // Proper type checking for global functions
         if (typeof window !== 'undefined') {
-            // Check if a global loader function exists
             if ('hideInitialLoader' in window && typeof window.hideInitialLoader === 'function') {
                 window.hideInitialLoader()
                 console.info('🎉 App fully loaded and initial loader hidden')
 
-                // Log performance metrics if available
                 if ('getLoadTime' in window && typeof window.getLoadTime === 'function') {
                     console.info(`⚡ Total load time: ${Math.round(window.getLoadTime())}ms`)
                 }
@@ -135,23 +187,49 @@
     {:else if isAppReady}
         <!-- Main application content -->
         <div>
-            <!-- Navigation -->
             <Navigation />
-
             <!-- Main content sections -->
             <main>
                 <Hero />
-                <Services />
-                <About />
-                <Skills />
-                <Projects />
-                <Contact />
-                <!-- TODO: Consider implementing testimonials section in future update (Might not come in quite some time though) -->
+
+                {#if componentsLoaded}
+                    {#if Services}
+                        <Services />
+                    {/if}
+                    {#if About}
+                        <About />
+                    {/if}
+                    {#if Skills}
+                        <Skills />
+                    {/if}
+                    {#if Projects}
+                        <Projects />
+                    {/if}
+                    {#if Contact}
+                        <Contact {emailjsModule} />
+                    {/if}
+                {:else}
+                    <!-- Placeholder for lazy-loaded content -->
+                    <div class="flex min-h-screen items-center justify-center">
+                        <div class="text-center text-gray-400">
+                            <div class="mb-4 text-sm">Loading additional content...</div>
+                            <div class="h-2 w-48 overflow-hidden rounded bg-gray-700">
+                                <div class="h-full animate-pulse bg-amber-500"></div>
+                            </div>
+                        </div>
+                    </div>
+                {/if}
             </main>
 
             <!-- Footer and utilities -->
-            <Footer />
-            <BackToTop />
+            {#if componentsLoaded}
+                {#if Footer}
+                    <Footer />
+                {/if}
+                {#if BackToTop}
+                    <BackToTop />
+                {/if}
+            {/if}
         </div>
     {/if}
 </div>
@@ -199,7 +277,6 @@
         outline-offset: 2px;
     }
 
-    /* Performance optimizations */
     :global(img) {
         content-visibility: auto;
         height: auto;

@@ -12,19 +12,26 @@
 
     let isOpen = $state(false)
     let scrolled = $state(false)
+    let ticking = $state(false)
 
     function toggleMenu() {
         isOpen = !isOpen
-        console.log('Menu toggled:', isOpen) // Debug log
+        console.log('Menu toggled:', isOpen)
     }
 
     function closeMenu() {
         isOpen = false
-        console.log('Menu closed') // Debug log
+        console.log('Menu closed')
     }
 
     function handleScroll() {
-        scrolled = window.scrollY > 50
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                scrolled = window.scrollY > 50
+                ticking = false
+            })
+            ticking = true
+        }
     }
 
     /**
@@ -38,18 +45,18 @@
 
     onMount(() => {
         // Add scroll and keyboard event listeners
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('scroll', handleScroll, { passive: true })
         window.addEventListener('keydown', handleKeydown)
 
         // Cleanup function
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener('scroll', handleScroll, false)
             window.removeEventListener('keydown', handleKeydown)
         }
     })
 </script>
 
-<!-- Navigation with enhanced transparency and blur -->
+<!-- Navigation  -->
 <nav
     class="fixed top-0 right-0 left-0 z-50 transition-all duration-300"
     class:nav-scrolled={scrolled}
@@ -80,7 +87,7 @@
                 </div>
             </div>
 
-            <!-- Mobile menu button with proper hamburger/close icons -->
+            <!-- Mobile menu buttons -->
             <div class="md:hidden">
                 <button
                     type="button"
@@ -128,7 +135,7 @@
     </div>
 </nav>
 
-<!-- Mobile Navigation Menu with proper styling and backdrop -->
+<!-- Mobile Navigation Menu -->
 {#if isOpen}
     <!-- Background overlay -->
     <div
@@ -159,7 +166,7 @@
 {/if}
 
 <style>
-    /* Default nav with subtle transparency and blur */
+    /* Default nav */
     nav {
         background: rgba(17, 24, 39, 0.3);
         backdrop-filter: blur(8px);

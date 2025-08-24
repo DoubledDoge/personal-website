@@ -6,15 +6,17 @@
     let isHovered = $state(false)
     let isPressed = $state(false)
     let isAnimating = $state(false)
-
+    let documentHeight = $state(0)
+    let windowHeight = $state(0)
     let buttonElement = $state()
 
     const isVisible = $derived(isMounted && scrollY > 300)
 
+    // Optimized scroll progress calculation that doesn't cause reflows
     const scrollProgress = $derived(() => {
-        if (typeof document === 'undefined') return 0
-        const documentHeight = document.documentElement.scrollHeight - window.innerHeight
-        return documentHeight > 0 ? Math.min(scrollY / documentHeight, 1) : 0
+        if (documentHeight === 0 || windowHeight === 0) return 0
+        const totalScrollable = documentHeight - windowHeight
+        return totalScrollable > 0 ? Math.min(scrollY / totalScrollable, 1) : 0
     })
 
     /**
@@ -38,29 +40,24 @@
     })
 
     /**
+     * Cache DOM dimensions to prevent repeated queries during scroll
+     */
+    function updateDimensions() {
+        // Batch DOM reads to prevent multiple reflows
+        documentHeight = document.documentElement.scrollHeight
+        windowHeight = window.innerHeight
+    }
+
+    /**
      * Effect to handle scroll animation completion
      */
     $effect(() => {
         if (isAnimating) {
             const timeout = setTimeout(() => {
                 isAnimating = false
-            }, 1000) // Assume scroll animation takes up to 1 second
+            }, 1000) // Assumption
 
             return () => clearTimeout(timeout)
-        }
-    })
-
-    /**
-     * Effect to log state changes for debugging (development only)
-     */
-    $effect(() => {
-        if (import.meta.env.DEV) {
-            console.debug('🔝 BackToTop state:', {
-                scrollY,
-                isVisible,
-                scrollProgress: Math.round(scrollProgress() * 100) + '%',
-                buttonOpacity,
-            })
         }
     })
 
@@ -121,9 +118,25 @@
      */
     onMount(() => {
         isMounted = true
+
+        // Cache initial dimensions
+        updateDimensions()
+
+        // Update dimensions on resize
+        let resizeTimeout
+        const handleResize = () => {
+            clearTimeout(resizeTimeout)
+            resizeTimeout = setTimeout(updateDimensions, 150)
+        }
+
+        // Use passive listeners for better performance
+        window.addEventListener('resize', handleResize, { passive: true })
+
         console.info('🔝 BackToTop component initialized with Svelte 5 runes')
 
         return () => {
+            window.removeEventListener('resize', handleResize, false)
+            clearTimeout(resizeTimeout)
             console.info('🔝 BackToTop component cleanup')
         }
     })
@@ -131,7 +144,7 @@
 
 <svelte:window bind:scrollY />
 
-<!-- Floating back to top button that appears when scrolling down -->
+<!-- Floating back to top button -->
 {#if isVisible}
     <button
         bind:this={buttonElement}
@@ -150,7 +163,7 @@
         type="button"
         disabled={isAnimating}
     >
-        <!-- Enhanced arrow icon with better visibility and interaction states -->
+        <!-- Arrow icon -->
         <svg
             width="24"
             height="24"
@@ -170,7 +183,7 @@
 {/if}
 
 <style>
-    /* Enhanced button styling with modern effects */
+    /* Enhanced button styling */
     .back-to-top-btn {
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);

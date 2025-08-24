@@ -84,34 +84,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
         <!-- Critical resource hints -->
-        <link rel="preload" href="/src/assets/top_picture.png" as="image" />
+        <link as="image" fetchpriority="high" href="/src/assets/top_picture.png" rel="preload" />
         <link rel="modulepreload" href="/src/main.js" />
-
-        <!-- Structured data -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Dihan Britz",
-                "url": "https://doubleddoge.github.io/personal-website/",
-                "image": "https://doubleddoge.github.io/personal-website/assets/img/top_picture.png",
-                "sameAs": [
-                    "https://github.com/DoubledDoge",
-                    "https://www.linkedin.com/in/dihan-britz/"
-                ],
-                "jobTitle": "Software Engineering Student",
-                "worksFor": {
-                    "@type": "EducationalOrganization",
-                    "name": "Eduvos"
-                },
-                "alumniOf": {
-                    "@type": "EducationalOrganization",
-                    "name": "Eduvos"
-                },
-                "knowsAbout": ["JavaScript", "Svelte", "Web Development", "Software Engineering"],
-                "description": "Future software engineer currently studying at university, passionate about web development and modern technologies."
-            }
-        </script>
+        <link href="/src/App.svelte" rel="modulepreload" />
 
         <!-- Critical CSS for immediate render -->
         <style>
@@ -165,6 +140,15 @@
                     -apple-system,
                     sans-serif;
             }
+
+            /* Font optimization */
+            @font-face {
+                font-family: 'Inter Variable';
+                font-style: normal;
+                font-weight: 100 900;
+                font-display: swap;
+                src: url('data:') format('woff2');
+            }
         </style>
     </head>
     <body>
@@ -179,7 +163,7 @@
         <!-- Main application script -->
         <script type="module" src="/src/main.js"></script>
 
-        <!-- Loading management for Svelte -->
+        <!-- Deferred loading management script -->
         <script>
             // Performance timing
             const startTime = performance.now()
@@ -198,24 +182,65 @@
                 }
             }
 
-            // Simple content detection for Svelte
-            document.addEventListener('DOMContentLoaded', function () {
-                // Fallback timeout
-                setTimeout(hideInitialLoader, 5000)
+            // Use requestIdleCallback for non-critical initialization
+            function initializeNonCritical() {
+                // Simple content detection for Svelte
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Fallback timeout
+                    setTimeout(hideInitialLoader, 5000)
 
-                // Check for app content
-                const checkAppReady = setInterval(() => {
-                    const app = document.getElementById('app')
-                    if (app && app.children.length > 0) {
-                        clearInterval(checkAppReady)
-                        setTimeout(hideInitialLoader, 100)
-                    }
-                }, 100)
-            })
+                    // Check for app content
+                    const checkAppReady = setInterval(() => {
+                        const app = document.getElementById('app')
+                        if (app && app.children.length > 0) {
+                            clearInterval(checkAppReady)
+                            setTimeout(hideInitialLoader, 100)
+                        }
+                    }, 100)
+                })
+            }
+
+            // Defer non-critical initialization
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(initializeNonCritical)
+            } else {
+                setTimeout(initializeNonCritical, 1)
+            }
 
             // Global functions for manual control
             window.hideInitialLoader = hideInitialLoader
             window.getLoadTime = getLoadTime
+        </script>
+
+        <!-- Non-blocking structured data (deferred) -->
+        <script defer type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Dihan Britz",
+                "url": "https://doubleddoge.github.io/personal-website/",
+                "image": "https://doubleddoge.github.io/personal-website/assets/img/top_picture.png",
+                "sameAs": [
+                    "https://github.com/DoubledDoge",
+                    "https://www.linkedin.com/in/dihan-britz/"
+                ],
+                "jobTitle": "Software Engineering Student",
+                "worksFor": {
+                    "@type": "EducationalOrganization",
+                    "name": "Eduvos"
+                },
+                "alumniOf": {
+                    "@type": "EducationalOrganization",
+                    "name": "Eduvos"
+                },
+                "knowsAbout": [
+                    "JavaScript",
+                    "Svelte",
+                    "Web Development",
+                    "Software Engineering"
+                ],
+                "description": "Future software engineer currently studying at university, passionate about web development and modern technologies."
+            }
         </script>
 
         <!-- No-script fallback -->

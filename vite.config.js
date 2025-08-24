@@ -45,22 +45,24 @@ export default defineConfig(({ mode }) => ({
                     svelte: ['svelte'],
                     // Third-party libraries
                     email: ['@emailjs/browser'],
-                    // Component chunks
-                    components: [
+                    // Critical path components
+                    critical: [
                         './src/components/Navigation.svelte',
                         './src/components/Hero.svelte',
+                        './src/components/LoadingSpinner.svelte',
+                    ],
+                    // Non-critical components
+                    content: [
                         './src/components/Services.svelte',
                         './src/components/About.svelte',
                         './src/components/Skills.svelte',
                         './src/components/Projects.svelte',
                         './src/components/Contact.svelte',
-                        './src/components/Footer.svelte',
-                        './src/components/BackToTop.svelte',
-                        './src/components/LoadingSpinner.svelte',
                     ],
+                    // UI utilities
+                    ui: ['./src/components/Footer.svelte', './src/components/BackToTop.svelte'],
                 },
                 assetFileNames: assetInfo => {
-                    // Handle modern Vite asset info structure
                     const fileName = assetInfo.names?.[0] || ''
                     const extType = fileName.split('.').pop()?.toLowerCase() || 'asset'
 
@@ -69,6 +71,9 @@ export default defineConfig(({ mode }) => ({
                     }
                     if (/woff2?|eot|ttf|otf/i.test(extType)) {
                         return 'assets/fonts/[name]-[hash][extname]'
+                    }
+                    if (/css/i.test(extType)) {
+                        return 'assets/css/[name]-[hash][extname]'
                     }
                     return `assets/${extType}/[name]-[hash][extname]`
                 },
@@ -81,7 +86,7 @@ export default defineConfig(({ mode }) => ({
         chunkSizeWarningLimit: 1000,
         minify: 'esbuild',
         reportCompressedSize: true,
-        assetsInlineLimit: 4096,
+        assetsInlineLimit: 2048,
         cssCodeSplit: true,
         sourcemap: false,
 

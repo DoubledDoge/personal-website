@@ -1,34 +1,14 @@
 <script>
-    import { onMount } from 'svelte'
     import topPicture from '../assets/top_picture.png'
-    import { lazyLoadImage } from '../lib/imagePreloader.js'
 
-    let profileImage = $state('')
-    let isImageLoading = $state(true)
+    let profileImage = $state(topPicture)
+    let isImageLoading = $state(false)
+    let imageLoadError = $state(false)
     let isDownloading = $state(false)
     let downloadError = $state('')
-    let imageLoadError = $state(false)
 
     /**
-     * Initialize component and load profile image
-     */
-    onMount(async () => {
-        try {
-            console.info('Loading profile image...')
-            profileImage = await lazyLoadImage(topPicture)
-            console.info('Profile image loaded successfully.')
-        } catch (error) {
-            console.error('Error loading profile image:', error)
-            imageLoadError = true
-            // Fallback to default image
-            profileImage = topPicture
-        } finally {
-            isImageLoading = false
-        }
-    })
-
-    /**
-     * Smooth scroll to the contact section (Does it work?)
+     * Smooth scroll to the contact section (Will be worked on soon)
      */
     function scrollToContact() {
         const contactSection = document.querySelector('#contact')
@@ -260,13 +240,14 @@
                                 <img
                                     src={profileImage}
                                     alt="Dihan Britz - Software Engineering Student"
-                                    width="500"
-                                    height="500"
+                                    width="384"
+                                    height="384"
                                     class="h-full w-full object-cover transition-transform duration-300 hover:scale-105 {imageLoadError
                                         ? 'grayscale'
                                         : ''}"
                                     loading="eager"
                                     fetchpriority="high"
+                                    decoding="sync"
                                 />
                             {/if}
                         </div>
