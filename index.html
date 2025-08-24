@@ -162,31 +162,6 @@
                 }
             }
 
-            // Use requestIdleCallback for non-critical initialization
-            function initializeNonCritical() {
-                // Simple content detection for Svelte
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Fallback timeout
-                    setTimeout(hideInitialLoader, 5000)
-
-                    // Check for app content
-                    const checkAppReady = setInterval(() => {
-                        const app = document.getElementById('app')
-                        if (app && app.children.length > 0) {
-                            clearInterval(checkAppReady)
-                            setTimeout(hideInitialLoader, 100)
-                        }
-                    }, 100)
-                })
-            }
-
-            // Defer non-critical initialization
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(initializeNonCritical)
-            } else {
-                setTimeout(initializeNonCritical, 1)
-            }
-
             // Global functions for manual control
             window.hideInitialLoader = hideInitialLoader
             window.getLoadTime = getLoadTime
