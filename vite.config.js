@@ -53,6 +53,12 @@ export default defineConfig(({ mode }) => ({
                     const fileName = assetInfo.names?.[0] || ''
                     const extType = fileName.split('.').pop()?.toLowerCase() || 'asset'
 
+                    // Svelte files should never be treated as static assets
+                    if (extType === 'svelte') {
+                        console.warn('WARNING: .svelte file being processed as asset:', fileName)
+                        return 'assets/js/[name]-[hash].js' // Force as JS if somehow treated as an asset
+                    }
+
                     if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType)) {
                         return 'assets/img/[name]-[hash][extname]'
                     }
