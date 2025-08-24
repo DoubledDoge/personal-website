@@ -60,8 +60,8 @@ I firmly believe in writing clean and maintainable code as I'm constantly seekin
 #### Key Statistics
 
 - **Average Mark**: 82.25%
-- **Programming Projects**: 4
-- **Programming Languages**: 6
+- **Programming Projects**: 4+
+- **Programming Languages**: 6+
 
 ### My Skills
 
@@ -72,7 +72,10 @@ I firmly believe in writing clean and maintainable code as I'm constantly seekin
 
 #### My Experiences
 
-- (In progress)
+- **Role**: Student Developer
+- **Company**: Eduvos
+- **Date**: 2024 - Present
+- **Description**: Developing various academic projects and building foundational programming skills
 
 ### My Latest Projects
 
