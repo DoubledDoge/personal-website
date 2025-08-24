@@ -102,7 +102,6 @@
                         class="h-6 w-6 transition-opacity duration-150 {isOpen
                             ? 'absolute opacity-0'
                             : 'opacity-100'}"
-                        fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
@@ -118,7 +117,6 @@
                         class="h-6 w-6 transition-opacity duration-150 {isOpen
                             ? 'opacity-100'
                             : 'absolute opacity-0'}"
-                        fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
