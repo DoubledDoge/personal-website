@@ -42,9 +42,8 @@
 
         try {
             const imagePreloadPromise = preloadImages([topPicture])
-            const fontLoadPromise = loadFontsAsync()
 
-            await Promise.all([imagePreloadPromise, fontLoadPromise])
+            await Promise.all([imagePreloadPromise])
 
             console.info('✅ Critical resources loaded successfully')
 
@@ -61,15 +60,6 @@
             hideInitialLoader()
         }
     })
-
-    async function loadFontsAsync() {
-        try {
-            await import('@fontsource-variable/inter')
-            console.info('🎨 Fonts loaded asynchronously')
-        } catch (error) {
-            console.warn('⚠️ Font loading failed:', error)
-        }
-    }
 
     async function loadNonCriticalResources() {
         try {
@@ -280,20 +270,6 @@
     :global(img) {
         content-visibility: auto;
         height: auto;
-    }
-
-    /* Prevent flash of unstyled content */
-    :global(body) {
-        margin: 0;
-        padding: 0;
-        background-color: #111827;
-        font-family:
-            system-ui,
-            -apple-system,
-            'Segoe UI',
-            sans-serif;
-        width: 100%;
-        overflow-x: hidden;
     }
 
     /* Ensure proper layout flow */
