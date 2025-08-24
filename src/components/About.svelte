@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte'
     import educationData from '../data/education.json'
+    import textContent from '../data/text-content.json'
 
     let education = $state([])
     let stats = $state([])
@@ -127,40 +128,15 @@
                     </h2>
                 </div>
 
-                <!-- Biography paragraphs (might be added to json later with other text stuff) -->
+                <!-- Biography paragraphs from JSON -->
                 <div
                     class="bio-content space-y-4 text-base leading-relaxed text-gray-300 lg:text-lg"
                 >
-                    <p>
-                        As you can see from the website already, I am still only a university
-                        student at a highly acclaimed private university called Eduvos. There, I am
-                        pursuing my lifelong dream of becoming a Software Engineer by studying for
-                        my Bachelor's degree in Information Technology.
-                    </p>
-
-                    <p>
-                        My journey began with the programming language of C++, however this year
-                        I've switched over to C#, which remains my primary language for everything
-                        to do with desktop application development. I have also developed a
-                        particular interest in database design and enjoys creating efficient data
-                        solutions using SQL Server.
-                    </p>
-
-                    <p>
-                        Outside my coursework, I undertake some other personal hobbies such as video
-                        games, hiking and camping. At the same time, I also like to actively work on
-                        some personal projects to expand my programming knowledge as you can see in
-                        my projects section, where I'm recently learning about web development
-                        through the use of Svelte, TypeScript, TailwindCSS and more.
-                    </p>
-
-                    <p>
-                        I firmly believe in writing clean and maintainable code as I'm constantly
-                        seeking to improve my problem-solving skills through practical applications
-                        of my learning. In the end, my goal is to develop into a well-rounded
-                        software engineer who can contribute meaningfully to challenging projects
-                        while continuing to learn and grow in this ever-evolving field.
-                    </p>
+                    {#each textContent.about.biography as paragraph, index (index)}
+                        <p>
+                            {paragraph}
+                        </p>
+                    {/each}
                 </div>
 
                 <!-- Stats cards with sophisticated staggered animations -->

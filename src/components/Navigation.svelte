@@ -24,6 +24,34 @@
         console.log('Menu closed')
     }
 
+    /**
+     * Handle navigation to sections with instant scrolling
+     * @param {Event} event
+     * @param {string} targetId
+     */
+    function handleNavigation(event, targetId) {
+        event.preventDefault()
+
+        const targetElement = document.querySelector(targetId)
+        if (!targetElement) {
+            console.warn(`Target element ${targetId} not found`)
+            return
+        }
+
+        // Calculate offset for fixed navigation
+        const navHeight = 64 // 16 * 4 (h-16 in Tailwind)
+        const targetPosition =
+            targetElement.getBoundingClientRect().top + window.scrollY - navHeight
+
+        // Simple scroll to position
+        window.scrollTo(0, targetPosition)
+
+        // Close the mobile menu if open
+        if (isOpen) {
+            closeMenu()
+        }
+    }
+
     function handleScroll() {
         if (!ticking) {
             requestAnimationFrame(() => {
@@ -57,32 +85,31 @@
 </script>
 
 <!-- Navigation  -->
-<nav
-    class="fixed top-0 right-0 left-0 z-50 transition-all duration-300"
-    class:nav-scrolled={scrolled}
->
+<nav class="fixed top-0 right-0 left-0 z-50" class:nav-scrolled={scrolled}>
     <div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
             <!-- Logo/Brand -->
             <div class="flex-shrink-0">
-                <a
-                    href="#hero"
-                    class="text-xl font-bold text-white transition-colors hover:text-amber-400"
+                <button
+                    class="rounded-md text-xl font-bold text-white transition-colors hover:text-amber-400 focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
+                    onclick={e => handleNavigation(e, '#hero')}
+                    type="button"
                 >
                     Dihan Britz
-                </a>
+                </button>
             </div>
 
             <!-- Desktop Navigation -->
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-8">
                     {#each navItems as item (item.href)}
-                        <a
-                            href={item.href}
-                            class="rounded-md px-3 py-2 text-base font-medium text-gray-300 transition-all duration-200 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
+                        <button
+                            type="button"
+                            onclick={e => handleNavigation(e, item.href)}
+                            class="rounded-md px-3 py-2 text-base font-medium text-gray-300 transition-all duration-200 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
                         >
                             {item.name}
-                        </a>
+                        </button>
                     {/each}
                 </div>
             </div>
@@ -150,13 +177,13 @@
         <div class="border-t border-gray-700 bg-gray-800/95 shadow-xl backdrop-blur-md">
             <div class="space-y-1 px-4 pt-4 pb-6">
                 {#each navItems as item (item.href)}
-                    <a
-                        href={item.href}
-                        onclick={closeMenu}
-                        class="block rounded-md px-3 py-3 text-lg font-medium text-gray-300 transition-all duration-200 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white"
+                    <button
+                        type="button"
+                        onclick={e => handleNavigation(e, item.href)}
+                        class="block w-full rounded-md px-3 py-3 text-left text-lg font-medium text-gray-300 transition-all duration-200 hover:bg-gray-700 hover:text-white focus:bg-gray-700 focus:text-white focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
                     >
                         {item.name}
-                    </a>
+                    </button>
                 {/each}
             </div>
         </div>
@@ -164,22 +191,18 @@
 {/if}
 
 <style>
-    /* Default nav */
     nav {
         background: rgba(17, 24, 39, 0.3);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        will-change: background-color, backdrop-filter;
     }
 
-    /* Enhanced background when scrolled */
     nav.nav-scrolled {
         background: rgba(17, 24, 39, 0.95);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(107, 114, 128, 0.3);
     }
 
-    /* Mobile menu animation */
     .mobile-menu {
         animation: slideDown 0.2s ease-out;
     }
@@ -195,17 +218,14 @@
         }
     }
 
-    /* Icon transition improvements */
     svg {
         transition: opacity 0.15s ease-in-out;
     }
 
-    /* Ensure proper z-index stacking */
     .fixed {
         z-index: 9999;
     }
 
-    /* Mobile-specific fixes */
     @media (max-width: 768px) {
         nav {
             position: fixed !important;

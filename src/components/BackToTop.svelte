@@ -5,23 +5,19 @@
     let isMounted = $state(false)
     let isHovered = $state(false)
     let isPressed = $state(false)
-    let isAnimating = $state(false)
     let documentHeight = $state(0)
     let windowHeight = $state(0)
     let buttonElement = $state()
 
     const isVisible = $derived(isMounted && scrollY > 300)
 
-    // Optimized scroll progress calculation that doesn't cause reflows
+    // Optimized scroll progress calculation
     const scrollProgress = $derived(() => {
         if (documentHeight === 0 || windowHeight === 0) return 0
         const totalScrollable = documentHeight - windowHeight
         return totalScrollable > 0 ? Math.min(scrollY / totalScrollable, 1) : 0
     })
 
-    /**
-     * Dynamic button opacity based on scroll position for a subtle fade effect
-     */
     const buttonOpacity = $derived(() => {
         if (!isVisible) return 0
         const fadeStart = 300
@@ -31,59 +27,24 @@
         return (scrollY - fadeStart) / (fadeEnd - fadeStart)
     })
 
-    /**
-     * Enhanced accessibility label based on scroll position
-     */
     const accessibilityLabel = $derived(() => {
         const progress = Math.round(scrollProgress() * 100)
         return `Scroll back to top (${progress}% down the page)`
     })
 
-    /**
-     * Cache DOM dimensions to prevent repeated queries during scroll
-     */
     function updateDimensions() {
-        // Batch DOM reads to prevent multiple reflows
         documentHeight = document.documentElement.scrollHeight
         windowHeight = window.innerHeight
     }
 
-    /**
-     * Effect to handle scroll animation completion
-     */
-    $effect(() => {
-        if (isAnimating) {
-            const timeout = setTimeout(() => {
-                isAnimating = false
-            }, 1000) // Assumption
-
-            return () => clearTimeout(timeout)
-        }
-    })
-
-    /**
-     * Scrolls the window (Somewhat unfinished since I want smooth scrolling. will be added in a later update)
-     */
     function scrollToTop() {
-        if (isAnimating) return // Prevent multiple simultaneous scrolls
-
-        isAnimating = true
-
-        // Enhanced smooth scrolling with better performance
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        })
-
-        setTimeout(() => {
-            if (buttonElement) {
-                buttonElement.blur()
-            }
-        }, 100)
+        window.scrollTo(0, 0)
+        if (buttonElement) {
+            buttonElement.blur()
+        }
     }
 
     /**
-     * Handle keyboard navigation for accessibility
      * @param {KeyboardEvent} event
      */
     function handleKeyDown(event) {
@@ -93,9 +54,6 @@
         }
     }
 
-    /**
-     * Handle mouse events for enhanced interaction feedback
-     */
     function handleMouseEnter() {
         isHovered = true
     }
@@ -113,31 +71,21 @@
         isPressed = false
     }
 
-    /**
-     * Set up component when mounted
-     */
     onMount(() => {
         isMounted = true
-
-        // Cache initial dimensions
         updateDimensions()
 
-        // Update dimensions on resize
         let resizeTimeout
         const handleResize = () => {
             clearTimeout(resizeTimeout)
             resizeTimeout = setTimeout(updateDimensions, 150)
         }
 
-        // Use passive listeners for better performance
         window.addEventListener('resize', handleResize, { passive: true })
-
-        console.info('🔝 BackToTop component initialized with Svelte 5 runes')
 
         return () => {
             window.removeEventListener('resize', handleResize, false)
             clearTimeout(resizeTimeout)
-            console.info('🔝 BackToTop component cleanup')
         }
     })
 </script>
@@ -156,12 +104,11 @@
         onmouseup={handleMouseUp}
         class="back-to-top-btn from-primary to-secondary fixed right-4 bottom-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r text-xl font-bold text-gray-900 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl focus:scale-110 focus:shadow-xl sm:right-6 sm:bottom-6 sm:h-14 sm:w-14 sm:text-2xl {isPressed
             ? 'pressed'
-            : ''} {isAnimating ? 'animating' : ''}"
+            : ''}"
         style="opacity: {buttonOpacity}"
         aria-label={accessibilityLabel()}
         title="Back to top"
         type="button"
-        disabled={isAnimating}
     >
         <!-- Arrow icon -->
         <svg

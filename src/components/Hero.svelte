@@ -1,5 +1,6 @@
 <script>
     import topPicture from '../assets/top_picture.webp'
+    import textContent from '../data/text-content.json'
 
     let profileImage = $state(topPicture)
     let isImageLoading = $state(false)
@@ -7,18 +8,21 @@
     let isDownloading = $state(false)
     let downloadError = $state('')
 
-    /**
-     * Smooth scroll to the contact section (Will be worked on soon)
-     */
     function scrollToContact() {
         const contactSection = document.querySelector('#contact')
-        if (contactSection) {
-            contactSection.scrollIntoView({
-                behavior: 'smooth',
-            })
-        } else {
+        if (!contactSection) {
             console.warn('Contact section not found')
+            return
         }
+
+        // Calculate offset for fixed navigation
+        const navHeight = 64 // 16 * 4 (h-16 in Tailwind)
+        const targetPosition =
+            contactSection.getBoundingClientRect().top + window.scrollY - navHeight
+
+        window.scrollTo(0, targetPosition)
+
+        console.log('Scrolling to contact section')
     }
 
     /**
@@ -100,17 +104,13 @@
                 <header class="text-center lg:text-left">
                     <h1 class="pt-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
                         Hi, I'm
-                        <span class="text-gradient"> Dihan </span>
+                        <span class="text-gradient"> {textContent.hero.name} </span>
                         <span role="img" aria-label="waving hand">😊</span>
                     </h1>
                 </header>
-                <!-- Tagline / Subtitle (could be added to json) -->
+                <!-- Tagline / Subtitle from JSON -->
                 <p class="mx-auto max-w-2xl pt-8 text-center text-gray-300 lg:mx-0 lg:text-left">
-                    I'm an aspiring Software Engineer and Information Technology student at Eduvos,
-                    focusing on C# development and database design. With a strong foundation in
-                    desktop applications and a growing interest in web technologies, I'm passionate
-                    about creating efficient, maintainable solutions while continuously expanding my
-                    technical expertise.
+                    {textContent.hero.tagline}
                 </p>
                 <!-- Call-to-action buttons -->
                 <div
