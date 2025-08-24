@@ -35,12 +35,7 @@ export default defineConfig(({ mode }) => ({
 
     build: {
         rollupOptions: {
-            input: {
-                main: fileURLToPath(new URL('./src/main.js', import.meta.url)),
-            },
-
             output: {
-                // Force .js extension
                 chunkFileNames: chunkInfo => {
                     // Log for debugging
                     console.log('Chunk:', chunkInfo.name, chunkInfo.facadeModuleId)
@@ -48,7 +43,6 @@ export default defineConfig(({ mode }) => ({
                 },
                 entryFileNames: 'assets/js/[name]-[hash].js',
 
-                // Simplified manual chunks
                 manualChunks: {
                     // Core framework
                     'svelte-core': ['svelte', 'svelte/internal'],
