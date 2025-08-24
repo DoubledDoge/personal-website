@@ -31,7 +31,7 @@
         <!-- Security Headers -->
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://emailjs.com https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://img.icons8.com data: blob:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' data: https://emailjs.com https://api.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://img.icons8.com data: blob:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
         />
         <meta http-equiv="content-type" content="nosniff" />
         <meta http-equiv="x-ua-compatible" content="DENY" />
@@ -139,15 +139,6 @@
                     system-ui,
                     -apple-system,
                     sans-serif;
-            }
-
-            /* Font optimization */
-            @font-face {
-                font-family: 'Inter Variable';
-                font-style: normal;
-                font-weight: 100 900;
-                font-display: swap;
-                src: url('data:') format('woff2');
             }
         </style>
     </head>
