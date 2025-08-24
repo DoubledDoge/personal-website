@@ -1,0 +1,15 @@
+﻿{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dihan Britz",
+    "url": "https://doubleddoge.github.io/personal-website/",
+    "image": "https://doubleddoge.github.io/personal-website/assets/img/top_picture.webp",
+    "sameAs": ["https://github.com/DoubledDoge", "https://www.linkedin.com/in/dihan-britz/"],
+    "jobTitle": "Software Engineering Student",
+    "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Eduvos"
+    },
+    "knowsAbout": ["JavaScript", "Svelte", "Web Development", "Software Engineering"],
+    "description": "Future software engineer currently studying at university, passionate about web development and modern technologies."
+}

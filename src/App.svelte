@@ -12,6 +12,7 @@
 
     // Import utilities
     import { preloadImages } from './lib/imagePreloader.js'
+    import { loadStructuredData } from './lib/structuredData.js'
 
     // Lazy-loaded components
     let About = $state(null)
@@ -49,6 +50,8 @@
 
             // Show the app immediately with the hero section
             hideInitialLoader()
+
+            await loadStructuredData()
 
             // Lazy load non-critical resources in the background
             await loadNonCriticalResources()
