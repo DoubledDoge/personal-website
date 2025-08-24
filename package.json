@@ -1,6 +1,6 @@
 {
     "name": "personal-website",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "private": true,
     "description": "Dihan Britz's Personal Website for Jobs and Projects",
     "keywords": [
@@ -24,7 +24,8 @@
         "lint:staged": "lint-staged",
         "prepare": "husky",
         "preview": "vite preview --host",
-        "security-audit": "npm audit --omit=dev"
+        "security-audit": "npm audit --omit=dev",
+        "update": "npm update"
     },
     "lint-staged": {
         "*.{js,svelte}": [
