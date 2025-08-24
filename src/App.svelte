@@ -2,8 +2,8 @@
     import { onMount } from 'svelte'
 
     // Import images
-    import personalWebsiteImg from './assets/personal-website.png'
-    import topPicture from './assets/top_picture.png'
+    import personalWebsiteImg from './assets/personal-website.webp'
+    import topPicture from './assets/top_picture.webp'
 
     // Critical components
     import Hero from './components/Hero.svelte'

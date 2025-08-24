@@ -1,5 +1,5 @@
 <script>
-    import topPicture from '../assets/top_picture.png'
+    import topPicture from '../assets/top_picture.webp'
 
     let profileImage = $state(topPicture)
     let isImageLoading = $state(false)

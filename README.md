@@ -1,6 +1,6 @@
 # Personal Website
 
-![Personal Website Screenshot](/public/Preview-Image.png 'Preview Screenshot')
+![Personal Website Screenshot](/public/Preview-Image.webp 'Preview Screenshot')
 
 ## Overview 📖
 
