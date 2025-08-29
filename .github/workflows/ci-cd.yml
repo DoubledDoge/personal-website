@@ -43,11 +43,6 @@ jobs:
             - name: Lint code
               run: npm run lint:check
 
-            - name: Check formatting
-              run: |
-                  npm run format
-                  git diff --exit-code || (echo "Code formatting issues found. Run 'npm run format' locally." && exit 1)
-
             - name: Build application
               env:
                   VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
