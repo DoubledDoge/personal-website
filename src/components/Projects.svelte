@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte'
+    import androidImg from '../assets/android-university.webp'
     import cPlusPlusUniversityImg from '../assets/cPlusPlus-university.webp'
     import cSharpUniversityImg from '../assets/cSharp-university.webp'
     import personalWebsiteImg from '../assets/personal-website.webp'
@@ -31,9 +32,10 @@
 
             // Map image imports to project data
             const imageMap = {
-                '/src/assets/personal-website.png': personalWebsiteImg,
-                '/src/assets/cSharp-university.png': cSharpUniversityImg,
-                '/src/assets/cPlusPlus-university.png': cPlusPlusUniversityImg,
+                '/src/assets/personal-website.webp': personalWebsiteImg,
+                '/src/assets/cSharp-university.webp': cSharpUniversityImg,
+                '/src/assets/cPlusPlus-university.webp': cPlusPlusUniversityImg,
+                '/src/assets/android-university.webp': androidImg,
             }
 
             // Update projects with actual image imports

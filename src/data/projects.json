@@ -1,10 +1,10 @@
 ﻿{
-    "categories": ["All", "Web Development", "Desktop Application"],
+    "categories": ["All", "Web Development", "Desktop Application", "Mobile Application"],
     "projects": [
         {
             "id": 1,
             "category": "Web Development",
-            "image": "/src/assets/personal-website.png",
+            "image": "/src/assets/personal-website.webp",
             "title": "Personal Website",
             "description": "My very own website made from scratch using various modern web technologies. Also, the website you are currently on!",
             "technologies": ["Svelte", "Tailwind CSS", "Vite", "JavaScript"],
@@ -14,7 +14,7 @@
         {
             "id": 2,
             "category": "Desktop Application",
-            "image": "/src/assets/cSharp-university.png",
+            "image": "/src/assets/cSharp-university.webp",
             "title": "C# University Project",
             "description": "This project was strictly meant as an representation of the work I've done on my own university assignment. It is still highly incomplete, and rests in my GitHub page waiting for me to eventually complete it. Even though parts of it is perfectly refined to fit my own vision of the applications contained within, it is important to know that these aren't meant to be seen as enterprise quality or anything.",
             "technologies": ["C#", ".NET", "SQL"],
@@ -24,11 +24,21 @@
         {
             "id": 3,
             "category": "Desktop Application",
-            "image": "/src/assets/cPlusPlus-university.png",
+            "image": "/src/assets/cPlusPlus-university.webp",
             "title": "C++ University Project",
             "description": "My very first programming project as a whole. This currently lies archived in my GitHub repository, with absolutely no major changes planned for it. Please note that there are quite a few things that I could change as it is very much created from the mindset of a programmer just starting out, so please don't take this project too seriously.",
             "technologies": ["C++"],
             "gitURL": "https://github.com/DoubledDoge/itppa1-formative",
+            "webURL": null
+        },
+        {
+            "id": 4,
+            "category": "Mobile Application",
+            "image": "/src/assets/android-university.webp",
+            "title": "Android University Project",
+            "description": "My recently released Android Application. By far the most advanced and professional of the applications that I've released. Still needs to be refined.",
+            "technologies": ["Java", "XML", "SQLite"],
+            "gitURL": "https://github.com/DoubledDoge/itmba1-formative",
             "webURL": null
         }
     ]
