@@ -1,11 +1,11 @@
 <script>
+    import { preloadImages } from '$lib/imagePreloader.js'
     import { onMount } from 'svelte'
     import androidImg from '../assets/android-university.webp'
     import cPlusPlusUniversityImg from '../assets/cPlusPlus-university.webp'
     import cSharpUniversityImg from '../assets/cSharp-university.webp'
     import personalWebsiteImg from '../assets/personal-website.webp'
     import projectsData from '../data/projects.json'
-    import { preloadImages } from '../lib/imagePreloader.js'
     import LoadingSpinner from './LoadingSpinner.svelte'
 
     let projects = $state([])

@@ -37,7 +37,7 @@ export async function loadEmailJSAsync() {
         // Initialize EmailJS
         emailjsModule.init(EMAILJS_CONFIG.publicKey)
         isInitialized = true
-        console.info('📧 EmailJS initialized asynchronously')
+        console.info('📧 EmailJS initialized successfully')
 
         return emailjsModule
     } catch (error) {
