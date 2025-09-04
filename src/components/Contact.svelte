@@ -1,12 +1,10 @@
 <script>
-    import emailjs from '@emailjs/browser'
     import { onMount } from 'svelte'
     import contactsData from '../data/contacts.json'
+    import { isEmailJSConfigured, sendEmail, validateEmail } from '../lib/emailUtils.js'
 
-    // Environment variables for EmailJS configuration
-    const EMAILJS_PUBLIC_KEY = import.meta.env?.VITE_EMAILJS_PUBLIC_KEY
-    const EMAILJS_TEMPLATE_ID = import.meta.env?.VITE_EMAILJS_TEMPLATE_ID
-    const EMAILJS_SERVICE_ID = import.meta.env?.VITE_EMAILJS_SERVICE_ID
+    // Component props
+    let { emailjsReady = false } = $props()
 
     let formData = $state({
         email: '',
@@ -16,7 +14,6 @@
 
     let isSubmitting = $state(false)
     let submitStatus = $state(null)
-    let emailjsInitialized = $state(false)
     let statusTimeoutId = $state(null)
 
     // Derived states for form validation and UI feedback
@@ -24,7 +21,9 @@
         formData.email.length > 0 && formData.subject.length >= 3 && formData.message.length >= 10
     )
 
-    const canSubmitForm = $derived(isFormValid && emailjsInitialized && !isSubmitting)
+    const canSubmitForm = $derived(
+        isFormValid && emailjsReady && isEmailJSConfigured() && !isSubmitting
+    )
 
     const formCompletionPercentage = $derived(() => {
         let completed = 0
@@ -35,83 +34,19 @@
     })
 
     onMount(() => {
-        if (EMAILJS_PUBLIC_KEY) {
-            try {
-                emailjs.init(EMAILJS_PUBLIC_KEY)
-                emailjsInitialized = true
-                console.info('📧 EmailJS initialized for contact form')
-            } catch (error) {
-                console.warn('⚠️ EmailJS initialization failed:', error)
-                submitStatus = {
-                    type: 'error',
-                    message:
-                        'Contact form is temporarily unavailable. Please use direct email instead.',
-                }
-            }
-        } else {
-            console.warn('⚠️ EmailJS public key not configured')
+        if (!isEmailJSConfigured()) {
+            console.warn('⚠️ EmailJS not properly configured')
             submitStatus = {
                 type: 'error',
                 message: 'Contact form configuration missing. Please use direct email instead.',
             }
+        } else if (emailjsReady) {
+            console.info('✅ Contact form is ready to receive submissions')
         }
     })
 
     /**
-     * Validate email address format
-     * @param {string} email
-     * @returns {boolean}
-     */
-    function validateEmail(email) {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        return emailRegex.test(email)
-    }
-
-    /**
-     * Sanitize input to prevent XSS attacks
-     * @param {string} input
-     * @returns {string}
-     */
-    function sanitizeInput(input) {
-        return input
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;')
-            .trim()
-    }
-
-    /**
-     * Check if user has exceeded rate limit
-     * @returns {boolean}
-     */
-    function isRateLimited() {
-        if (typeof window === 'undefined') return false
-
-        const now = Date.now()
-        const lastSubmit = localStorage.getItem('lastFormSubmit')
-        const submitCount = Number(localStorage.getItem('formSubmitCount') || '0')
-
-        // Reset counter if last submit was more than 24 hours ago
-        if (lastSubmit && now - Number(lastSubmit) > 24 * 60 * 60 * 1000) {
-            localStorage.setItem('formSubmitCount', '0')
-            localStorage.setItem('lastFormSubmit', now.toString())
-            return false
-        }
-
-        // Allow max 5 submissions per day
-        if (submitCount >= 5) {
-            return true
-        }
-
-        // Update submission count
-        localStorage.setItem('formSubmitCount', (submitCount + 1).toString())
-        localStorage.setItem('lastFormSubmit', now.toString())
-        return false
-    }
-
-    /**
-     * Handle form submission
+     * Handle form submission using centralized email utilities
      * @param {Event} event
      */
     async function handleSubmit(event) {
@@ -123,108 +58,43 @@
             submitStatus = null
             console.info('📤 Contact form submission started')
 
-            // Check if EmailJS is properly initialized
-            if (!emailjsInitialized || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+            // Send email using a utility function
+            const result = await sendEmail(formData)
+
+            // Handle result
+            if (result.success) {
+                console.info('✅ Contact form email sent successfully')
+
+                submitStatus = {
+                    type: 'success',
+                    message: result.message,
+                }
+
+                // Reset form after successful submission
+                formData = {
+                    email: '',
+                    subject: '',
+                    message: '',
+                }
+            } else {
+                console.error('❌ Contact form submission failed:', result.message)
+
                 submitStatus = {
                     type: 'error',
-                    message: 'Email service is not properly configured. Please try again later.',
+                    message: result.message,
                 }
-                console.error('❌ EmailJS configuration error')
-                return
-            }
-
-            // Check for rate limiting
-            if (isRateLimited()) {
-                submitStatus = {
-                    type: 'error',
-                    message:
-                        'Rate limit exceeded. Please wait 24 hours before sending another message.',
-                }
-                console.warn('⚠️ Rate limit exceeded for contact form')
-                return
-            }
-
-            // Validate email format
-            if (!validateEmail(formData.email)) {
-                submitStatus = {
-                    type: 'error',
-                    message: 'Please enter a valid email address.',
-                }
-                console.warn('⚠️ Invalid email format:', formData.email)
-                return
-            }
-
-            // Sanitize inputs to prevent XSS
-            const sanitizedSubject = sanitizeInput(formData.subject)
-            const sanitizedMessage = sanitizeInput(formData.message)
-            const sanitizedEmail = sanitizeInput(formData.email)
-
-            // Validate input lengths
-            if (sanitizedSubject.length < 3 || sanitizedSubject.length > 100) {
-                submitStatus = {
-                    type: 'error',
-                    message: 'Subject must be between 3 and 100 characters.',
-                }
-                console.warn('⚠️ Invalid subject length:', sanitizedSubject.length)
-                return
-            }
-
-            if (sanitizedMessage.length < 10 || sanitizedMessage.length > 1000) {
-                submitStatus = {
-                    type: 'error',
-                    message: 'Message must be between 10 and 1000 characters.',
-                }
-                console.warn('⚠️ Invalid message length:', sanitizedMessage.length)
-                return
-            }
-
-            // Prepare email parameters
-            const templateParams = {
-                from_email: sanitizedEmail,
-                subject: sanitizedSubject,
-                message: sanitizedMessage,
-                to_email: 'dbritz22@proton.me',
-                reply_to: sanitizedEmail,
-            }
-
-            // Send email using EmailJS
-            await emailjs.send(
-                EMAILJS_SERVICE_ID,
-                EMAILJS_TEMPLATE_ID,
-                templateParams,
-                EMAILJS_PUBLIC_KEY
-            )
-
-            console.info('✅ Contact form email sent successfully')
-
-            // Set success status
-            submitStatus = {
-                type: 'success',
-                message: "Message sent successfully! I'll get back to you soon.",
             }
 
             // Schedule status clearing
             scheduleStatusClear(submitStatus)
-
-            // Reset form after successful submission
-            formData = {
-                email: '',
-                subject: '',
-                message: '',
-            }
         } catch (error) {
-            console.error('❌ Contact form submission failed:', error)
+            console.error('❌ Unexpected error during form submission:', error)
 
-            // Set error status
             submitStatus = {
                 type: 'error',
-                message:
-                    error instanceof Error
-                        ? error.message
-                        : 'Failed to send message. Please try again or use direct email.',
+                message: 'An unexpected error occurred. Please try again or use direct email.',
             }
 
-            // Schedule status clearing
             scheduleStatusClear(submitStatus)
         } finally {
             // Reset loading state
@@ -257,13 +127,6 @@
     $effect(() => {
         if (formCompletionPercentage() === 100 && canSubmitForm) {
             console.info('📝 Contact form is ready for submission')
-        }
-    })
-
-    // Effect to handle EmailJS initialization status changes
-    $effect(() => {
-        if (emailjsInitialized) {
-            console.info('✅ Contact form is now ready to receive submissions')
         }
     })
 

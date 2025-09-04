@@ -1,4 +1,8 @@
 <script>
+    // Import utilities
+    import { loadEmailJSAsync } from '$lib/emailUtils.js'
+    import { preloadImages } from '$lib/imagePreloader.js'
+    import { loadStructuredData } from '$lib/structuredData.js'
     import { onMount } from 'svelte'
 
     // Import images
@@ -9,10 +13,6 @@
     import Hero from './components/Hero.svelte'
     import LoadingSpinner from './components/LoadingSpinner.svelte'
     import Navigation from './components/Navigation.svelte'
-
-    // Import utilities
-    import { preloadImages } from './lib/imagePreloader.js'
-    import { loadStructuredData } from './lib/structuredData.js'
 
     // Lazy-loaded components
     let About = $state(null)
@@ -26,7 +26,7 @@
     let isLoading = $state(true)
     let loadingError = $state(null)
     let componentsLoaded = $state(false)
-    let emailjsModule = $state(null)
+    let emailjsReady = $state(false)
 
     // Derived state for checking if the app is ready
     const isAppReady = $derived(!isLoading && !loadingError)
@@ -91,7 +91,10 @@
             ]
 
             // Load EmailJS and remaining images in background
-            const emailJSPromise = loadEmailJSAsync()
+            const emailJSPromise = loadEmailJSAsync().then(module => {
+                emailjsReady = !!module
+                return module
+            })
             const remainingImagesPromise = preloadImages([personalWebsiteImg])
 
             // Wait for all non-critical resources
@@ -102,26 +105,6 @@
         } catch (error) {
             console.warn('⚠️ Some non-critical resources failed to load:', error)
             componentsLoaded = true
-        }
-    }
-
-    async function loadEmailJSAsync() {
-        try {
-            // Dynamically import EmailJS to avoid blocking the initial render
-            const emailjsImport = await import('@emailjs/browser')
-            emailjsModule = emailjsImport.default
-
-            const publicKey = import.meta.env?.VITE_EMAILJS_PUBLIC_KEY
-
-            if (!publicKey) {
-                console.warn('⚠️ EmailJS public key not configured')
-                return
-            }
-
-            emailjsModule.init(publicKey)
-            console.info('📧 EmailJS initialized asynchronously')
-        } catch (error) {
-            console.warn('⚠️ EmailJS initialization failed:', error)
         }
     }
 
@@ -199,7 +182,7 @@
                         <Projects />
                     {/if}
                     {#if Contact}
-                        <Contact {emailjsModule} />
+                        <Contact {emailjsReady} />
                     {/if}
                 {:else}
                     <!-- Placeholder for lazy-loaded content -->
