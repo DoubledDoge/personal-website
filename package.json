@@ -15,12 +15,16 @@
     "author": "DoubledDoge",
     "type": "module",
     "scripts": {
-        "build": "vite build",
+        "build": "npm run clean && vite build",
+        "build:production": "npm run clean && vite build --mode production",
+        "clean": "rm -rf dist build .vite",
         "dev": "vite --host",
         "format": "prettier --write .",
-        "lint": "eslint .",
+        "lint": "eslint . && stylelint '**/*.{svelte,css}'",
         "lint:check": "eslint . --format codeframe",
-        "lint:fix": "eslint . --fix",
+        "lint:css": "stylelint '**/*.{svelte,css}'",
+        "lint:css:fix": "stylelint '**/*.{svelte,css}' --fix",
+        "lint:fix": "eslint . --fix && npm run lint:css:fix",
         "lint:staged": "lint-staged",
         "prepare": "husky",
         "preview": "vite preview --host",
@@ -32,7 +36,14 @@
             "eslint --cache --fix",
             "prettier --write"
         ],
-        "*.{css,md,json}": "prettier --write",
+        "*.svelte": [
+            "stylelint --fix"
+        ],
+        "*.{css}": [
+            "stylelint --cache --fix",
+            "prettier --write"
+        ],
+        "*.{md,json}": "prettier --write",
         "package*.json": "npm audit --audit-level=high"
     },
     "dependencies": {
@@ -53,10 +64,15 @@
         "globals": "^16.3.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.1.5",
+        "postcss-html": "^1.8.0",
         "prettier": "^3.6.2",
         "prettier-plugin-packagejson": "^2.5.19",
         "prettier-plugin-svelte": "^3.4.0",
         "prettier-plugin-tailwindcss": "^0.6.14",
+        "stylelint": "^16.24.0",
+        "stylelint-config-standard": "^39.0.0",
+        "stylelint-config-tailwindcss": "^1.0.0",
+        "stylelint-prettier": "^5.0.3",
         "tailwindcss": "^4.1.11",
         "vite": "^7.1.0",
         "vite-plugin-compression2": "^2.2.0"
