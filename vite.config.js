@@ -8,11 +8,25 @@ export default defineConfig(({ mode }) => ({
     plugins: [
         svelte({
             compilerOptions: {
-                // Optimize for production builds
                 dev: mode === 'development',
-                // Ensure CSS is handled properly
                 css: 'external',
+                // Remove comments and debug info in production
+                generate: mode === 'production' ? 'dom' : undefined,
+                hydratable: false, // Set to true if you need SSR
+                legacy: false, // Remove legacy support for smaller bundles
             },
+            // Remove comments from Svelte components in production
+            preprocess:
+                mode === 'production'
+                    ? {
+                          script: ({ content }) => ({
+                              code: content.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''),
+                          }),
+                          style: ({ content }) => ({
+                              code: content.replace(/\/\*[\s\S]*?\*\//g, ''),
+                          }),
+                      }
+                    : undefined,
         }),
         tailwindcss(),
         compression({
@@ -36,15 +50,10 @@ export default defineConfig(({ mode }) => ({
     build: {
         rollupOptions: {
             output: {
-                chunkFileNames: chunkInfo => {
-                    // Log for debugging
-                    console.log('Chunk:', chunkInfo.name, chunkInfo.facadeModuleId)
-                    return 'assets/js/[name]-[hash].js'
-                },
+                chunkFileNames: 'assets/js/[name]-[hash].js',
                 entryFileNames: 'assets/js/[name]-[hash].js',
 
                 manualChunks: {
-                    // Core framework
                     'svelte-core': ['svelte', 'svelte/internal'],
                     emailjs: ['@emailjs/browser'],
                 },
@@ -93,6 +102,28 @@ export default defineConfig(({ mode }) => ({
 
         // Target modern browsers
         target: 'esnext',
+
+        // Additional production optimizations
+        ...(mode === 'production' && {
+            rollupOptions: {
+                ...this.build?.rollupOptions,
+                treeshake: {
+                    preset: 'recommended',
+                    propertyReadSideEffects: false,
+                    tryCatchDeoptimization: false,
+                },
+            },
+            terserOptions: {
+                compress: {
+                    drop_console: true, // Remove console.logs in production
+                    drop_debugger: true,
+                    pure_funcs: ['console.log', 'console.info', 'console.debug'],
+                },
+                format: {
+                    comments: false, // Remove all comments
+                },
+            },
+        }),
     },
 
     optimizeDeps: {
