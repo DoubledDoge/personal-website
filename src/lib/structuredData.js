@@ -1,5 +1,5 @@
 ﻿/**
- * Loads and injects structured data (JSON-LD) into the document head
+ * Loads and injects structured data into the document head
  * @param {string} jsonPath - Path to the structured data JSON file
  * @returns {Promise<Object|null>} The structured data object or null if failed
  */

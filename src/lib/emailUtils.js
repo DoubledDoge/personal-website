@@ -81,7 +81,7 @@ export function sanitizeInput(input) {
 /**
  * Checks if user has exceeded rate limit for form submissions
  * Uses localStorage to track submission count and timing
- * @param {number} maxSubmissions - Maximum submissions allowed per day (default: 5)
+ * @param {number} maxSubmissions - Maximum submissions allowed per day
  * @returns {boolean} True if rate limited
  */
 export function isRateLimited(maxSubmissions = 5) {
@@ -122,7 +122,7 @@ export function isRateLimited(maxSubmissions = 5) {
  * @param {string} formData.email - Email address
  * @param {string} formData.subject - Email subject
  * @param {string} formData.message - Email message
- * @returns {Object} Validation result with isValid boolean and the error message
+ * @returns {Object} Validation result with isValid boolean and an error message
  */
 export function validateFormData(formData) {
     // Check if formData exists and has required properties
@@ -178,7 +178,7 @@ export function validateFormData(formData) {
  * @param {string} formData.email - Sender's email address
  * @param {string} formData.subject - Email subject
  * @param {string} formData.message - Email message content
- * @param {string} recipientEmail - Recipient email address (default: dbritz22@proton.me)
+ * @param {string} recipientEmail - Recipient email address
  * @returns {Promise<Object>} Result object with success boolean and message
  */
 export async function sendEmail(formData, recipientEmail = 'dbritz22@proton.me') {
@@ -266,16 +266,4 @@ export async function sendEmail(formData, recipientEmail = 'dbritz22@proton.me')
  */
 export function isEmailJSConfigured() {
     return !!(EMAILJS_CONFIG.publicKey && EMAILJS_CONFIG.serviceId && EMAILJS_CONFIG.templateId)
-}
-
-/**
- * Gets the current EmailJS initialization status
- * @returns {Object} Status object with initialization state and module reference
- */
-export function getEmailJSStatus() {
-    return {
-        isInitialized,
-        isConfigured: isEmailJSConfigured(),
-        hasModule: !!emailjsModule,
-    }
 }
