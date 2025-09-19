@@ -10,10 +10,6 @@ export default defineConfig(({ mode }) => ({
             compilerOptions: {
                 dev: mode === 'development',
                 css: 'external',
-                // Remove comments and debug info in production
-                generate: mode === 'production' ? 'dom' : undefined,
-                hydratable: false, // Set to true if you need SSR
-                legacy: false, // Remove legacy support for smaller bundles
             },
             // Remove comments from Svelte components in production
             preprocess:
@@ -62,10 +58,9 @@ export default defineConfig(({ mode }) => ({
                     const fileName = assetInfo.names?.[0] || ''
                     const extType = fileName.split('.').pop()?.toLowerCase() || 'asset'
 
-                    // Svelte files should never be treated as static assets
                     if (extType === 'svelte') {
                         console.warn('WARNING: .svelte file being processed as asset:', fileName)
-                        return 'assets/js/[name]-[hash].js' // Force as JS if somehow treated as an asset
+                        return 'assets/js/[name]-[hash].js'
                     }
 
                     if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType)) {
@@ -105,22 +100,14 @@ export default defineConfig(({ mode }) => ({
 
         // Additional production optimizations
         ...(mode === 'production' && {
-            rollupOptions: {
-                ...this.build?.rollupOptions,
-                treeshake: {
-                    preset: 'recommended',
-                    propertyReadSideEffects: false,
-                    tryCatchDeoptimization: false,
-                },
-            },
             terserOptions: {
                 compress: {
-                    drop_console: true, // Remove console.logs in production
+                    drop_console: true,
                     drop_debugger: true,
                     pure_funcs: ['console.log', 'console.info', 'console.debug'],
                 },
                 format: {
-                    comments: false, // Remove all comments
+                    comments: false,
                 },
             },
         }),
