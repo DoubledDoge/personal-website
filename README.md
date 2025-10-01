@@ -2,11 +2,11 @@
 
 ![Personal Website Screenshot](/public/Preview-Image.webp 'Preview Screenshot')
 
-## 📖 Overview 
+## 📖 Overview
 
 This is a personal portfolio website showcasing skills, projects, and contact information. The site features a modern design with smooth animations, responsive layouts, and interactive components. Built with Svelte for optimal performance and simplicity.
 
-## ✨ Features 
+## ✨ Features
 
 - 🎨 Modern and responsive design
 - ⚡ Optimized performance with Svelte's compiled approach
@@ -20,7 +20,7 @@ This is a personal portfolio website showcasing skills, projects, and contact in
 - 🔒 Enhanced security headers and CSP
 - 📈 SEO optimized with structured data
 
-## 🛠️ Technologies Used 
+## 🛠️ Technologies Used
 
 - **Frontend Framework:** Svelte 5
 - **Styling:** TailwindCSS 4
@@ -30,7 +30,7 @@ This is a personal portfolio website showcasing skills, projects, and contact in
 - **Security:** CodeQL analysis
 - **Deployment:** GitHub Pages with automated CI/CD
 
-## 🚀 Setup Instructions 
+## 🚀 Setup Instructions
 
 1. Clone the repository:
 
@@ -70,7 +70,7 @@ npm run dev
 npm run build
 ```
 
-## 🛠️ Development 
+## 🛠️ Development
 
 Available scripts in the project:
 
@@ -85,7 +85,7 @@ npm run lint:fix        # Auto-fix linting issues
 npm run security-audit  # Audit dependencies for vulnerabilities
 ```
 
-## 📁 Project Structure 
+## 📁 Project Structure
 
 ```
 ├── src/
@@ -102,7 +102,7 @@ npm run security-audit  # Audit dependencies for vulnerabilities
 └── package.json       # Project configuration
 ```
 
-## 🚀 Deployment 
+## 🚀 Deployment
 
 The project uses automated GitHub Actions for:
 
@@ -111,7 +111,7 @@ The project uses automated GitHub Actions for:
 - **Security Scanning:** Weekly CodeQL analysis for vulnerability detection
 - **Dependency Management:** Automated dependency updates via Dependabot
 
-## ⚡ Performance Features 
+## ⚡ Performance Features
 
 - **Build Compression:** Automatic gzip and brotli compression
 - **Code Splitting:** Optimized chunks for faster loading
@@ -120,7 +120,7 @@ The project uses automated GitHub Actions for:
 - **Critical CSS:** Inline styles for immediate rendering
 - **Preload Hints:** Strategic resource preloading
 
-## 🤝 Contributing 
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -146,11 +146,11 @@ Thanks to the following resources that inspired and helped with this project:
 3. [TailwindCSS Documentation](https://tailwindcss.com/) - Comprehensive styling guide
 4. [Vite Documentation](https://vitejs.dev/) - Modern build tooling
 
-## 📜 License 
+## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 📌 Notes 
+## 📌 Notes
 
 - **Node.js 20+** required for development
 - **EmailJS credentials** needed for contact form functionality
@@ -159,7 +159,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - **Security headers** configured for GitHub Pages deployment
 - **Automated updates** managed through Dependabot
 
-## 📋 Version History 
+## 📋 Version History
 
 - **v2.x.x** - Complete migration to Svelte with a complete overhaul of the internal design and structure
 - **v1.x.x** - Original Vue.js implementation
