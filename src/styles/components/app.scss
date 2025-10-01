@@ -1,0 +1,199 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+@use '../critical' as *;
+
+.app-container {
+  background-color: $color-background;
+  min-height: 100dvh;
+}
+
+.app-loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+.app-error {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: $spacing-6;
+  text-align: center;
+
+  &__container {
+    backdrop-filter: blur(8px);
+    background: rgb(31 41 55 / 30%);
+    border: 1px solid rgb(55 65 81 / 40%);
+    border-radius: $radius-xl;
+    max-width: 28rem;
+    padding: $spacing-8;
+  }
+
+  &__title {
+    color: $color-error;
+    font-size: 1.875rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: $spacing-4;
+
+    @include md {
+      font-size: 2.25rem;
+    }
+  }
+
+  &__message {
+    color: $color-text;
+    font-size: $font-size-card;
+    line-height: 1.6;
+    margin-bottom: $spacing-6;
+  }
+
+  &__details {
+    background: rgb(15 23 42 / 60%);
+    border-left: 3px solid $color-error;
+    border-radius: $radius;
+    color: $color-dark-600;
+    font-size: $font-size-sm;
+    margin-top: $spacing-4;
+    padding: $spacing-3;
+  }
+}
+
+// Add missing button styles to match original Tailwind implementation
+.btn-primary {
+  @include btn-primary;
+}
+
+.app-main {
+  position: relative;
+  z-index: 1;
+}
+
+.app-lazy-loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  padding: $spacing-16 $spacing-6;
+
+  &__container {
+    max-width: 20rem;
+    text-align: center;
+  }
+
+  &__text {
+    color: $color-text;
+    font-size: $font-size-card;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: $spacing-6;
+  }
+
+  // Fix class name to match App.svelte usage
+  &-progress {
+    background-color: $color-dark-300;
+    border-radius: $radius-full;
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 20%);
+    height: 0.5rem;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 16rem;
+  }
+
+  // Fix class name to match App.svelte usage
+  &-bar {
+    animation: loading-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    border-radius: $radius-full;
+    box-shadow: 0 0 10px rgb(245 158 11 / 40%);
+    height: 100%;
+  }
+}
+
+// Enhanced loading animation to match original Tailwind behavior
+@keyframes loading-pulse {
+  0% {
+    width: 0;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  50% {
+    width: 100%;
+    transform: translateX(0);
+    opacity: 0.8;
+  }
+
+  100% {
+    width: 0;
+    transform: translateX(100%);
+    opacity: 1;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .app-lazy-loading-bar {
+    animation: loading-pulse-simple 2s linear infinite;
+  }
+
+  @keyframes loading-pulse-simple {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+// Mobile optimizations
+@media (width <= 640px) {
+  .app-error {
+    padding: $spacing-4;
+
+    &__container {
+      margin: $spacing-4;
+      max-width: none;
+      padding: $spacing-6;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__message {
+      font-size: $font-size-base;
+    }
+  }
+
+  .app-lazy-loading {
+    padding: $spacing-8 $spacing-4;
+
+    &-progress {
+      width: 12rem;
+    }
+
+    &__text {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-4;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: more) {
+  .app-error__container {
+    border-color: $color-error;
+    border-width: 2px;
+  }
+
+  .app-lazy-loading-progress {
+    border: 1px solid $color-text;
+  }
+}

@@ -1,0 +1,501 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.skills-section {
+  @include section-container;
+
+  position: relative;
+}
+
+.skills-background-decoration {
+  height: 100%;
+  opacity: 0.2;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.skills-decoration-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.skills-decoration-wrapper {
+  display: flex;
+}
+
+.skills-decoration-left {
+  background-color: $color-primary;
+  border-radius: 2rem 0 0 2rem;
+  filter: blur(2rem);
+  height: 8rem;
+  width: 4rem;
+}
+
+.skills-decoration-right {
+  background-color: $color-secondary;
+  border-radius: 0 2rem 2rem 0;
+  filter: blur(2rem);
+  height: 8rem;
+  margin-top: 3.5rem;
+  width: 4rem;
+}
+
+.skills-loading-grid {
+  display: grid;
+  gap: 3rem;
+
+  @include md {
+    gap: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include xl {
+    gap: 4rem;
+  }
+}
+
+.skills-loading-column,
+.experiences-loading-column {
+  position: relative;
+  z-index: 10;
+}
+
+.skills-loading-title {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 2rem;
+  margin-bottom: 2rem;
+  width: 8rem;
+}
+
+.skills-loading-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skills-loading-item {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skills-loading-header {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skills-loading-name {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1.25rem;
+  width: 6rem;
+}
+
+.skills-loading-percentage {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1.25rem;
+  width: 3rem;
+}
+
+.skills-loading-bar {
+  background-color: rgb(75 85 99);
+  border-radius: 0.25rem;
+  height: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.skills-loading-progress {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 100%;
+  width: 75%;
+}
+
+.skills-loading-category {
+  margin-top: 0.5rem;
+}
+
+.skills-loading-tag {
+  background-color: rgb(55 65 81);
+  border-radius: 0.75rem;
+  height: 1rem;
+  width: 4rem;
+}
+
+.experiences-loading-title {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 2rem;
+  margin-bottom: 2rem;
+  width: 10rem;
+}
+
+.experiences-loading-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experiences-loading-item {
+  align-items: flex-start;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  display: flex;
+  gap: 1rem;
+}
+
+.experiences-loading-icon {
+  align-items: flex-start;
+  background-color: rgb(55 65 81);
+  border-radius: 0.5rem;
+  display: flex;
+  height: 5rem;
+  justify-content: flex-start;
+  min-width: 5rem;
+  padding: 0.75rem;
+  width: 5rem;
+}
+
+.experiences-loading-icon-placeholder {
+  background-color: rgb(75 85 99);
+  height: 100%;
+  max-height: 3.5rem;
+  max-width: 3.5rem;
+  width: 100%;
+}
+
+.experiences-loading-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.experiences-loading-role {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1.5rem;
+  width: 8rem;
+}
+
+.experiences-loading-company {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1rem;
+  width: 6rem;
+}
+
+.experiences-loading-date {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 0.875rem;
+  width: 5rem;
+}
+
+.experiences-loading-description {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 0.875rem;
+  width: 100%;
+}
+
+.skills-error-container {
+  text-align: center;
+}
+
+.skills-error-text {
+  color: rgb(248 113 113);
+  margin-bottom: 1rem;
+}
+
+.skills-retry-button {
+  @include btn-secondary;
+}
+
+.skills-content-grid {
+  display: grid;
+  gap: 3rem;
+
+  @include md {
+    gap: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include xl {
+    gap: 4rem;
+  }
+}
+
+.skills-column,
+.experiences-column {
+  position: relative;
+  z-index: 10;
+}
+
+.skills-title {
+  color: white;
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: left;
+
+  @include md {
+    font-size: 3rem;
+  }
+}
+
+.skills-title-highlight {
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+  background-clip: text;
+  color: transparent;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-item {
+  backdrop-filter: blur(5px);
+  background: linear-gradient(135deg, rgb(17 24 39 / 60%) 0%, rgb(31 41 55 / 40%) 100%);
+  border: 1px solid rgb(107 114 128 / 20%);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgb(245 158 11 / 30%);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 20%);
+    transform: translateY(-0.25rem);
+  }
+}
+
+.skill-header {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.skill-percentage {
+  color: $color-primary;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.skill-progress-container {
+  background: linear-gradient(90deg, rgb(31 41 55 / 80%) 0%, rgb(55 65 81 / 60%) 100%);
+  border: 1px solid rgb(75 85 99 / 30%);
+  border-radius: 0.25rem;
+  height: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.skill-progress-bar {
+  background: linear-gradient(90deg, $color-primary 0%, $color-secondary 100%);
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgb(245 158 11 / 40%);
+  height: 100%;
+  transition: width 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-category-container {
+  margin-top: 0.5rem;
+}
+
+.skill-category-tag {
+  background-color: rgb(31 41 55 / 60%);
+  border: 1px solid rgb(75 85 99 / 50%);
+  border-radius: 9999px;
+  color: rgb(156 163 175);
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+.experiences-title {
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+  background-clip: text;
+  color: transparent;
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: left;
+
+  @include md {
+    font-size: 3rem;
+    text-align: center;
+  }
+}
+
+.experiences-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experience-card {
+  align-items: flex-start;
+  backdrop-filter: blur(8px);
+  background-color: rgb(31 41 55 / 50%);
+  border: 1px solid rgb(55 65 81 / 50%);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%),
+  0 2px 4px -2px rgb(0 0 0 / 10%);
+  display: flex;
+  gap: 1rem;
+  min-height: 7.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: 0 15px 35px rgb(0 0 0 / 20%),
+    0 0 0 1px rgb(245 158 11 / 10%),
+    0 0 20px rgb(245 158 11 / 10%);
+    transform: translateY(-0.25rem);
+  }
+}
+
+.experience-icon-container {
+  align-items: flex-start;
+  background-color: rgb(31 41 55 / 50%);
+  border: 1px solid rgb(75 85 99 / 50%);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-shrink: 0;
+  height: 5rem;
+  justify-content: flex-start;
+  margin-bottom: 0.5rem;
+  min-height: 5rem;
+  min-width: 5rem;
+  padding: 0.75rem;
+  width: 5rem;
+}
+
+.experience-icon {
+  display: block !important;
+  filter: brightness(0.9) !important;
+  flex-shrink: 0;
+  height: 100%;
+  max-height: 3.5rem;
+  max-width: 3.5rem;
+  object-fit: contain !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease !important;
+  width: 100%;
+
+  .experience-card:hover & {
+    filter: brightness(1.1) !important;
+    transform: scale(1.1) !important;
+  }
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.experience-role {
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+  background-clip: text;
+  color: transparent;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.experience-company {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.experience-date {
+  color: rgb(209 213 219);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.experience-description {
+  color: rgb(209 213 219);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.experiences-future-note {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.experiences-future-text {
+  color: rgb(107 114 128);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-item,
+  .experience-card,
+  .skill-progress-bar,
+  .experience-icon {
+    animation: none;
+    transition: none;
+  }
+
+  .skill-item:hover,
+  .experience-card:hover {
+    transform: none;
+  }
+
+  .experience-card:hover .experience-icon {
+    filter: brightness(0.9) !important;
+    transform: none !important;
+  }
+
+  .skills-loading-item,
+  .experiences-loading-item,
+  .skills-loading-title,
+  .experiences-loading-title {
+    animation: none;
+  }
+}
+
+@media (width <= 768px) {
+  .experience-card {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .experience-icon-container {
+    margin: 0 auto;
+  }
+}

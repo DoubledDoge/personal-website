@@ -1,8 +1,11 @@
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import tailwindcss from '@tailwindcss/vite'
-import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
-import { compression } from 'vite-plugin-compression2'
+import {svelte} from '@sveltejs/vite-plugin-svelte'
+import {fileURLToPath, URL} from 'node:url'
+import Unfonts from 'unplugin-fonts/vite'
+import {defineConfig} from 'vite'
+import {compression} from 'vite-plugin-compression2'
+import eslint from 'vite-plugin-eslint2'
+import stylelint from 'vite-plugin-stylelint'
+import preloadPlugin from 'vite-preload/plugin'
 
 export default defineConfig(({ mode }) => ({
     plugins: [
@@ -16,7 +19,9 @@ export default defineConfig(({ mode }) => ({
                 mode === 'production'
                     ? {
                           script: ({ content }) => ({
-                              code: content.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''),
+                              code: content
+                                  .replace(/\/\*[\s\S]*?\*\//g, '')
+                                  .replace(/(?<!['"`])\/\/(?![^'"`]*['"`])[^\r\n]*/g, ''),
                           }),
                           style: ({ content }) => ({
                               code: content.replace(/\/\*[\s\S]*?\*\//g, ''),
@@ -24,13 +29,25 @@ export default defineConfig(({ mode }) => ({
                       }
                     : undefined,
         }),
-        tailwindcss(),
         compression({
             algorithms: ['gzip', 'brotli'],
             threshold: 1024,
             deleteOriginalAssets: false,
-            // Only compress in production builds
             exclude: mode === 'development' ? [/.*/] : [],
+        }),
+        Unfonts({
+            fontsource: {
+                families: ['Inter Variable'],
+            },
+        }),
+        preloadPlugin(),
+        stylelint({
+            cache: true,
+            fix: true,
+        }),
+        eslint({
+            cache: true,
+            fix: true,
         }),
     ],
 
@@ -87,18 +104,14 @@ export default defineConfig(({ mode }) => ({
             },
         },
 
-        // Build optimization settings
         chunkSizeWarningLimit: 1000,
         minify: mode === 'production' ? 'esbuild' : false,
         reportCompressedSize: true,
         assetsInlineLimit: 2048,
         cssCodeSplit: true,
         sourcemap: mode === 'development',
-
-        // Target modern browsers
         target: 'esnext',
 
-        // Additional production optimizations
         ...(mode === 'production' && {
             terserOptions: {
                 compress: {
@@ -118,7 +131,6 @@ export default defineConfig(({ mode }) => ({
         exclude: ['svelte'],
     },
 
-    // Development server configuration
     server: {
         host: true,
         port: 5000,
@@ -126,7 +138,6 @@ export default defineConfig(({ mode }) => ({
         open: true,
     },
 
-    // Preview server configuration
     preview: {
         host: true,
         port: 3000,

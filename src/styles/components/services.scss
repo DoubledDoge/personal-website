@@ -1,0 +1,238 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.services-section {
+  @include section-container;
+}
+
+.services-loading-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  @media (width <= 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.services-loading-skeleton {
+  @include card-base;
+
+  align-items: center;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+.services-skeleton-icon {
+  background-color: rgb(55 65 81);
+  border-radius: 50%;
+  height: 6rem;
+  margin: 0 auto;
+  width: 6rem;
+
+  @include xl {
+    height: 7rem;
+    width: 7rem;
+  }
+}
+
+.services-skeleton-content {
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.services-skeleton-title {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1.5rem;
+  margin: 0 auto;
+  width: 8rem;
+}
+
+.services-skeleton-text-long {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1rem;
+  margin: 0.75rem auto 0;
+  width: 12rem;
+}
+
+.services-skeleton-text-short {
+  background-color: rgb(55 65 81);
+  border-radius: 0.25rem;
+  height: 1rem;
+  margin: 0.375rem auto 0;
+  width: 10rem;
+}
+
+.services-error-container {
+  text-align: center;
+}
+
+.services-error-text {
+  color: rgb(248 113 113);
+  margin-bottom: 1rem;
+}
+
+.services-retry-button {
+  @include btn-secondary;
+}
+
+.services-empty-container {
+  text-align: center;
+}
+
+.services-empty-text {
+  color: rgb(156 163 175);
+}
+
+.services-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  @media (width <= 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-card {
+  align-items: center;
+  backdrop-filter: blur(8px);
+  background: rgb(31 41 55 / 50%) linear-gradient(135deg, rgb(17 24 39 / 80%) 0%, rgb(31 41 55 / 60%) 100%);
+  border: 1px solid rgb(107 114 128 / 20%);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%),
+  0 2px 4px -2px rgb(0 0 0 / 10%);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 25%),
+    0 0 0 1px rgb(245 158 11 / 10%),
+    0 0 20px rgb(245 158 11 / 10%);
+  }
+}
+
+.service-icon-container {
+  align-items: center;
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  width: 6rem;
+
+  @include xl {
+    height: 7rem;
+    width: 7rem;
+  }
+}
+
+.service-icon {
+  display: block !important;
+  height: 5rem;
+  object-fit: contain;
+  opacity: 1;
+  transition: all 0.3s ease;
+  width: 5rem;
+
+  @include xl {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .service-card:hover & {
+    filter: brightness(1.1);
+    transform: scale(1.1);
+  }
+}
+
+// Fallback for broken images
+.service-icon-fallback {
+  align-items: center;
+  background-color: rgb(75 85 99 / 50%);
+  border-radius: 50%;
+  color: rgb(156 163 175);
+  display: flex;
+  font-size: 2rem;
+  height: 5rem;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: 5rem;
+
+  .service-card:hover & {
+    background-color: rgb(75 85 99 / 70%);
+    transform: scale(1.1);
+  }
+}
+
+.service-content {
+  margin-top: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.service-title {
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+  background-clip: text;
+  color: transparent;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  @include lg {
+    font-size: 1.25rem;
+  }
+}
+
+.service-description {
+  color: rgb(156 163 175);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+
+  .service-card:hover & {
+    color: rgb(209 213 219);
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .service-icon,
+  .service-title,
+  .service-description,
+  .service-card {
+    animation: none;
+    transition: none;
+  }
+
+  .service-card:hover .service-icon {
+    filter: brightness(0.9);
+    transform: none;
+  }
+
+  .services-loading-skeleton {
+    animation: none;
+  }
+}

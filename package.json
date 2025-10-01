@@ -1,80 +1,84 @@
 {
-    "name": "personal-website",
-    "version": "2.1.0",
-    "private": true,
-    "description": "Dihan Britz's Personal Website for Jobs and Projects",
-    "keywords": [
-        "personal",
-        "website",
-        "portfolio",
-        "jobs",
-        "projects"
+  "name": "personal-website",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Dihan Britz's Personal Website for Jobs and Projects",
+  "keywords": [
+    "personal",
+    "website",
+    "portfolio",
+    "jobs",
+    "projects"
+  ],
+  "repository": "https://github.com/DoubledDoge/personal-website",
+  "license": "MIT",
+  "author": "DoubledDoge",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "build:production": "npm run clean && vite build --mode production",
+    "clean": "rm -rf dist",
+    "dev": "vite --host",
+    "format": "prettier --write .",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:css": "stylelint '**/*.scss' --custom-formatter stylelint-formatter-pretty",
+    "lint:css:fix": "stylelint '**/*.scss' --fix",
+    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
+    "lint:js": "eslint '**/*.{svelte,js}' --format codeframe --format=pretty",
+    "lint:js:fix": "eslint '**/*.{svelte,js}' --fix",
+    "lint:staged": "lint-staged",
+    "prepare": "husky",
+    "preview": "vite preview --host",
+    "security-audit": "npm audit --omit=dev"
+  },
+  "lint-staged": {
+    "*.{js,svelte}": [
+      "eslint --cache --fix",
+      "prettier --write"
     ],
-    "repository": "https://github.com/DoubledDoge/personal-website",
-    "license": "MIT",
-    "author": "DoubledDoge",
-    "type": "module",
-    "scripts": {
-        "build": "npm run clean && vite build",
-        "build:production": "npm run clean && vite build --mode production",
-        "clean": "rm -rf dist build .vite",
-        "dev": "vite --host",
-        "format": "prettier --write .",
-        "lint": "eslint . && stylelint '**/*.{svelte,css}'",
-        "lint:check": "eslint . --format codeframe",
-        "lint:css": "stylelint '**/*.{svelte,css}'",
-        "lint:css:fix": "stylelint '**/*.{svelte,css}' --fix",
-        "lint:fix": "eslint . --fix && npm run lint:css:fix",
-        "lint:staged": "lint-staged",
-        "prepare": "husky",
-        "preview": "vite preview --host",
-        "security-audit": "npm audit --omit=dev",
-        "update": "npm update"
-    },
-    "lint-staged": {
-        "*.{js,svelte}": [
-            "eslint --cache --fix",
-            "prettier --write"
-        ],
-        "*.svelte": [
-            "stylelint --fix"
-        ],
-        "*.{css}": [
-            "stylelint --cache --fix",
-            "prettier --write"
-        ],
-        "*.{md,json}": "prettier --write",
-        "package*.json": "npm audit --audit-level=high"
-    },
-    "dependencies": {
-        "@emailjs/browser": "^4.4.1",
-        "@fontsource-variable/inter": "^5.2.6",
-        "svelte": "^5.38.0"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^19.8.1",
-        "@commitlint/config-conventional": "^19.8.1",
-        "@eslint/js": "^9.32.0",
-        "@sveltejs/vite-plugin-svelte": "^6.1.0",
-        "@tailwindcss/vite": "^4.1.11",
-        "eslint": "^9.32.0",
-        "eslint-config-prettier": "^10.1.8",
-        "eslint-formatter-codeframe": "^7.32.1",
-        "eslint-plugin-svelte": "^3.11.0",
-        "globals": "^16.3.0",
-        "husky": "^9.1.7",
-        "lint-staged": "^16.1.5",
-        "postcss-html": "^1.8.0",
-        "prettier": "^3.6.2",
-        "prettier-plugin-packagejson": "^2.5.19",
-        "prettier-plugin-svelte": "^3.4.0",
-        "prettier-plugin-tailwindcss": "^0.6.14",
-        "stylelint": "^16.24.0",
-        "stylelint-config-standard": "^39.0.0",
-        "stylelint-config-tailwindcss": "^1.0.0",
-        "stylelint-prettier": "^5.0.3",
-        "tailwindcss": "^4.1.11",
-        "vite": "^7.1.0",
-        "vite-plugin-compression2": "^2.2.0"
-    }
+    "*.{scss}": [
+      "stylelint --cache --fix",
+      "prettier --write"
+    ],
+    "*.svelte": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{md,json}": "prettier --write",
+    "package*.json": "npm audit --audit-level=high"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@fontsource-variable/inter": "^5.2.6",
+    "svelte": "^5.38.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.32.0",
+    "@sveltejs/vite-plugin-svelte": "^6.1.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-formatter-codeframe": "^7.32.1",
+    "eslint-formatter-pretty": "^6.0.1",
+    "eslint-plugin-svelte": "^3.11.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "prettier-plugin-rational-order": "^1.0.3",
+    "prettier-plugin-svelte": "^3.4.0",
+    "sass": "^1.93.0",
+    "stylelint": "^16.24.0",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-formatter-pretty": "^4.0.1",
+    "stylelint-prettier": "^5.0.3",
+    "unplugin-fonts": "^1.4.0",
+    "vite": "^7.1.0",
+    "vite-plugin-compression2": "^2.2.0",
+    "vite-plugin-eslint2": "^5.0.4",
+    "vite-plugin-stylelint": "^6.0.2",
+    "vite-preload": "^1.0.5"
+  }
 }

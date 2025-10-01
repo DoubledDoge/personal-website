@@ -1,0 +1,110 @@
+@use 'variables' as *;
+
+@mixin sm {
+  @media (min-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
+@mixin text-gradient {
+  color: transparent;
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+  background-clip: text;
+}
+
+@mixin card-base {
+  padding: $spacing-6;
+  background-color: rgb(31 41 55 / 50%);
+  border: 1px solid rgb(55 65 81 / 50%);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  backdrop-filter: blur(8px);
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Button styles
+@mixin btn-base {
+  display: inline-block;
+  padding: $spacing-3 $spacing-8;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgb(245 158 11 / 30%);
+  }
+}
+
+@mixin btn-primary {
+  @include btn-base;
+
+  color: $color-background;
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    transform: scale(1.05);
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-base;
+
+  color: $color-primary;
+  background: transparent;
+  border: 2px solid $color-primary;
+
+  &:hover {
+    color: $color-background;
+    background-color: $color-primary;
+  }
+}
+
+@mixin section-container {
+  width: 100%;
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
+  padding: $spacing-section $spacing-6;
+}
+
+@mixin section-header {
+  margin-bottom: $spacing-16;
+  text-align: center;
+}
+
+@mixin section-title {
+  @include text-gradient;
+
+  margin-bottom: $spacing-6;
+  font-weight: bold;
+  font-size: 2.25rem;
+
+  @include md {
+    font-size: 3rem;
+  }
+}

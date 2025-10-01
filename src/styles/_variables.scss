@@ -1,0 +1,53 @@
+// Color System
+$color-primary: #f59e0b;
+$color-secondary: #ec4899;
+$color-error: #ef4444;
+$color-text: #f3f4f6;
+$color-background: #0f172a;
+
+// Dark Theme Grays
+$color-dark-200: #1e293b;
+$color-dark-300: #334155;
+$color-dark-400: #475569;
+$color-dark-500: #64748b;
+$color-dark-600: #818ca1;
+
+// Typography Scale
+$font-size-card: 1.25rem;
+$font-size-base: 1rem;
+$font-size-sm: 0.875rem;
+
+// Spacing Scale
+$spacing-section: 6rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-6: 1.5rem;
+$spacing-8: 2rem;
+$spacing-16: 4rem;
+
+// Border Radius
+$radius: 0.25rem;
+$radius-lg: 0.5rem;
+$radius-xl: 0.75rem;
+$radius-full: 9999px;
+
+// Animation Timing
+$duration-fast: 0.2s;
+$duration-normal: 0.3s;
+$duration-slow: 0.5s;
+
+// Layout
+$max-width-text: 65ch;
+
+// Shadows
+$shadow-card: 0 4px 6px -1px rgb(0 0 0 / 10%),
+0 2px 4px -2px rgb(0 0 0 / 10%);
+$shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 10%),
+0 4px 6px -4px rgb(0 0 0 / 10%);
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;

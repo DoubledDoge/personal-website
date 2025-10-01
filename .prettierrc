@@ -1,8 +1,8 @@
 ﻿{
     "plugins": [
         "prettier-plugin-svelte",
-        "prettier-plugin-tailwindcss",
-        "prettier-plugin-packagejson"
+        "prettier-plugin-packagejson",
+        "prettier-plugin-rational-order"
     ],
 
     "trailingComma": "es5",

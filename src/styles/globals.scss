@@ -1,0 +1,70 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'accessibility';
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  background-color: $color-background;
+  color: $color-text;
+  font-family: Inter Variable,
+  Inter,
+  system-ui,
+  -apple-system,
+  sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'slnt' 0;
+  line-height: 1.6;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+* {
+  transition-duration: $duration-fast;
+  transition-property: background-color, border-color, color, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*:not(h1, h2, h3, h4, h5, h6, .text-gradient, .nav-link .btn-primary .btn-secondary) {
+  color: $color-text;
+}
+
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $color-dark-200;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: $color-dark-400;
+  border-radius: 4px;
+  transition: background $duration-normal ease;
+
+  &:hover {
+    background: $color-dark-500;
+  }
+}
+
+img {
+  content-visibility: auto;
+  height: auto;
+  max-width: 100%;
+  width: auto;
+}
+
+img[loading='lazy'] {
+  opacity: 0;
+  transition: opacity $duration-normal ease;
+
+  &.loaded {
+    opacity: 1;
+  }
+}

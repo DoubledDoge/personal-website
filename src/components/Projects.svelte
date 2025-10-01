@@ -1,12 +1,15 @@
 <script>
-    import { preloadImages } from '$lib/imagePreloader.js'
-    import { onMount } from 'svelte'
+    import {onMount} from 'svelte'
     import androidImg from '../assets/android-university.webp'
     import cPlusPlusUniversityImg from '../assets/cPlusPlus-university.webp'
     import cSharpUniversityImg from '../assets/cSharp-university.webp'
     import personalWebsiteImg from '../assets/personal-website.webp'
     import projectsData from '../data/projects.json'
+    import {preloadImages} from '../lib/imagePreloader.js'
     import LoadingSpinner from './LoadingSpinner.svelte'
+
+    // Import SCSS styles
+    import '../styles/components/projects.scss'
 
     let projects = $state([])
     let categories = $state([])
@@ -15,22 +18,23 @@
     let isLoading = $state(true)
     let loadError = $state(null)
 
-    /**
-     * Filter projects based on the selected category
-     */
     let filteredProjects = $derived(
         selectedCategory === 'All'
             ? projects
             : projects.filter(project => project.category === selectedCategory)
     )
 
+    const getFilterButtonClasses = category => {
+        let classes = ['projects-filter-button']
+        classes.push(selectedCategory === category ? 'active' : 'inactive')
+        return classes.join(' ')
+    }
+
     onMount(async () => {
         try {
-            // Load project data from JSON
             projects = projectsData.projects
             categories = projectsData.categories
 
-            // Map image imports to project data
             const imageMap = {
                 '/src/assets/personal-website.webp': personalWebsiteImg,
                 '/src/assets/cSharp-university.webp': cSharpUniversityImg,
@@ -38,17 +42,14 @@
                 '/src/assets/android-university.webp': androidImg,
             }
 
-            // Update projects with actual image imports
             projects = projects.map(project => ({
                 ...project,
                 image: imageMap[project.image] || project.image,
             }))
 
-            // Preload all project images
             const imageSources = projects.map(project => project.image)
             await preloadImages(imageSources)
 
-            // Create the loaded images map for seamless display
             imageSources.forEach(src => {
                 loadedImages.set(src, src)
             })
@@ -61,25 +62,21 @@
         }
     })
 
-    /** @param {string} category */
     function handleCategorySelect(category) {
         selectedCategory = category
     }
 </script>
 
-<!-- Projects portfolio section with filterable gallery -->
-<section class="section-container" id="projects">
-    <!-- Section header with title and category filters -->
-    <div class="section-header">
-        <div class="mb-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <h2 class="section-title mb-0">My Latest Projects</h2>
+<section class="projects-section" id="projects">
+    <div class="projects-header">
+        <div class="projects-header-content">
+            <h2 class="projects-title">My Latest Projects</h2>
 
-            <!-- Project category filter buttons -->
-            <div class="flex flex-wrap gap-3">
+            <div class="projects-filter-container">
                 {#each categories as category (category)}
                     <button
                         onclick={() => handleCategorySelect(category)}
-                        class="btn-filter {selectedCategory === category ? 'active' : ''}"
+                        class={getFilterButtonClasses(category)}
                     >
                         {category}
                     </button>
@@ -89,46 +86,39 @@
     </div>
 
     {#if isLoading}
-        <!-- Loading state -->
-        <div class="flex justify-center py-20">
+        <div class="projects-loading-container">
             <LoadingSpinner label="Loading projects" />
         </div>
     {:else if loadError}
-        <!-- Error state -->
-        <div class="text-center">
-            <p class="text-error">{loadError}</p>
+        <div class="projects-error-container">
+            <p class="projects-error-text">{loadError}</p>
         </div>
     {:else}
-        <!-- Projects grid -->
-        <div class="grid-auto-fit gap-8">
+        <div class="projects-grid">
             {#each filteredProjects as project (project.id)}
-                <!-- Individual project card with staggered animation -->
-                <article class="project-card group">
-                    <!-- Project image/thumbnail -->
+                <article class="project-card">
                     <div
                         class="project-image"
                         style="background-image: url({loadedImages.get(project.image) ||
                             project.image})"
                     >
-                        <!-- Hover overlay with action buttons -->
                         <div class="project-overlay">
-                            <div class="flex space-x-4">
-                                <!-- Live Demo Button (conditional) -->
+                            <div class="project-actions">
                                 {#if project.webURL}
                                     <a
                                         href={project.webURL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="project-action-btn"
+                                        class="project-action-button"
                                         title="View Live Demo"
+                                        aria-label="View Live Demo"
                                     >
-                                        <!-- Globe/Web Icon -->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 24 24"
                                             stroke-width="1.5"
                                             stroke="currentColor"
-                                            class="project-icon"
+                                            class="project-action-icon"
                                         >
                                             <path
                                                 stroke-linecap="round"
@@ -139,19 +129,18 @@
                                     </a>
                                 {/if}
 
-                                <!-- GitHub Button (conditional) -->
                                 {#if project.gitURL}
                                     <a
                                         href={project.gitURL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="project-action-btn"
+                                        class="project-action-button"
                                         title="View Source Code"
+                                        aria-label="View Source Code"
                                     >
-                                        <!-- GitHub Icon -->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            class="project-icon"
+                                            class="project-action-icon"
                                             viewBox="0 0 24 24"
                                             fill="currentColor"
                                         >
@@ -165,22 +154,18 @@
                         </div>
                     </div>
 
-                    <!-- Project information card -->
                     <div class="project-content">
-                        <!-- Project title -->
-                        <h3 class="text-gradient mb-3 text-lg font-semibold uppercase lg:text-xl">
+                        <h3 class="project-title">
                             {project.title}
                         </h3>
 
-                        <!-- Project description -->
-                        <p class="mb-4 leading-relaxed text-gray-400">
+                        <p class="project-description">
                             {project.description}
                         </p>
 
-                        <!-- Technologies used tags -->
-                        <div class="flex flex-wrap gap-2">
+                        <div class="project-technologies">
                             {#each project.technologies as technology (technology)}
-                                <span class="tech-tag">
+                                <span class="project-tech-tag">
                                     {technology}
                                 </span>
                             {/each}
@@ -191,151 +176,3 @@
         </div>
     {/if}
 </section>
-
-<style>
-    .btn-filter {
-        border-radius: 9999px;
-        border-width: 2px;
-        border-color: var(--color-dark-500);
-        padding: 0.5rem 1rem;
-        font-weight: 500;
-        color: rgb(209, 213, 219);
-        cursor: pointer;
-        transition-property: all;
-        transition-duration: 300ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .btn-filter:hover {
-        border-color: var(--color-primary);
-        color: var(--color-primary);
-    }
-
-    .btn-filter:focus {
-        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
-    }
-
-    .project-card {
-        border-radius: 0.75rem;
-        border-width: 1px;
-        border-color: rgb(55 65 81 / 0.5);
-        background-color: rgb(31 41 55 / 0.5);
-        padding: 1.5rem;
-        backdrop-filter: blur(8px);
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 300ms;
-        box-shadow: var(--shadow-card);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .project-card:hover {
-        border-color: rgb(245 158 11 / 0.3);
-        transform: translateY(-0.5rem);
-        box-shadow:
-            0 25px 50px -12px rgba(0, 0, 0, 0.4),
-            0 0 0 1px rgba(245, 158, 11, 0.1),
-            0 0 30px rgba(245, 158, 11, 0.1);
-    }
-
-    .project-image {
-        position: relative;
-        height: 13rem;
-        background-size: cover;
-        background-position: center;
-        border-radius: 0.75rem 0.75rem 0 0;
-    }
-
-    @media (min-width: 768px) {
-        .project-image {
-            height: 16rem;
-        }
-    }
-
-    .project-overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(17 24 39 / 0.8);
-        opacity: 0;
-        transition-property: all;
-        transition-duration: 500ms;
-        backdrop-filter: blur(4px);
-    }
-
-    .project-card:hover .project-overlay {
-        opacity: 1;
-    }
-
-    .project-action-btn {
-        position: relative;
-        height: 3.5rem;
-        width: 3.5rem;
-        border-radius: 9999px;
-        border-width: 2px;
-        border-color: var(--color-dark-400);
-        transition-property: all;
-        transition-duration: 300ms;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .project-action-btn:hover {
-        border-color: var(--color-primary);
-        background-color: rgba(245, 158, 11, 0.1);
-    }
-
-    .project-action-btn:focus {
-        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
-    }
-
-    .project-action-btn:hover .project-icon {
-        color: var(--color-primary);
-        transform: scale(1.1);
-    }
-
-    .project-icon {
-        height: 2rem;
-        width: 2rem;
-        color: rgb(156, 163, 175);
-        transition-property: all;
-        transition-duration: 300ms;
-    }
-
-    .project-content {
-        flex: 1;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(31, 41, 55, 0.8) 100%);
-    }
-
-    .tech-tag {
-        border-radius: 9999px;
-        background-color: rgba(31, 41, 55, 0.8);
-        padding: 0.25rem 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: rgb(209, 213, 219);
-        border: 1px solid rgba(75, 85, 99, 0.5);
-        backdrop-filter: blur(4px);
-        transition-property: all;
-        transition-duration: 300ms;
-    }
-
-    .tech-tag:hover {
-        background-color: rgba(55, 65, 81, 0.8);
-        color: white;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .project-image {
-            height: 12rem;
-        }
-    }
-</style>

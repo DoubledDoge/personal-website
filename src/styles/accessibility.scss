@@ -1,0 +1,48 @@
+@use 'variables' as *;
+
+*:focus {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+.skip-link {
+  background: $color-primary;
+  border-radius: 4px;
+  color: $color-background;
+  font-weight: 600;
+  left: 6px;
+  padding: 8px;
+  position: absolute;
+  text-decoration: none;
+  top: -40px;
+  transition: top $duration-fast ease;
+  z-index: 9999;
+
+  &:focus {
+    top: 6px;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-background;
+}
+
+input,
+textarea,
+select {
+  background-color: $color-dark-200;
+  border-color: $color-dark-600;
+  color: $color-text;
+
+  &::placeholder {
+    color: $color-dark-400;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgb(245 158 11 / 30%);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}

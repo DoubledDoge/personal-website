@@ -1,0 +1,123 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.back-to-top-button {
+  align-items: center;
+  animation: fade-in-scale 0.3s ease-out;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to right, $color-primary, $color-secondary);
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 50%;
+  bottom: 1rem;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 20%),
+  0 0 0 1px rgb(255 255 255 / 10%),
+  inset 0 1px 0 rgb(255 255 255 / 20%);
+  color: rgb(17 24 39);
+  cursor: pointer;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 3.5rem;
+  justify-content: center;
+  position: fixed;
+  right: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 3.5rem;
+  z-index: 40;
+
+  @include sm {
+    bottom: 1.5rem;
+    height: 4rem;
+    right: 1.5rem;
+    width: 4rem;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 8px 25px rgb(0 0 0 / 30%),
+    0 0 0 1px rgb(255 255 255 / 20%),
+    0 0 20px rgb(245 158 11 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 30%);
+    transform: scale(1.1) translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+
+  &.pressed {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+    transform: scale(0.95);
+  }
+}
+
+.back-to-top-arrow {
+  height: 1.75rem;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  transition: transform 0.2s ease;
+  width: 1.75rem;
+
+  @include sm {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &.hovered {
+    transform: translateY(-1px);
+  }
+
+  &.pressed {
+    transform: translateY(1px);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    transform: scale(0.8) translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .back-to-top-button {
+    background: $color-background;
+    border: 2px solid currentcolor;
+    color: $color-primary;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top-button {
+    animation: none;
+    transition-duration: 0.01ms;
+
+    &:hover,
+    &:focus {
+      transform: none;
+    }
+  }
+
+  .back-to-top-arrow {
+    transition: none;
+
+    &.hovered,
+    &.pressed {
+      transform: none;
+    }
+  }
+}
+
+@media print {
+  .back-to-top-button {
+    display: none !important;
+  }
+}
