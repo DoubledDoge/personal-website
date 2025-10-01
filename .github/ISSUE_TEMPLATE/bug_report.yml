@@ -29,11 +29,3 @@ body:
           description: What version of Svelte are you running?
       validations:
           required: true
-
-    - type: input
-      id: tailwind-version
-      attributes:
-          label: Tailwind Version
-          description: What version of Tailwind CSS are you running? (Project uses Tailwind CSS v4.1)
-      validations:
-          required: true

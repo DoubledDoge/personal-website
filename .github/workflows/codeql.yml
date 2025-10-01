@@ -8,7 +8,6 @@ on:
     schedule:
         - cron: '30 1 * * 0' # Weekly on Sundays
 
-# Prevent multiple CodeQL runs from interfering
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
@@ -29,7 +28,6 @@ jobs:
             fail-fast: false
             matrix:
                 language: ['javascript-typescript']
-                # CodeQL supports: 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
 
         steps:
             - name: Checkout repository
@@ -46,9 +44,7 @@ jobs:
               with:
                   languages: ${{ matrix.language }}
                   build-mode: none
-                  # Enhanced queries for better security coverage
                   queries: +security-and-quality
-                  # Custom configuration for JavaScript/Svelte projects
                   config: |
                       name: "Enhanced JavaScript Security Analysis"
                       queries:

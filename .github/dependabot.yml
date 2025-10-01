@@ -15,7 +15,6 @@ updates:
       assignees:
           - 'DoubledDoge'
       groups:
-          # Group all production dependencies together
           production-dependencies:
               patterns:
                   - '@emailjs/*'
@@ -24,7 +23,6 @@ updates:
                   - 'minor'
                   - 'patch'
 
-          # Group all development dependencies together
           dev-dependencies:
               patterns:
                   - '@eslint/*'
@@ -41,7 +39,6 @@ updates:
                   - 'minor'
                   - 'patch'
 
-          # Keep major updates separate (more risky)
           major-updates:
               patterns:
                   - '*'
@@ -62,7 +59,6 @@ updates:
       assignees:
           - 'DoubledDoge'
       groups:
-          # Group all GitHub Actions updates
           actions-updates:
               patterns:
                   - '*'
