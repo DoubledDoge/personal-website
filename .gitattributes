@@ -31,6 +31,7 @@ svelte.config.js text eol=lf
 vite.config.js text eol=lf
 package.json text eol=lf
 package-lock.json text eol=lf
+stylelint.config.js text eol=lf
 
 # License and documentation
 LICENSE text eol=lf
@@ -92,5 +93,6 @@ docs/ export-ignore
 .prettierignore export-ignore
 .prettierrc export-ignore
 eslint.config.js export-ignore
+stylelint.config.js export-ignore
 .env export-ignore
 .env.example export-ignore
