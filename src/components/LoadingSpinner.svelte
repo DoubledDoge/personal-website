@@ -1,20 +1,16 @@
 <script>
-    // Import SCSS styles
     import '../styles/components/loading-spinner.scss'
 
-    // Props with default values and variants
     let {
         label = 'Loading content',
-        size = 'default', // 'sm', 'default', 'lg', 'xl'
-        variant = 'default', // 'default', 'overlay', 'inline'
+        size = 'default',
+        variant = 'default',
         showText = false,
-        text = 'Loading...'
+        text = 'Loading...',
     } = $props()
 
-    // Generate unique gradient ID to avoid conflicts
     let gradientId = $derived(`spinner-gradient-${Math.random().toString(36).substring(2, 9)}`)
 
-    // Compute classes based on props
     let spinnerClasses = $derived(() => {
         let classes = []
 
@@ -51,7 +47,6 @@
             </linearGradient>
         </defs>
 
-        <!-- Spinner track (background circle) -->
         <circle
                 class="loading-spinner-track"
                 cx="12"
@@ -61,7 +56,6 @@
                 stroke="url(#{gradientId})"
         />
 
-        <!-- Spinner indicator (moving part) -->
         <path
                 class="loading-spinner-indicator"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
@@ -75,5 +69,5 @@
         </div>
     {/if}
 
-    <span class="loading-spinner-sr-only">{label}</span>
+    <span class="sr-only">{label}</span>
 </div>

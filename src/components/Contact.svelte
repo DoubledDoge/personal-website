@@ -125,7 +125,7 @@
 
 <section class="contact-section" id="contact">
     <div class="section-header">
-        <h2 class="section-title">Let's Connect</h2>
+        <h2 class="contact-title">Let's Connect</h2>
     </div>
 
     <div class="contact-content-grid">
@@ -167,8 +167,6 @@
         </div>
 
         <div class="contact-form-container">
-            <div aria-hidden="true" class="contact-form-decoration"></div>
-
             <form onsubmit={handleSubmit} class="contact-form" novalidate>
                 <div class="form-field-group">
                     <label for="email" class="form-label">

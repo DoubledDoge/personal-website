@@ -1,62 +1,45 @@
 <script>
     import {onMount} from 'svelte'
+    import codeIcon from '../assets/code-icon.svg'
+    import cSharpIcon from '../assets/cSharp-icon.svg'
+    import databaseIcon from '../assets/database-icon.svg'
     import servicesData from '../data/services.json'
-
-    // Import SCSS styles
     import '../styles/components/services.scss'
 
     let services = $state([])
-    let isLoading = $state(true)
-    let loadError = $state(null)
+    let hasServices = $derived(services.length > 0)
 
     onMount(async () => {
         try {
             services = servicesData.services
+
+            const iconMap = {
+                '/src/assets/cSharp-icon.svg': cSharpIcon,
+                '/src/assets/database-icon.svg': databaseIcon,
+                '/src/assets/code-icon.svg': codeIcon,
+            }
+
+            services = services.map(service => ({
+                ...service,
+                icon: iconMap[service.icon] || service.icon,
+            }))
+
             console.info('Services loaded successfully:', services.length)
         }
         catch (error) {
             console.error('Error loading services data:', error)
-            loadError = 'Failed to load services'
-        }
-        finally {
-            isLoading = false
         }
     })
 </script>
 
 <section class="services-section" id="services">
     <div class="section-header">
-        <h2 class="section-title">My Services</h2>
-        <p class="section-subtitle">
+        <h2 class="services-title">My Services</h2>
+        <p class="services-subtitle">
             Specialized skills and services I offer as an aspiring software engineer
         </p>
     </div>
-
-    {#if isLoading}
-        <div class="services-loading-container">
-            {#each Array(3).fill(0) as _, i (i)}
-                <div class="services-loading-skeleton">
-                    <div class="services-skeleton-icon"></div>
-                    <div class="services-skeleton-content">
-                        <div class="services-skeleton-title"></div>
-                        <div class="services-skeleton-text-long"></div>
-                        <div class="services-skeleton-text-short"></div>
-                    </div>
-                </div>
-            {/each}
-        </div>
-    {:else if loadError}
-        <div class="services-error-container">
-            <p class="services-error-text">{loadError}</p>
-            <button
-                    type="button"
-                    onclick={() => window.location.reload()}
-                    class="services-retry-button"
-            >
-                Retry Loading
-            </button>
-        </div>
-    {:else if services.length === 0}
+    {#if !hasServices}
         <div class="services-empty-container">
             <p class="services-empty-text">No services available at the moment.</p>
         </div>

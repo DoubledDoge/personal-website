@@ -21,14 +21,12 @@
     let Services = $state(null)
     let Skills = $state(null)
     let isLoading = $state(true)
-    let loadingError = $state(null)
     let componentsLoaded = $state(false)
     let emailjsReady = $state(false)
 
-    const isAppReady = $derived(!isLoading && !loadingError)
+    const isAppReady = $derived(!isLoading)
 
     const loadingProgress = $derived.by(() => {
-        if (loadingError) return 'error'
         if (isLoading) return 'loading'
         return 'ready'
     })
@@ -47,7 +45,6 @@
         }
         catch (error) {
             console.error('❌ Error during app initialization:', error)
-            loadingError = error?.message || 'Unknown initialization error'
             hideInitialLoader()
         }
     })
@@ -110,8 +107,6 @@
     $effect(() => {
         if (loadingProgress === 'ready') {
             console.info('🎯 App is now ready for user interaction')
-        } else if (loadingProgress === 'error') {
-            console.error('💥 App encountered an error during initialization')
         }
     })
 </script>
@@ -120,22 +115,6 @@
     {#if loadingProgress === 'loading'}
         <div class="app-loading">
             <LoadingSpinner/>
-        </div>
-    {:else if loadingProgress === 'error'}
-        <div class="app-error">
-            <div class="app-error-container">
-                <h1 class="app-error__title">Oops! Something went wrong</h1>
-                <p class="app-error__message">
-                    We encountered an error while loading the website. Please try refreshing the
-                    page.
-                </p>
-                <button onclick={() => window.location.reload()} class="btn-primary">
-                    Refresh Page
-                </button>
-                <p class="app-error__details">
-                    Error: {loadingError}
-                </p>
-            </div>
         </div>
     {:else if isAppReady}
         <div>

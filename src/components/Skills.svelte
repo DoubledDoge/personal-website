@@ -1,5 +1,6 @@
 <script>
     import {onMount} from 'svelte'
+    import graduationIcon from '../assets/graduation-icon.svg'
     import skillsData from '../data/skills.json'
 
     // Import SCSS styles
@@ -16,6 +17,15 @@
             skills = skillsData.skills
             experiences = skillsData.experiences
 
+            const iconMap = {
+                '/src/assets/graduation-icon.svg': graduationIcon,
+            }
+
+            experiences = experiences.map(experience => ({
+                ...experience,
+                icon: iconMap[experience.icon] || experience.icon,
+            }))
+
             console.info('Skills loaded successfully:', skills.length)
             console.info('Experiences loaded successfully:', experiences.length)
 
@@ -27,7 +37,6 @@
 
             isLoading = false
 
-            // Animate skill bars after a short delay
             setTimeout(() => {
                 const targetWidths = {}
                 skills.forEach(skill => {
@@ -44,15 +53,6 @@
 </script>
 
 <section class="skills-section" id="skills">
-    <div class="skills-background-decoration">
-        <div class="skills-decoration-container">
-            <div class="skills-decoration-wrapper">
-                <span class="skills-decoration-left"></span>
-                <span class="skills-decoration-right"></span>
-            </div>
-        </div>
-    </div>
-
     {#if isLoading}
         <div class="skills-loading-grid">
             <div class="skills-loading-column">
@@ -106,9 +106,7 @@
     {:else}
         <div class="skills-content-grid">
             <div class="skills-column">
-                <h2 class="skills-title">
-                    My <span class="skills-title-highlight">Skills</span>
-                </h2>
+                <h2 class="skills-title">My Skills</h2>
 
                 <div class="skills-list">
                     {#each skills as skill (skill.id)}
@@ -147,8 +145,7 @@
                         <article class="experience-card">
                             <div class="experience-icon-container">
                                 <img
-                                        src={experience.icon ||
-                                        'https://img.icons8.com/ios-filled/100/ffffff/graduation-cap.png'}
+                                        src={experience.icon}
                                         alt="{experience.role} icon"
                                         class="experience-icon"
                                         loading="lazy"

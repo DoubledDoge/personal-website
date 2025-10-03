@@ -36,11 +36,6 @@
 </script>
 
 <section class="hero-section" id="hero">
-    <div class="hero-background-effects">
-        <span class="hero-gradient-left"></span>
-        <span class="hero-gradient-right"></span>
-    </div>
-
     <div class="hero-container">
         <div class="hero-content-grid">
             <div class="hero-text-content">

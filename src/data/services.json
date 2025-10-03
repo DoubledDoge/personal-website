@@ -1,22 +1,22 @@
 ﻿{
-    "services": [
-        {
-            "id": 1,
-            "icon": "https://img.icons8.com/ios-filled/100/ffffff/c-sharp-logo.png",
-            "name": "C# Development",
-            "description": "Development of desktop applications and basic software solutions using C# and .NET framework. Specializing in Windows Forms applications and console-based programs."
-        },
-        {
-            "id": 2,
-            "icon": "https://img.icons8.com/ios-filled/100/ffffff/database.png",
-            "name": "Database Design",
-            "description": "Design and implementation of SQL databases, including data modeling, basic query optimization, and database management using Microsoft SQL Server."
-        },
-        {
-            "id": 3,
-            "icon": "https://img.icons8.com/ios-filled/100/ffffff/code.png",
-            "name": "Academic Projects",
-            "description": "Collaboration on software engineering projects, with experience in version control (Git), documentation, and implementing solutions based on academic requirements."
-        }
-    ]
+  "services": [
+    {
+      "id": 1,
+      "icon": "/src/assets/cSharp-icon.svg",
+      "name": "C# Development",
+      "description": "Development of desktop applications and basic software solutions using C# and .NET framework. Specializing in Windows Forms applications and console-based programs."
+    },
+    {
+      "id": 2,
+      "icon": "/src/assets/database-icon.svg",
+      "name": "Database Design",
+      "description": "Design and implementation of SQL databases, including data modeling, basic query optimization, and database management using Microsoft SQL Server."
+    },
+    {
+      "id": 3,
+      "icon": "/src/assets/code-icon.svg",
+      "name": "Academic Projects",
+      "description": "Collaboration on software engineering projects, with experience in version control (Git), documentation, and implementing solutions based on academic requirements."
+    }
+  ]
 }
