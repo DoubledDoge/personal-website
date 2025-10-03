@@ -53,3 +53,6 @@ temp/
 
 # Prettier cache
 .prettiercache
+
+# StyleLint cache
+.stylelintcache
