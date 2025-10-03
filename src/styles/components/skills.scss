@@ -1,172 +1,131 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
+// ===== SKILLS SECTION =====
 .skills-section {
   @include section-container;
 
   position: relative;
 }
 
-.skills-background-decoration {
-  height: 100%;
-  opacity: 0.2;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-}
-
-.skills-decoration-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.skills-decoration-wrapper {
-  display: flex;
-}
-
-.skills-decoration-left {
-  background-color: $color-primary;
-  border-radius: 2rem 0 0 2rem;
-  filter: blur(2rem);
-  height: 8rem;
-  width: 4rem;
-}
-
-.skills-decoration-right {
-  background-color: $color-secondary;
-  border-radius: 0 2rem 2rem 0;
-  filter: blur(2rem);
-  height: 8rem;
-  margin-top: 3.5rem;
-  width: 4rem;
-}
-
+// ===== LOADING STATES =====
 .skills-loading-grid {
-  display: grid;
-  gap: 3rem;
-
-  @include md {
-    gap: 3rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @include xl {
-    gap: 4rem;
-  }
+  @include responsive-grid(20rem);
 }
 
 .skills-loading-column,
 .experiences-loading-column {
   position: relative;
-  z-index: 10;
+  z-index: $z-elevated;
 }
 
 .skills-loading-title {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
-  height: 2rem;
-  margin-bottom: 2rem;
+  @include loading-skeleton;
+  height: $spacing-2xl;
+
+  margin-bottom: $spacing-2xl;
   width: 8rem;
 }
 
 .skills-loading-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: $spacing-xl;
 }
 
 .skills-loading-item {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @include loading-skeleton;
 }
 
 .skills-loading-header {
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: $spacing-sm;
 }
 
 .skills-loading-name {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
-  height: 1.25rem;
+  @include loading-skeleton;
+  height: $spacing-xl;
+
   width: 6rem;
 }
 
 .skills-loading-percentage {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
-  height: 1.25rem;
-  width: 3rem;
+  @include loading-skeleton;
+  height: $spacing-xl;
+
+  width: $spacing-3xl;
 }
 
 .skills-loading-bar {
-  background-color: rgb(75 85 99);
-  border-radius: 0.25rem;
-  height: 0.5rem;
+  @include loading-skeleton;
+  height: $spacing-sm;
+
   overflow: hidden;
   width: 100%;
 }
 
 .skills-loading-progress {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
+  @include loading-skeleton;
   height: 100%;
+
   width: 75%;
 }
 
 .skills-loading-category {
-  margin-top: 0.5rem;
+  margin-top: $spacing-sm;
 }
 
 .skills-loading-tag {
-  background-color: rgb(55 65 81);
-  border-radius: 0.75rem;
-  height: 1rem;
-  width: 4rem;
+  @include loading-skeleton;
+  border-radius: $radius-xl;
+  height: $spacing-lg;
+
+  width: $spacing-4xl;
 }
 
+// ===== EXPERIENCES LOADING =====
 .experiences-loading-title {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
-  height: 2rem;
-  margin-bottom: 2rem;
+  @include loading-skeleton;
+  height: $spacing-2xl;
+
+  margin-bottom: $spacing-2xl;
   width: 10rem;
 }
 
 .experiences-loading-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: $spacing-xl;
 }
 
 .experiences-loading-item {
+  @include loading-skeleton;
   align-items: flex-start;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   display: flex;
-  gap: 1rem;
+
+  gap: $spacing-lg;
 }
 
 .experiences-loading-icon {
+  @include loading-skeleton;
   align-items: flex-start;
-  background-color: rgb(55 65 81);
-  border-radius: 0.5rem;
+
+  border-radius: $radius-lg;
   display: flex;
   height: 5rem;
   justify-content: flex-start;
   min-width: 5rem;
-  padding: 0.75rem;
+  padding: $spacing-md;
   width: 5rem;
 }
 
 .experiences-loading-icon-placeholder {
-  background-color: rgb(75 85 99);
+  @include loading-skeleton;
   height: 100%;
   max-height: 3.5rem;
+
   max-width: 3.5rem;
   width: 100%;
 }
@@ -175,106 +134,86 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: $spacing-sm;
 }
 
 .experiences-loading-role {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
-  height: 1.5rem;
+  @include loading-skeleton;
+  height: $spacing-xl;
+
   width: 8rem;
 }
 
 .experiences-loading-company {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
-  height: 1rem;
+  @include loading-skeleton;
+  height: $spacing-lg;
+
   width: 6rem;
 }
 
 .experiences-loading-date {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
+  @include loading-skeleton;
   height: 0.875rem;
+
   width: 5rem;
 }
 
 .experiences-loading-description {
-  background-color: rgb(55 65 81);
-  border-radius: 0.25rem;
+  @include loading-skeleton;
   height: 0.875rem;
+
   width: 100%;
 }
 
+// ===== ERROR STATES =====
 .skills-error-container {
   text-align: center;
 }
 
 .skills-error-text {
-  color: rgb(248 113 113);
-  margin-bottom: 1rem;
+  color: $color-error;
+  margin-bottom: $spacing-lg;
 }
 
 .skills-retry-button {
   @include btn-secondary;
 }
 
+// ===== SKILLS CONTENT =====
 .skills-content-grid {
-  display: grid;
-  gap: 3rem;
-
-  @include md {
-    gap: 3rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @include xl {
-    gap: 4rem;
-  }
+  @include responsive-grid(20rem);
 }
 
 .skills-column,
 .experiences-column {
   position: relative;
-  z-index: 10;
+  z-index: $z-elevated;
 }
 
 .skills-title {
-  color: white;
-  font-size: 2.25rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-align: left;
-
-  @include md {
-    font-size: 3rem;
-  }
-}
-
-.skills-title-highlight {
-  background: linear-gradient(to right, $color-primary, $color-secondary);
-  background-clip: text;
-  color: transparent;
+  @include section-title;
 }
 
 .skills-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: $spacing-xl;
 }
 
+// ===== SKILL ITEM =====
 .skill-item {
+  @include card-glass;
   backdrop-filter: blur(5px);
-  background: linear-gradient(135deg, rgb(17 24 39 / 60%) 0%, rgb(31 41 55 / 40%) 100%);
-  border: 1px solid rgb(107 114 128 / 20%);
-  border-radius: 0.75rem;
-  padding: 1rem;
-  transition: all 0.3s ease;
+  border-radius: $radius-xl;
+
+  padding: $spacing-lg;
+  transition: all $duration-normal ease;
 
   &:hover {
-    border-color: rgb(245 158 11 / 30%);
+    border-color: $color-border-hover;
     box-shadow: 0 10px 25px rgb(0 0 0 / 20%);
-    transform: translateY(-0.25rem);
+
+    @include hover-lift;
   }
 }
 
@@ -282,110 +221,111 @@
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: $spacing-sm;
 }
 
 .skill-name {
-  color: white;
+  color: $color-text-white;
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .skill-percentage {
   color: $color-primary;
-  font-size: 1.125rem;
+  font-size: $font-size-lg;
   font-weight: bold;
 }
 
 .skill-progress-container {
-  background: linear-gradient(90deg, rgb(31 41 55 / 80%) 0%, rgb(55 65 81 / 60%) 100%);
-  border: 1px solid rgb(75 85 99 / 30%);
-  border-radius: 0.25rem;
-  height: 0.5rem;
+  background: linear-gradient(90deg, $color-surface-elevated 0%, $color-surface-hover 100%);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-sm;
+  height: $spacing-sm;
   overflow: hidden;
   width: 100%;
 }
 
 .skill-progress-bar {
-  background: linear-gradient(90deg, $color-primary 0%, $color-secondary 100%);
-  border-radius: 0.25rem;
+  background: $color-primary-gradient;
+  border-radius: $radius-sm;
   box-shadow: 0 0 10px rgb(245 158 11 / 40%);
   height: 100%;
   transition: width 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .skill-category-container {
-  margin-top: 0.5rem;
+  margin-top: $spacing-sm;
 }
 
 .skill-category-tag {
-  background-color: rgb(31 41 55 / 60%);
-  border: 1px solid rgb(75 85 99 / 50%);
-  border-radius: 9999px;
-  color: rgb(156 163 175);
+  background-color: $color-surface-focus;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-full;
+  color: $color-text;
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: $font-size-sm;
   font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  padding: $spacing-xs $spacing-sm;
 }
 
+// ===== EXPERIENCES SECTION =====
 .experiences-title {
-  background: linear-gradient(to right, $color-primary, $color-secondary);
-  background-clip: text;
-  color: transparent;
-  font-size: 2.25rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-align: left;
+  @include section-title;
 
-  @include md {
-    font-size: 3rem;
-    text-align: center;
-  }
+  text-align: center;
 }
 
 .experiences-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: $spacing-xl;
 }
 
 .experience-card {
+  @include card-base;
   align-items: flex-start;
   backdrop-filter: blur(8px);
-  background-color: rgb(31 41 55 / 50%);
-  border: 1px solid rgb(55 65 81 / 50%);
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%),
-  0 2px 4px -2px rgb(0 0 0 / 10%);
+
+  background-color: $color-surface-card;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
   display: flex;
-  gap: 1rem;
+  gap: clamp($spacing-md, 2vw, $spacing-lg);
   min-height: 7.5rem;
-  padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: $spacing-xl;
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+
+  @include mobile-only {
+    flex-direction: column;
+    text-align: center;
+  }
 
   &:hover {
-    box-shadow: 0 15px 35px rgb(0 0 0 / 20%),
-    0 0 0 1px rgb(245 158 11 / 10%),
-    0 0 20px rgb(245 158 11 / 10%);
-    transform: translateY(-0.25rem);
+    box-shadow: $shadow-card-elevated;
+
+    @include hover-lift;
   }
 }
 
 .experience-icon-container {
   align-items: flex-start;
-  background-color: rgb(31 41 55 / 50%);
-  border: 1px solid rgb(75 85 99 / 50%);
-  border-radius: 0.5rem;
+  background-color: $color-surface-card;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
   display: flex;
   flex-shrink: 0;
   height: 5rem;
   justify-content: flex-start;
-  margin-bottom: 0.5rem;
+  margin-bottom: $spacing-sm;
   min-height: 5rem;
   min-width: 5rem;
-  padding: 0.75rem;
+  padding: $spacing-md;
   width: 5rem;
+
+  @include mobile-only {
+    margin: 0 auto;
+  }
 }
 
 .experience-icon {
@@ -397,105 +337,57 @@
   max-width: 3.5rem;
   object-fit: contain !important;
   opacity: 1 !important;
-  transition: all 0.3s ease !important;
+  transition: all $duration-normal ease !important;
   width: 100%;
 
   .experience-card:hover & {
+    @include hover-scale;
+
     filter: brightness(1.1) !important;
-    transform: scale(1.1) !important;
   }
 }
 
+// ===== EXPERIENCE CONTENT =====
 .experience-content {
   flex: 1;
 }
 
 .experience-role {
-  background: linear-gradient(to right, $color-primary, $color-secondary);
-  background-clip: text;
-  color: transparent;
-  font-size: 1.25rem;
+  font-size: $font-size-xl;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: $spacing-sm;
   text-transform: uppercase;
+
+  @include text-gradient;
 }
 
 .experience-company {
-  color: white;
+  color: $color-text-white;
   font-weight: 500;
-  margin-bottom: 0.25rem;
+  margin-bottom: $spacing-xs;
 }
 
 .experience-date {
-  color: rgb(209 213 219);
-  font-size: 0.875rem;
+  color: $color-text-light;
+  font-size: $font-size-base;
   font-weight: 500;
-  margin-bottom: 0.75rem;
+  margin-bottom: $spacing-md;
 }
 
 .experience-description {
-  color: rgb(209 213 219);
-  font-size: 0.875rem;
+  color: $color-text-light;
+  font-size: $font-size-base;
   line-height: 1.6;
 }
 
+// ===== FUTURE NOTE =====
 .experiences-future-note {
-  margin-top: 2rem;
+  margin-top: $spacing-2xl;
   text-align: center;
 }
 
 .experiences-future-text {
-  color: rgb(107 114 128);
-  font-size: 0.875rem;
+  color: $color-border;
+  font-size: $font-size-base;
   font-style: italic;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill-item,
-  .experience-card,
-  .skill-progress-bar,
-  .experience-icon {
-    animation: none;
-    transition: none;
-  }
-
-  .skill-item:hover,
-  .experience-card:hover {
-    transform: none;
-  }
-
-  .experience-card:hover .experience-icon {
-    filter: brightness(0.9) !important;
-    transform: none !important;
-  }
-
-  .skills-loading-item,
-  .experiences-loading-item,
-  .skills-loading-title,
-  .experiences-loading-title {
-    animation: none;
-  }
-}
-
-@media (width <= 768px) {
-  .experience-card {
-    flex-direction: column;
-    gap: 0.75rem;
-    text-align: center;
-  }
-
-  .experience-icon-container {
-    margin: 0 auto;
-  }
 }

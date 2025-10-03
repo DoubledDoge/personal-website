@@ -1,6 +1,7 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
+// ===== PROJECTS SECTION =====
 .projects-section {
   @include section-container;
 }
@@ -12,10 +13,10 @@
 .projects-header-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-2xl;
 
-  @include md {
+  @include tablet-up {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
@@ -24,38 +25,27 @@
 
 .projects-title {
   @include section-title;
-
-  margin-bottom: 0;
-
-  @include md {
-    margin-bottom: 0;
-  }
 }
 
+// ===== PROJECT FILTERS =====
 .projects-filter-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: $spacing-md;
 }
 
 .projects-filter-button {
   background: transparent;
-  border: 2px solid rgb(75 85 99);
-  border-radius: 9999px;
-  color: rgb(209 213 219);
+  border: 2px solid $color-border;
+  border-radius: $radius-full;
+  color: $color-text-white;
   cursor: pointer;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  padding: $spacing-sm $spacing-lg;
   transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     border-color: $color-primary;
-    color: $color-primary;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 4px rgb(245 158 11 / 30%);
-    outline: none;
   }
 
   &.active {
@@ -63,70 +53,24 @@
     border-color: $color-primary;
     color: $color-primary;
   }
-
-  &.inactive {
-    border-color: rgb(75 85 99);
-    color: rgb(209 213 219);
-  }
 }
 
-.projects-loading-container {
-  display: flex;
-  justify-content: center;
-  padding: 5rem 0;
-}
-
-.projects-error-container {
-  padding: 3rem 0;
-  text-align: center;
-}
-
-.projects-error-text {
-  color: $color-error;
-  font-size: 1.125rem;
-}
-
+// ===== PROJECTS GRID =====
 .projects-grid {
-  display: grid;
-  gap: 2.5rem;
-  grid-template-columns: repeat(3, 450px);
-  justify-content: space-between;
-  width: 100%;
+  @include responsive-grid(22rem);
 
-  @media (width >= 1400px) {
-    gap: 3rem;
-    grid-template-columns: repeat(3, 480px);
-  }
-
-  @media (width >= 1600px) {
-    gap: 4rem;
-    grid-template-columns: repeat(3, 510px);
-  }
-
-  @media (width <= 1199px) {
-    gap: 2rem;
-    grid-template-columns: repeat(2, 360px);
-    justify-content: space-evenly;
-  }
-
-  @media (width <= 768px) {
-    gap: 1.5rem;
-    grid-template-columns: repeat(2, 320px);
-  }
-
-  @media (width <= 640px) {
-    gap: 1.5rem;
-    grid-template-columns: 1fr;
-    margin: 0 auto;
-    max-width: 380px;
-  }
+  gap: clamp($spacing-xl, 5vw, $spacing-4xl);
+  justify-content: center;
+  margin: 0 auto;
+  max-width: min(100rem, 95vw);
+  padding: 0 max($spacing-lg, 2.5vw);
 }
 
+// ===== PROJECT CARD =====
 .project-card {
   @include card-base;
-
-  animation: project-card-entrance 0.6s ease-out;
   display: flex;
+
   flex-direction: column;
   height: 100%;
   overflow: hidden;
@@ -134,41 +78,26 @@
   width: 100%;
 
   &:hover {
-    border-color: rgb(245 158 11 / 30%);
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 40%),
-    0 0 0 1px rgb(245 158 11 / 10%),
-    0 0 30px rgb(245 158 11 / 10%);
-    transform: translateY(-0.5rem);
-  }
+    @include card-hover;
 
-  @for $i from 1 through 10 {
-    &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.1}s;
-    }
+    box-shadow: $shadow-card-elevated;
   }
 }
 
+// ===== PROJECT IMAGE =====
 .project-image {
   background-position: center;
   background-size: cover;
-  border-radius: 0.75rem 0.75rem 0 0;
-  height: 15rem;
+  border-radius: $radius-xl $radius-xl 0 0;
+  height: clamp(13rem, 20vw, 17rem);
   overflow: hidden;
   position: relative;
-
-  @include md {
-    height: 17rem;
-  }
-
-  @media (width <= 768px) {
-    height: 13rem;
-  }
 }
 
 .project-overlay {
   align-items: center;
   backdrop-filter: blur(4px);
-  background-color: rgb(17 24 39 / 80%);
+  background-color: $color-surface-overlay;
   display: flex;
   inset: 0;
   justify-content: center;
@@ -183,21 +112,20 @@
 
 .project-actions {
   display: flex;
-  gap: 1rem;
+  gap: $spacing-lg;
 }
 
 .project-action-icon {
-  color: rgb(156 163 175);
-  height: 2rem;
-  transition: all $duration-normal ease;
-  width: 2rem;
+  @include icon-base($spacing-2xl);
+
+  color: $color-text-muted;
 }
 
 .project-action-button {
   align-items: center;
   background: transparent;
-  border: 2px solid rgb(75 85 99);
-  border-radius: 9999px;
+  border: 2px solid $color-border;
+  border-radius: $radius-full;
   cursor: pointer;
   display: flex;
   height: 3.5rem;
@@ -213,7 +141,8 @@
 
     .project-action-icon {
       color: $color-primary;
-      transform: scale(1.1);
+
+      @include hover-scale;
     }
   }
 
@@ -223,84 +152,50 @@
   }
 }
 
+// ===== PROJECT CONTENT =====
 .project-content {
-  background: linear-gradient(135deg, rgb(17 24 39 / 90%) 0%, rgb(31 41 55 / 80%) 100%);
+  @include card-glass;
+
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: $spacing-xl;
 }
 
-.project-title {
-  background: linear-gradient(to right, $color-primary, $color-secondary);
-  background-clip: text;
-  color: transparent;
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-
-  @include lg {
-    font-size: 1.25rem;
-  }
+.project-card-title {
+  @include card-title;
 }
 
 .project-description {
-  color: rgb(156 163 175);
+  color: $color-text-muted;
   flex: 1;
   line-height: 1.625;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-lg;
 }
 
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: $spacing-sm;
 }
 
 .project-tech-tag {
   backdrop-filter: blur(4px);
-  background-color: rgb(31 41 55 / 80%);
-  border: 1px solid rgb(75 85 99 / 50%);
-  border-radius: 9999px;
-  color: rgb(209 213 219);
-  font-size: 0.75rem;
+  background-color: $color-surface-elevated;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-full;
+  color: $color-text-white;
+  font-size: $font-size-sm;
   font-weight: 500;
-  padding: 0.25rem 0.75rem;
+  padding: $spacing-xs $spacing-md;
   transition: all $duration-normal ease;
 
   &:hover {
-    background-color: rgb(55 65 81 / 80%);
-    color: white;
+    background-color: $color-surface-hover;
   }
 }
 
-@keyframes project-card-entrance {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-card {
-    animation: none;
-  }
-
-  .project-action-icon,
-  .project-action-button,
-  .project-card,
-  .project-tech-tag {
-    transition: none;
-  }
-}
-
+// ===== PRINT STYLES =====
 @media print {
   .projects-filter-container {
     display: none;
@@ -311,7 +206,7 @@
   }
 
   .project-card {
-    border: 1px solid rgb(75 85 99);
+    border: 1px solid $color-border;
     box-shadow: none;
     break-inside: avoid;
   }

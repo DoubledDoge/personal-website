@@ -1,36 +1,29 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
+// ===== BACK TO TOP BUTTON =====
 .back-to-top-button {
   align-items: center;
-  animation: fade-in-scale 0.3s ease-out;
   backdrop-filter: blur(10px);
-  background: linear-gradient(to right, $color-primary, $color-secondary);
-  border: 1px solid rgb(255 255 255 / 10%);
-  border-radius: 50%;
-  bottom: 1rem;
-  box-shadow: 0 4px 15px rgb(0 0 0 / 20%),
+  background: $color-primary-gradient;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  bottom: clamp($spacing-lg, 3vw, $spacing-xl);
+  box-shadow: $shadow-card,
   0 0 0 1px rgb(255 255 255 / 10%),
   inset 0 1px 0 rgb(255 255 255 / 20%);
-  color: rgb(17 24 39);
+  color: $color-background;
   cursor: pointer;
   display: flex;
-  font-size: 1.25rem;
+  font-size: $font-size-xl;
   font-weight: bold;
-  height: 3.5rem;
+  height: clamp(3.5rem, 7vw, $spacing-4xl);
   justify-content: center;
   position: fixed;
-  right: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 3.5rem;
-  z-index: 40;
-
-  @include sm {
-    bottom: 1.5rem;
-    height: 4rem;
-    right: 1.5rem;
-    width: 4rem;
-  }
+  right: clamp($spacing-lg, 3vw, $spacing-xl);
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+  width: clamp(3.5rem, 7vw, $spacing-4xl);
+  z-index: $z-overlay;
 
   &:hover,
   &:focus {
@@ -54,17 +47,12 @@
 }
 
 .back-to-top-arrow {
-  height: 1.75rem;
+  @include icon-base(clamp(1.75rem, 4vw, $spacing-2xl));
   stroke-linecap: round;
+
   stroke-linejoin: round;
   stroke-width: 3;
-  transition: transform 0.2s ease;
-  width: 1.75rem;
-
-  @include sm {
-    height: 2rem;
-    width: 2rem;
-  }
+  transition: transform $duration-fast ease;
 
   &.hovered {
     transform: translateY(-1px);
@@ -75,18 +63,7 @@
   }
 }
 
-@keyframes fade-in-scale {
-  from {
-    transform: scale(0.8) translateY(10px);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
+// ===== HIGH CONTRAST SUPPORT =====
 @media (prefers-contrast: more) {
   .back-to-top-button {
     background: $color-background;
@@ -95,27 +72,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .back-to-top-button {
-    animation: none;
-    transition-duration: 0.01ms;
-
-    &:hover,
-    &:focus {
-      transform: none;
-    }
-  }
-
-  .back-to-top-arrow {
-    transition: none;
-
-    &.hovered,
-    &.pressed {
-      transform: none;
-    }
-  }
-}
-
+// ===== PRINT STYLES =====
 @media print {
   .back-to-top-button {
     display: none !important;

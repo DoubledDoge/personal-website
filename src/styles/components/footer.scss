@@ -1,250 +1,187 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
+// ===== FOOTER CONTAINER =====
 .footer-container {
-  backdrop-filter: blur(10px);
-  background: linear-gradient(180deg, rgb(17 24 39 / 80%) 0%, rgb(17 24 39 / 95%) 100%);
-  border-top: 1px solid rgb(55 65 81 / 50%);
-  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 10%),
-  0 -2px 4px -2px rgb(0 0 0 / 10%);
-  margin-top: 4rem;
-  position: relative;
-  z-index: 10;
+    position: relative;
+    z-index: $z-elevated;
+    margin-top: $spacing-4xl;
+    background: linear-gradient(180deg, $color-surface-overlay 0%, rgb(17 24 39 / 95%) 100%);
+    border-top: 1px solid $color-border-subtle;
+    box-shadow:
+        0 -4px 6px -1px rgb(0 0 0 / 10%),
+        0 -2px 4px -2px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(10px);
 }
 
 .footer-content {
-  @include section-container;
+    @include section-container;
+    display: flex;
+    flex-direction: column;
+    gap: clamp($spacing-lg, 3vw, $spacing-xl);
 
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: clamp($spacing-md, 3vw, $spacing-xl);
+    padding-bottom: clamp($spacing-md, 3vw, $spacing-xl);
 
-  @include md {
-    flex-direction: row;
-    gap: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
-  }
+    @include tablet-up {
+        flex-direction: row;
+    }
 }
 
+// ===== BRAND SECTION =====
 .footer-brand-section {
-  text-align: center;
+    text-align: center;
 
-  @include md {
-    text-align: left;
-  }
+    @include tablet-up {
+        text-align: left;
+    }
 }
 
 .footer-brand-title {
-  color: white;
-  cursor: default;
-  font-size: 1.25rem;
-  font-weight: bold;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  @include md {
-    font-size: 1.5rem;
-  }
-
-  &:hover {
-    background: linear-gradient(to right, $color-primary, $color-secondary);
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 20px rgb(245 158 11 / 50%);
-    transform: translateY(-2px);
-  }
+    color: $color-text-white;
+    font-weight: bold;
+    font-size: clamp($font-size-lg, 3vw, $font-size-2xl);
+    transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+// ===== INFO SECTION =====
 .footer-info-section {
-  color: rgb(156 163 175);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    color: $color-text-muted;
+    text-align: center;
 
-  @include md {
-    text-align: right;
-  }
+    @include tablet-up {
+        text-align: right;
+    }
 }
 
 .footer-copyright {
-  color: rgb(209 213 219);
-  font-size: 0.875rem;
-  font-weight: 500;
+    color: $color-text-light;
+    font-weight: 500;
+    font-size: $font-size-base;
 }
 
 .footer-license-text {
-  font-size: 0.75rem;
+    font-size: $font-size-sm;
 }
 
 .footer-license-link {
-  align-items: center;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  color: inherit;
-  display: inline-flex;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    background-color: rgb(31 41 55 / 60%);
-    border-color: rgb(75 85 99 / 50%);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
-    color: white;
-    transform: translateY(-1px);
-  }
-
-  &:focus {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
-  }
-}
-
-.footer-external-icon {
-  color: currentcolor;
-  height: 0.75rem;
-  transition: all 0.3s ease;
-  width: 0.75rem;
-}
-
-.footer-license-link:hover .footer-external-icon {
-  color: $color-primary;
-  transform: translate(2px, -2px);
-}
-
-.footer-decoration {
-  animation: pulse-glow 3s ease-in-out infinite;
-  background: linear-gradient(
-                  90deg,
-                  transparent 0%,
-                  rgb(245 158 11 / 30%) 20%,
-                  $color-primary 50%,
-                  rgb(245 158 11 / 30%) 80%,
-                  transparent 100%
-  );
-  bottom: 0;
-  height: 0.125rem;
-  left: 0;
-  opacity: 0.4;
-  position: absolute;
-  right: 0;
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    transform: scaleX(0.95);
-    opacity: 0.3;
-  }
-
-  50% {
-    transform: scaleX(1);
-    opacity: 0.7;
-  }
-}
-
-@media print {
-  .footer-container {
-    backdrop-filter: none;
-    background: none;
-    border: none;
-    box-shadow: none;
-    margin-top: 2rem;
-  }
-
-  .footer-decoration {
-    display: none;
-  }
-
-  .footer-external-icon {
-    display: none;
-  }
-
-  .footer-brand-title {
-    background: none !important;
-    color: black !important;
-  }
-
-  .footer-copyright,
-  .footer-license-text {
-    color: black !important;
-  }
-}
-
-@media (prefers-contrast: more) {
-  .footer-container {
-    background: $color-background;
-    border-top: 2px solid $color-primary;
-  }
-
-  .footer-license-link {
-    border: 1px solid rgb(75 85 99);
+    display: inline-flex;
+    gap: $spacing-xs;
+    align-items: center;
+    padding: clamp($spacing-xs, 1vw, $spacing-xs) clamp($spacing-xs, 1vw, $spacing-sm);
+    color: inherit;
+    font-size: clamp($font-size-xs, 2vw, $font-size-md);
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: $radius-md;
+    transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
-      background: rgb(31 41 55);
-      border-color: $color-primary;
+        color: $color-text-white;
+        background-color: $color-surface-focus;
+        border-color: $color-border-subtle;
+        box-shadow: $shadow-card;
+
+        @include hover-lift;
     }
-  }
 
-  .footer-decoration {
-    background: $color-primary;
-    opacity: 0.8;
-  }
+    &:focus {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .footer-brand-title,
-  .footer-license-link,
-  .footer-external-icon {
-    transition: none;
-  }
+.footer-external-icon {
+    @include icon-base(clamp($spacing-sm, 2vw, $spacing-md));
 
-  .footer-decoration {
-    animation: none;
+    color: currentcolor;
+    transition: all $duration-normal ease;
+}
+
+.footer-license-link:hover .footer-external-icon {
+    color: $color-primary;
+    transform: translate(2px, -2px);
+}
+
+// ===== FOOTER DECORATION =====
+.footer-decoration {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgb(245 158 11 / 30%) 20%,
+        $color-primary 50%,
+        rgb(245 158 11 / 30%) 80%,
+        transparent 100%
+    );
     opacity: 0.4;
-  }
-
-  .footer-brand-title:hover,
-  .footer-license-link:hover {
-    transform: none;
-  }
-
-  .footer-license-link:hover .footer-external-icon {
-    transform: none;
-  }
 }
 
-@media (width <= 768px) {
-  .footer-content {
-    padding-bottom: 0.75rem;
-    padding-top: 0.75rem;
-  }
+// ===== PRINT STYLES =====
+@media print {
+    .footer-container {
+        margin-top: $spacing-2xl;
+        background: none;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+    }
 
-  .footer-brand-title {
-    font-size: 1.125rem;
-  }
+    .footer-decoration {
+        display: none;
+    }
 
-  .footer-license-link {
-    font-size: 0.625rem;
-    padding: 0.125rem 0.25rem;
-  }
+    .footer-external-icon {
+        display: none;
+    }
 
-  .footer-external-icon {
-    height: 0.625rem;
-    width: 0.625rem;
-  }
+    .footer-brand-title {
+        color: black !important;
+        background: none !important;
+    }
+
+    .footer-copyright,
+    .footer-license-text {
+        color: black !important;
+    }
 }
 
+// ===== HIGH CONTRAST SUPPORT =====
+@media (prefers-contrast: more) {
+    .footer-container {
+        background: $color-background;
+        border-top: 2px solid $color-primary;
+    }
+
+    .footer-license-link {
+        border: 1px solid $color-border;
+
+        &:hover,
+        &:focus {
+            background: $color-surface-elevated;
+            border-color: $color-primary;
+        }
+    }
+
+    .footer-decoration {
+        background: $color-primary;
+        opacity: 0.8;
+    }
+}
+
+// ===== DARK MODE ENHANCEMENT =====
 @media (prefers-color-scheme: dark) {
-  .footer-container {
-    background: linear-gradient(180deg, rgb(17 24 39 / 90%) 0%, rgb(17 24 39 / 98%) 100%);
-  }
+    .footer-container {
+        background: linear-gradient(180deg, rgb(17 24 39 / 90%) 0%, rgb(17 24 39 / 98%) 100%);
+    }
 }

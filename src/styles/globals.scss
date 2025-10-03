@@ -2,9 +2,10 @@
 @use 'mixins' as *;
 @use 'accessibility';
 
+// ===== BASE HTML SETUP =====
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem;
+  scroll-padding-top: $spacing-4xl;
 }
 
 body {
@@ -23,40 +24,41 @@ body {
   text-rendering: optimizelegibility;
 }
 
+// ===== GLOBAL TRANSITIONS =====
 * {
   transition-duration: $duration-fast;
   transition-property: background-color, border-color, color, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-*:not(h1, h2, h3, h4, h5, h6, .text-gradient, .nav-link .btn-primary .btn-secondary) {
-  color: $color-text;
-}
-
+// ===== SCROLLBAR STYLING =====
 *::-webkit-scrollbar {
   height: 8px;
   width: 8px;
 }
 
 *::-webkit-scrollbar-track {
-  background: $color-dark-200;
+  background: rgb(30 41 59);
   border-radius: 4px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: $color-dark-400;
+  background: $color-border;
   border-radius: 4px;
   transition: background $duration-normal ease;
 
   &:hover {
-    background: $color-dark-500;
+    background: $color-surface-hover;
   }
 }
 
+// ===== IMAGE OPTIMIZATION =====
 img {
+  aspect-ratio: attr(width) / attr(height);
   content-visibility: auto;
   height: auto;
   max-width: 100%;
+  object-fit: cover;
   width: auto;
 }
 
@@ -66,5 +68,56 @@ img[loading='lazy'] {
 
   &.loaded {
     opacity: 1;
+  }
+}
+
+// ===== UTILITY CLASSES =====
+.visually-hidden,
+.sr-only {
+  @include visually-hidden;
+}
+
+// ===== PRINT STYLES =====
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  button,
+  .button,
+  [role='button'] {
+    display: none !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  img {
+    break-inside: avoid;
+    max-width: 100% !important;
   }
 }
