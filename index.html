@@ -64,41 +64,40 @@
             name="twitter:image"
     />
 
-    <!-- Favicon -->
-    <link href="/apple-touch-icon.webp" rel="apple-touch-icon" sizes="180x180"/>
-    <link href="/favicon-32x32.webp" rel="icon" sizes="32x32" type="image/webp"/>
-    <link href="/favicon-16x16.webp" rel="icon" sizes="16x16" type="image/webp"/>
-    <link href="/site.webmanifest" rel="manifest"/>
-    <link color="#111827" href="/safari-pinned-tab.svg" rel="mask-icon"/>
+    <!-- Favicons -->
+    <link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon"/>
+    <link
+            href="/apple-touch-icon.webp"
+            rel="apple-touch-icon"
+            sizes="180x180"
+            type="image/webp"
+    />
+
+    <!-- Web App Manifest -->
+    <link href="/site.webmanifest" rel="manifest" type="application/manifest+json"/>
+
+    <!-- Windows/IE -->
     <meta content="#111827" name="msapplication-TileColor"/>
 
-    <!-- Performance optimizations -->
     <link href="//api.emailjs.com" rel="dns-prefetch"/>
 
     <!-- Critical resource hints -->
-    <link as="image" fetchpriority="high" href="/src/assets/top_picture.webp" rel="preload"/>
-    <link href="/src/main.js" rel="modulepreload"/>
-    <link href="/src/App.svelte" rel="modulepreload"/>
+    <link as="image" fetchpriority="high" href="src/assets/top_picture.webp" rel="preload"/>
+    <link href="src/main.js" rel="modulepreload" type="module"/>
+    <link href="src/App.svelte" rel="modulepreload" type="module"/>
 
-    <!-- Critical CSS - must load first -->
-    <link href="/src/styles/critical.scss" rel="stylesheet"/>
+    <link href="src/styles/critical.css" rel="stylesheet"/>
 </head>
 <body>
-<!-- App container -->
 <div id="app"></div>
 
-<!-- Initial loading state -->
 <div class="initial-loading" id="initial-loading">
     <div aria-label="Loading content" class="spinner" role="status"></div>
 </div>
 
-<!-- Performance and loader management -->
-<script src="/src/lib/performance.js" type="module"></script>
+<script src="src/lib/performance.js" type="module"></script>
+<script src="src/main.js" type="module"></script>
 
-<!-- Main application script -->
-<script src="/src/main.js" type="module"></script>
-
-<!-- No-script fallback -->
 <noscript>
     <div class="noscript-container">
         <div class="noscript-content">
@@ -108,10 +107,11 @@
                 JavaScript in your browser settings to view my portfolio.
             </p>
             <div class="noscript-links">
-                <a class="noscript-link" href="https://github.com/DoubledDoge">
-                    GitHub
-                </a>
-                <a class="noscript-link linkedin" href="https://www.linkedin.com/in/dihan-britz/">
+                <a class="noscript-link" href="https://github.com/DoubledDoge"> GitHub </a>
+                <a
+                        class="noscript-link linkedin"
+                        href="https://www.linkedin.com/in/dihan-britz/"
+                >
                     LinkedIn
                 </a>
             </div>
