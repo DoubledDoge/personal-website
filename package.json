@@ -53,8 +53,8 @@
     "svelte": "^5.38.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@eslint/js": "^9.37.0",
     "@sveltejs/vite-plugin-svelte": "^6.1.0",
     "@types/node": "^24.6.2",
