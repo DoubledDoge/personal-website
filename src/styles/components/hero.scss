@@ -88,8 +88,8 @@
 
 .hero-primary-button {
   @include btn-primary;
-
   cursor: pointer;
+
   width: 100%;
 
   @include tablet-up {
@@ -99,9 +99,9 @@
 
 .hero-secondary-button {
   @include btn-secondary;
-
   align-items: center;
   border-radius: $radius-lg;
+
   cursor: pointer;
   display: flex;
   font-weight: 600;
@@ -142,10 +142,10 @@
 
 .hero-loading-spinner {
   @include loading-skeleton;
-
   border: 2px solid $color-primary;
   border-radius: $radius-full;
   border-top-color: transparent;
+
   display: inline-block;
   height: 18px;
   width: 18px;
@@ -235,9 +235,9 @@
 
 .hero-loading-icon {
   @include loading-skeleton;
-
   border: 2px solid $color-primary;
   border-radius: $radius-full;
+
   border-top-color: transparent;
   height: $spacing-2xl;
   width: $spacing-2xl;

@@ -48,8 +48,8 @@
 
 .back-to-top-arrow {
   @include icon-base(clamp(1.75rem, 4vw, $spacing-2xl));
-
   stroke-linecap: round;
+
   stroke-linejoin: round;
   stroke-width: 3;
   transition: transform $duration-fast ease;
