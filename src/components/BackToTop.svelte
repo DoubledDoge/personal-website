@@ -17,25 +17,23 @@
     /**
      * Determines if the back-to-top button should be visible
      */
-    const isVisible: boolean = $derived(
+    const isVisible = $derived(
             isMounted && hasScrolledPastThreshold(VISIBILITY_THRESHOLD, scrollY)
     )
 
     /**
      * Calculates scroll progress as a percentage (0-1)
      */
-    const scrollProgress = $derived(
-            (() => {
-                if (documentHeight === 0 || windowHeight === 0) return 0
-                const totalScrollable: number = documentHeight - windowHeight
-                return totalScrollable > 0 ? Math.min(scrollY / totalScrollable, 1) : 0
-            })()
-    )
+    const scrollProgress = $derived(() => {
+        if (documentHeight === 0 || windowHeight === 0) return 0
+        const totalScrollable: number = documentHeight - windowHeight
+        return totalScrollable > 0 ? Math.min(scrollY / totalScrollable, 1) : 0
+    })
 
     /**
      * Calculates button opacity based on scroll position with fade effect
      */
-    const buttonOpacity = $derived((): number => {
+    const buttonOpacity = $derived(() => {
         if (!isVisible) return 0
         if (scrollY <= FADE_START) return 0
         if (scrollY >= FADE_END) return 1
@@ -45,17 +43,15 @@
     /**
      * Generates accessibility label with scroll progress
      */
-    const accessibilityLabel = $derived(
-            (() => {
-                const progress: number = Math.round(100 * scrollProgress)
-                return `Scroll back to top (${progress}% down the page)`
-            })()
-    )
+    const accessibilityLabel = $derived(() => {
+        const progress: number = Math.round(100 * scrollProgress())
+        return `Scroll back to top (${progress}% down the page)`
+    })
 
     /**
      * Generates CSS classes for the button based on state
      */
-    const buttonClasses = $derived((): string => {
+    const buttonClasses = $derived(() => {
         const classes: string[] = ['back-to-top-button']
         if (isPressed) classes.push('pressed')
         return classes.join(' ')
@@ -102,7 +98,7 @@
         isPressed = false
     }
 
-    onMount((): (() => void) => {
+    onMount(() => {
         isMounted = true
         updateDimensions()
 
@@ -115,7 +111,7 @@
 
         window.addEventListener('resize', handleResize, { passive: true })
 
-        return (): void => {
+        return () => {
             window.removeEventListener('resize', handleResize)
             clearTimeout(resizeTimeout)
         }
@@ -131,9 +127,9 @@
             onkeydown={handleKeyDown}
             onmousedown={handleMouseDown}
             onmouseup={handleMouseUp}
-            class={buttonClasses}
-            style="opacity: {buttonOpacity}"
-            aria-label={accessibilityLabel}
+            class={buttonClasses()}
+            style="opacity: {buttonOpacity()}"
+            aria-label={accessibilityLabel()}
             title="Back to top"
             type="button"
     >
