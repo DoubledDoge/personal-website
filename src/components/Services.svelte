@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {onMount} from 'svelte'
+    import { onMount } from 'svelte'
     import codeIcon from '$assets/code-icon.svg'
     import cSharpIcon from '$assets/cSharp-icon.svg'
     import databaseIcon from '$assets/database-icon.svg'
@@ -29,10 +29,10 @@
             }
 
             services = services.map(
-                    (service: Service): Service => ({
-                        ...service,
-                        icon: iconMap[service.icon] || service.icon,
-                    })
+                (service: Service): Service => ({
+                    ...service,
+                    icon: iconMap[service.icon] || service.icon,
+                })
             )
         } catch (error: unknown) {
             console.error('Error loading services data:', error)
@@ -57,10 +57,10 @@
                 <article class="service-card" aria-labelledby="service-{service.id}">
                     <div class="service-icon-container">
                         <img
-                                src={service.icon}
-                                alt="{service.name} icon"
-                                class="service-icon"
-                                loading="lazy"
+                            src={service.icon}
+                            alt="{service.name} icon"
+                            class="service-icon"
+                            loading="lazy"
                         />
                     </div>
 

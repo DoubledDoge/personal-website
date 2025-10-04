@@ -69,8 +69,8 @@
 // ===== PROJECT CARD =====
 .project-card {
   @include card-base;
-  display: flex;
 
+  display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;

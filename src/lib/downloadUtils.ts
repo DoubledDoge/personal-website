@@ -98,7 +98,6 @@ function getErrorMessage(status: number): string {
  * @returns Promise that resolves to success status
  */
 export async function downloadResume(callbacks: DownloadCallbacks = {}): Promise<boolean> {
-    // @ts-expect-error: Vite injects BASE_URL at build time
     const resumeUrl = `${import.meta.env.BASE_URL || ''}resume.pdf`
     const filename = 'Dihan_Britz_Resume.pdf'
 

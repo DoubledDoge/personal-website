@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {onMount} from 'svelte'
+    import { onMount } from 'svelte'
     import graduationIcon from '$assets/graduation-icon.svg'
     import skillsData from '$data/skills.json'
     import '$styles/components/skills.scss'
@@ -43,10 +43,10 @@
             }
 
             experiences = experiences.map(
-                    (experience: Experience): Experience => ({
-                        ...experience,
-                        icon: iconMap[experience.icon] || experience.icon,
-                    })
+                (experience: Experience): Experience => ({
+                    ...experience,
+                    icon: iconMap[experience.icon] || experience.icon,
+                })
             )
 
             const initialWidths: AnimatedWidths = {}
@@ -84,7 +84,7 @@
             <div class="skills-loading-column">
                 <div class="skills-loading-title"></div>
                 <div class="skills-loading-list">
-                    {#each Array(6).fill(0) as _item, i (i)}
+                    {#each Array(6).fill(0) as _, i (i)}
                         <div class="skills-loading-item">
                             <div class="skills-loading-header">
                                 <div class="skills-loading-name"></div>
@@ -144,8 +144,8 @@
 
                             <div class="skill-progress-container">
                                 <div
-                                        class="skill-progress-bar"
-                                        style="width: {animatedWidths[skill.id] || '0%'}"
+                                    class="skill-progress-bar"
+                                    style="width: {animatedWidths[skill.id] || '0%'}"
                                 ></div>
                             </div>
 
@@ -167,10 +167,10 @@
                         <article class="experience-card">
                             <div class="experience-icon-container">
                                 <img
-                                        src={experience.icon}
-                                        alt="{experience.role} icon"
-                                        class="experience-icon"
-                                        loading="lazy"
+                                    src={experience.icon}
+                                    alt="{experience.role} icon"
+                                    class="experience-icon"
+                                    loading="lazy"
                                 />
                             </div>
 

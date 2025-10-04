@@ -9,12 +9,9 @@ import svelteConfig from './svelte.config.js'
 
 export default [
     {
-        ignores: ['node_modules/**', 'dist/**', 'build/**', 'public/**', '.svelte-kit/**'],
+        ignores: ['node_modules/**', 'dist/**', 'build/**', 'public/**'],
     },
     eslint.configs.recommended,
-    ...tslint.configs.strict,
-    ...tslint.configs.stylistic,
-    ...svelte.configs['flat/recommended'],
     {
         languageOptions: {
             globals: {
@@ -27,6 +24,8 @@ export default [
     },
     {
         files: ['**/*.{js,ts}'],
+        ...tslint.configs.strict[0],
+        ...tslint.configs.stylistic[0],
         languageOptions: {
             parser: tslint.parser,
             parserOptions: {
@@ -54,30 +53,27 @@ export default [
             'prettier/prettier': 'error',
         },
     },
+    ...svelte.configs['flat/recommended'],
     {
         files: ['**/*.svelte'],
         languageOptions: {
             parser: svelteParser,
             parserOptions: {
                 parser: tslint.parser,
-                project: './tsconfig.json',
-                tsconfigRootDir: import.meta.dirname,
                 svelteConfig,
                 extraFileExtensions: ['.svelte'],
             },
+        },
+        plugins: {
+            prettier: prettierPlugin,
         },
         rules: {
             'svelte/no-target-blank': 'error',
             'svelte/no-at-debug-tags': 'warn',
             'svelte/no-reactive-functions': 'off',
-            '@typescript-eslint/no-unused-vars': [
-                'warn',
-                {
-                    argsIgnorePattern: '^_',
-                    varsIgnorePattern: '^_',
-                    destructuredArrayIgnorePattern: '^_',
-                },
-            ],
+            '@typescript-eslint/no-unused-vars': 'off',
+            'no-unused-vars': 'off',
+            'prettier/prettier': 'error',
         },
     },
     {

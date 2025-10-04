@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {onMount} from 'svelte'
+    import { onMount } from 'svelte'
     import educationData from '$data/education.json'
     import textContent from '$data/text-content.json'
     import '$styles/components/about.scss'

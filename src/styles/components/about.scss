@@ -4,8 +4,8 @@
 // ===== ABOUT SECTION =====
 .about-section {
   @include section-container;
-  color: $color-text-white;
 
+  color: $color-text-white;
   position: relative;
 }
 
@@ -40,6 +40,7 @@
 
 .education-card {
   @include card-glass;
+
   backdrop-filter: blur(10px);
   border: 1px solid $color-border-hover;
   border-radius: $radius-xl;
@@ -47,7 +48,6 @@
   overflow: hidden;
   padding: clamp($spacing-lg, 3vw, $spacing-xl);
   position: relative;
-
   transition: all $duration-normal ease;
   width: clamp(100%, 90vw, 80%);
 
@@ -143,9 +143,9 @@
 
 .stat-card {
   @include card-glass;
+
   align-items: center;
   aspect-ratio: 1;
-
   border: 1px solid $color-border-subtle;
   border-radius: $radius-xl;
   cursor: default;

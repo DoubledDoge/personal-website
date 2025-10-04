@@ -22,7 +22,7 @@
      * when multiple spinners are rendered on the same page
      */
     let gradientId: string = $derived(
-            `spinner-gradient-${Math.random().toString(36).substring(2, 9)}`
+        `spinner-gradient-${Math.random().toString(36).substring(2, 9)}`
     )
 
     /**
@@ -49,34 +49,34 @@
 
 <div class={spinnerClasses}>
     <svg
-            aria-hidden="false"
-            aria-label={label}
-            class="loading-spinner-svg"
-            role="img"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="false"
+        aria-label={label}
+        class="loading-spinner-svg"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
     >
         <defs>
             <linearGradient id={gradientId} x1="0%" x2="100%" y1="0%" y2="100%">
-                <stop offset="0%" stop-color="#f59e0b"/>
-                <stop offset="50%" stop-color="#fbbf24"/>
-                <stop offset="100%" stop-color="#ec4899"/>
+                <stop offset="0%" stop-color="#f59e0b" />
+                <stop offset="50%" stop-color="#fbbf24" />
+                <stop offset="100%" stop-color="#ec4899" />
             </linearGradient>
         </defs>
 
         <circle
-                class="loading-spinner-track"
-                cx="12"
-                cy="12"
-                fill="none"
-                r="10"
-                stroke="url(#{gradientId})"
+            class="loading-spinner-track"
+            cx="12"
+            cy="12"
+            fill="none"
+            r="10"
+            stroke="url(#{gradientId})"
         />
 
         <path
-                class="loading-spinner-indicator"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                fill="url(#{gradientId})"
+            class="loading-spinner-indicator"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+            fill="url(#{gradientId})"
         />
     </svg>
 

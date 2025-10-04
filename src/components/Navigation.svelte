@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {scrollToSection} from '$lib/scrollUtils'
-    import {onMount} from 'svelte'
+    import { scrollToSection } from '$lib/scrollUtils'
+    import { onMount } from 'svelte'
     import '$styles/components/navigation.scss'
 
     interface NavItem {
@@ -9,12 +9,12 @@
     }
 
     const navItems: NavItem[] = [
-        {name: 'Home', href: '#hero'},
-        {name: 'Services', href: '#services'},
-        {name: 'About', href: '#about'},
-        {name: 'Skills', href: '#skills'},
-        {name: 'Projects', href: '#projects'},
-        {name: 'Contact', href: '#contact'},
+        { name: 'Home', href: '#hero' },
+        { name: 'Services', href: '#services' },
+        { name: 'About', href: '#about' },
+        { name: 'Skills', href: '#skills' },
+        { name: 'Projects', href: '#projects' },
+        { name: 'Contact', href: '#contact' },
     ]
 
     let isOpen: boolean = $state(false)
@@ -81,7 +81,7 @@
     }
 
     onMount((): (() => void) => {
-        window.addEventListener('scroll', handleScroll, {passive: true})
+        window.addEventListener('scroll', handleScroll, { passive: true })
         window.addEventListener('keydown', handleKeydown)
 
         return (): void => {
@@ -96,9 +96,9 @@
         <div class="navigation-content">
             <div class="navigation-brand-section">
                 <button
-                        class="navigation-brand-button"
-                        onclick={(e: Event) => handleNavigation(e, '#hero')}
-                        type="button"
+                    class="navigation-brand-button"
+                    onclick={(e: Event) => handleNavigation(e, '#hero')}
+                    type="button"
                 >
                     Dihan Britz
                 </button>
@@ -108,9 +108,9 @@
                 <div class="navigation-desktop-links">
                     {#each navItems as item (item.href)}
                         <button
-                                type="button"
-                                onclick={(e: Event) => handleNavigation(e, item.href)}
-                                class="navigation-desktop-link"
+                            type="button"
+                            onclick={(e: Event) => handleNavigation(e, item.href)}
+                            class="navigation-desktop-link"
                         >
                             {item.name}
                         </button>
@@ -120,37 +120,37 @@
 
             <div class="navigation-mobile-section">
                 <button
-                        aria-expanded={isOpen}
-                        aria-label="Toggle navigation menu"
-                        class="navigation-mobile-toggle"
-                        onclick={toggleMenu}
-                        type="button"
+                    aria-expanded={isOpen}
+                    aria-label="Toggle navigation menu"
+                    class="navigation-mobile-toggle"
+                    onclick={toggleMenu}
+                    type="button"
                 >
                     <span class="sr-only">Open main menu</span>
 
                     <svg
-                            class={`navigation-mobile-icon ${!isOpen ? 'visible' : 'hidden'}`}
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            viewBox="0 0 24 24"
+                        class={`navigation-mobile-icon ${!isOpen ? 'visible' : 'hidden'}`}
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
                     >
                         <path
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
                         />
                     </svg>
 
                     <svg
-                            class={`navigation-mobile-icon ${isOpen ? 'visible' : 'hidden'}`}
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            viewBox="0 0 24 24"
+                        class={`navigation-mobile-icon ${isOpen ? 'visible' : 'hidden'}`}
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
                     >
                         <path
-                                d="M6 18L18 6M6 6l12 12"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
                         />
                     </svg>
                 </button>
@@ -161,21 +161,21 @@
 
 {#if isOpen}
     <div
-            class="mobile-menu-overlay"
-            onclick={closeMenu}
-            role="button"
-            tabindex="0"
-            onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && closeMenu()}
-            aria-label="Close navigation menu"
+        class="mobile-menu-overlay"
+        onclick={closeMenu}
+        role="button"
+        tabindex="0"
+        onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && closeMenu()}
+        aria-label="Close navigation menu"
     ></div>
 
     <div class="mobile-menu-panel">
         <div class="mobile-menu-content">
             {#each navItems as item (item.href)}
                 <button
-                        type="button"
-                        onclick={(e: Event) => handleNavigation(e, item.href)}
-                        class="mobile-menu-link"
+                    type="button"
+                    onclick={(e: Event) => handleNavigation(e, item.href)}
+                    class="mobile-menu-link"
                 >
                     {item.name}
                 </button>

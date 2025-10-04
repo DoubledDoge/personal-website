@@ -47,10 +47,10 @@
 // ===== SERVICE CARD =====
 .service-card {
   @include card-glass;
+
   align-items: center;
   backdrop-filter: blur(8px);
   border-radius: $radius-xl;
-
   box-shadow: $shadow-card;
   cursor: default;
   display: flex;

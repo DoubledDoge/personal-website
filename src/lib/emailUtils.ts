@@ -46,11 +46,8 @@ interface TemplateParams extends Record<string, string> {
 }
 
 const EMAILJS_CONFIG: EmailJSConfig = {
-    // @ts-expect-error: Vite injects these env vars at build time
     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-    // @ts-expect-error: Vite injects these env vars at build time
     templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-    // @ts-expect-error: Vite injects these env vars at build time
     serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
 }
 

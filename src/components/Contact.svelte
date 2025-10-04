@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {onMount} from 'svelte'
+    import { onMount } from 'svelte'
     import contactsData from '$data/contacts.json'
-    import {isEmailJSConfigured, sendEmail, validateEmail} from '$lib/emailUtils'
+    import { isEmailJSConfigured, sendEmail, validateEmail } from '$lib/emailUtils'
     import '$styles/components/contact.scss'
 
     interface Props {
@@ -23,7 +23,7 @@
 
     type ValidationClass = 'default' | 'valid' | 'invalid'
 
-    let {emailjsReady = false}: Props = $props()
+    let { emailjsReady = false }: Props = $props()
 
     let formData: ContactFormData = $state({
         email: '',
@@ -39,14 +39,14 @@
      * Validates if the form has all required fields with minimum lengths
      */
     const isFormValid: boolean = $derived(
-            formData.email.length > 0 && formData.subject.length >= 3 && formData.message.length >= 10
+        formData.email.length > 0 && formData.subject.length >= 3 && formData.message.length >= 10
     )
 
     /**
      * Determines if the form can be submitted based on validation and service availability
      */
     const canSubmitForm: boolean = $derived(
-            isFormValid && emailjsReady && isEmailJSConfigured() && !isSubmitting
+        isFormValid && emailjsReady && isEmailJSConfigured() && !isSubmitting
     )
 
     /**
@@ -182,10 +182,10 @@
                     <div class="contact-method-item">
                         <div class="contact-icon-wrapper">
                             <svg
-                                    class="contact-icon"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    aria-hidden="true"
+                                class="contact-icon"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
                             >
                                 <path d={contact.icon} />
                             </svg>
@@ -196,10 +196,10 @@
                                 {contact.header}
                             </h4>
                             <a
-                                    href={contact.link}
-                                    target={contact.external ? '_blank' : undefined}
-                                    rel={contact.external ? 'noopener noreferrer' : undefined}
-                                    class="contact-method-link"
+                                href={contact.link}
+                                target={contact.external ? '_blank' : undefined}
+                                rel={contact.external ? 'noopener noreferrer' : undefined}
+                                class="contact-method-link"
                             >
                                 {contact.contactText}
                             </a>
@@ -217,15 +217,15 @@
                         <span aria-label="required" class="form-required-indicator">*</span>
                     </label>
                     <input
-                            autocomplete="email"
-                            bind:value={formData.email}
-                            class="form-input {getEmailValidationClass()}"
-                            disabled={isSubmitting}
-                            id="email"
-                            name="email"
-                            placeholder="your.email@example.com"
-                            required
-                            type="email"
+                        autocomplete="email"
+                        bind:value={formData.email}
+                        class="form-input {getEmailValidationClass()}"
+                        disabled={isSubmitting}
+                        id="email"
+                        name="email"
+                        placeholder="your.email@example.com"
+                        required
+                        type="email"
                     />
                 </div>
 
@@ -235,15 +235,15 @@
                         <span aria-label="required" class="form-required-indicator">*</span>
                     </label>
                     <input
-                            bind:value={formData.subject}
-                            class="form-input {getSubjectValidationClass()}"
-                            disabled={isSubmitting}
-                            id="subject"
-                            maxlength="100"
-                            name="subject"
-                            placeholder="What would you like to discuss?"
-                            required
-                            type="text"
+                        bind:value={formData.subject}
+                        class="form-input {getSubjectValidationClass()}"
+                        disabled={isSubmitting}
+                        id="subject"
+                        maxlength="100"
+                        name="subject"
+                        placeholder="What would you like to discuss?"
+                        required
+                        type="text"
                     />
                 </div>
 
@@ -253,15 +253,15 @@
                         <span aria-label="required" class="form-required-indicator">*</span>
                     </label>
                     <textarea
-                            bind:value={formData.message}
-                            class="form-input form-textarea {getMessageValidationClass()}"
-                            disabled={isSubmitting}
-                            id="message"
-                            maxlength="1000"
-                            name="message"
-                            placeholder="Let's talk about..."
-                            required
-                            rows="6"
+                        bind:value={formData.message}
+                        class="form-input form-textarea {getMessageValidationClass()}"
+                        disabled={isSubmitting}
+                        id="message"
+                        maxlength="1000"
+                        name="message"
+                        placeholder="Let's talk about..."
+                        required
+                        rows="6"
                     ></textarea>
                 </div>
 
@@ -274,38 +274,38 @@
                             </div>
                             <div class="form-progress-track">
                                 <div
-                                        class="form-progress-bar"
-                                        style="width: {formCompletionPercentage()}%"
+                                    class="form-progress-bar"
+                                    style="width: {formCompletionPercentage()}%"
                                 ></div>
                             </div>
                         </div>
                     {/if}
 
                     <button
-                            class="form-submit-button {canSubmitForm ? 'enabled' : ''}"
-                            disabled={!canSubmitForm}
-                            type="submit"
+                        class="form-submit-button {canSubmitForm ? 'enabled' : ''}"
+                        disabled={!canSubmitForm}
+                        type="submit"
                     >
                         {#if isSubmitting}
                             <span class="form-submit-content">
                                 <svg
-                                        class="form-loading-spinner"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
+                                    class="form-loading-spinner"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
                                 >
                                     <circle
-                                            class="opacity-25"
-                                            cx="12"
-                                            cy="12"
-                                            r="10"
-                                            stroke="currentColor"
-                                            stroke-width="4"
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"
                                     ></circle>
                                     <path
-                                            class="opacity-75"
-                                            fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     ></path>
                                 </svg>
                                 Sending Message...
@@ -321,28 +321,28 @@
                         <div class="form-status-content">
                             {#if submitStatus.type === 'success'}
                                 <svg
-                                        class="form-status-icon success"
-                                        viewBox="0 0 20 20"
-                                        aria-hidden="true"
+                                    class="form-status-icon success"
+                                    viewBox="0 0 20 20"
+                                    aria-hidden="true"
                                 >
                                     <path
-                                            fill="currentColor"
-                                            fill-rule="evenodd"
-                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                            clip-rule="evenodd"
+                                        fill="currentColor"
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"
                                     ></path>
                                 </svg>
                             {:else}
                                 <svg
-                                        class="form-status-icon error"
-                                        viewBox="0 0 20 20"
-                                        aria-hidden="true"
+                                    class="form-status-icon error"
+                                    viewBox="0 0 20 20"
+                                    aria-hidden="true"
                                 >
                                     <path
-                                            fill="currentColor"
-                                            fill-rule="evenodd"
-                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                            clip-rule="evenodd"
+                                        fill="currentColor"
+                                        fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd"
                                     ></path>
                                 </svg>
                             {/if}

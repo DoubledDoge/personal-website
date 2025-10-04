@@ -1,8 +1,8 @@
 <script lang="ts">
     import topPicture from '$assets/top_picture.webp'
     import textContent from '$data/text-content.json'
-    import {downloadResume} from '$lib/downloadUtils'
-    import {scrollToContact} from '$lib/scrollUtils'
+    import { downloadResume } from '$lib/downloadUtils'
+    import { scrollToContact } from '$lib/scrollUtils'
     import '$styles/components/hero.scss'
 
     let profileImage: string = $state(topPicture)
@@ -61,49 +61,49 @@
 
                 <div class="hero-cta-container">
                     <button
-                            aria-label="Scroll to contact section to hire me"
-                            class="hero-primary-button"
-                            onclick={scrollToContact}
-                            type="button"
+                        aria-label="Scroll to contact section to hire me"
+                        class="hero-primary-button"
+                        onclick={scrollToContact}
+                        type="button"
                     >
                         Hire Me
                     </button>
 
                     <button
-                            aria-label="Download my resume as PDF"
-                            class="hero-secondary-button {isDownloading
+                        aria-label="Download my resume as PDF"
+                        class="hero-secondary-button {isDownloading
                             ? 'hero-secondary-button:disabled'
                             : ''}"
-                            disabled={isDownloading}
-                            onclick={handleDownload}
-                            onfocus={clearDownloadError}
-                            type="button"
+                        disabled={isDownloading}
+                        onclick={handleDownload}
+                        onfocus={clearDownloadError}
+                        type="button"
                     >
                         <span aria-hidden="true" class="hero-button-icon-container">
                             {#if isDownloading}
                                 <span class="hero-loading-spinner"></span>
                             {:else}
                                 <svg
-                                        class="hero-download-icon"
-                                        width="18"
-                                        height="22"
-                                        viewBox="0 0 18 22"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                    class="hero-download-icon"
+                                    width="18"
+                                    height="22"
+                                    viewBox="0 0 18 22"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
                                 >
                                     <path
-                                            d="M9 1v12M13 9L9 13L5 9"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                        d="M9 1v12M13 9L9 13L5 9"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
                                     />
                                     <path
-                                            d="M1 17V18C1 18.7956 1.31607 19.5587 1.87868 20.1213C2.44129 20.6839 3.20435 21 4 21H14C14.7956 21 15.5587 20.6839 16.1213 20.1213C16.6839 19.5587 17 18.7956 17 18V17"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                        d="M1 17V18C1 18.7956 1.31607 19.5587 1.87868 20.1213C2.44129 20.6839 3.20435 21 4 21H14C14.7956 21 15.5587 20.6839 16.1213 20.1213C16.6839 19.5587 17 18.7956 17 18V17"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
                                     />
                                 </svg>
                             {/if}
@@ -121,10 +121,10 @@
                             {downloadError}
                         </p>
                         <button
-                                type="button"
-                                onclick={clearDownloadError}
-                                class="hero-dismiss-button"
-                                aria-label="Dismiss error message"
+                            type="button"
+                            onclick={clearDownloadError}
+                            class="hero-dismiss-button"
+                            aria-label="Dismiss error message"
                         >
                             Dismiss
                         </button>
@@ -144,14 +144,14 @@
                                 </div>
                             {:else}
                                 <img
-                                        src={profileImage}
-                                        alt="Dihan Britz - Software Engineering Student"
-                                        width="384"
-                                        height="384"
-                                        class="hero-profile-image {imageLoadError ? 'error' : ''}"
-                                        loading="eager"
-                                        fetchpriority="high"
-                                        decoding="sync"
+                                    src={profileImage}
+                                    alt="Dihan Britz - Software Engineering Student"
+                                    width="384"
+                                    height="384"
+                                    class="hero-profile-image {imageLoadError ? 'error' : ''}"
+                                    loading="eager"
+                                    fetchpriority="high"
+                                    decoding="sync"
                                 />
                             {/if}
                         </div>

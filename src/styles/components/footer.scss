@@ -19,10 +19,10 @@
 
 .footer-content {
   @include section-container;
+
   align-items: center;
   display: flex;
   flex-direction: column;
-
   gap: clamp($spacing-lg, 3vw, $spacing-xl);
   justify-content: space-between;
   padding-bottom: clamp($spacing-md, 3vw, $spacing-xl);

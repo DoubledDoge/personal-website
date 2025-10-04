@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {onMount} from 'svelte'
-    import {hasScrolledPastThreshold, scrollToTop} from '$lib/scrollUtils'
+    import { onMount } from 'svelte'
+    import { hasScrolledPastThreshold, scrollToTop } from '$lib/scrollUtils'
     import '$styles/components/back-to-top.scss'
 
     let scrollY: number = $state(0)
@@ -120,27 +120,27 @@
 
 {#if isVisible}
     <button
-            bind:this={buttonElement}
-            onclick={handleScrollToTop}
-            onkeydown={handleKeyDown}
-            onmousedown={handleMouseDown}
-            onmouseup={handleMouseUp}
-            class={buttonClasses()}
-            style="opacity: {buttonOpacity()}"
-            aria-label={accessibilityLabel()}
-            title="Back to top"
-            type="button"
+        bind:this={buttonElement}
+        onclick={handleScrollToTop}
+        onkeydown={handleKeyDown}
+        onmousedown={handleMouseDown}
+        onmouseup={handleMouseUp}
+        class={buttonClasses()}
+        style="opacity: {buttonOpacity()}"
+        aria-label={accessibilityLabel()}
+        title="Back to top"
+        type="button"
     >
         <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="back-to-top-arrow {isPressed ? 'pressed' : ''}"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="back-to-top-arrow {isPressed ? 'pressed' : ''}"
         >
             <polyline points="18,15 12,9 6,15" />
         </svg>

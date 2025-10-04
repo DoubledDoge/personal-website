@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.svelte"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false
+  }
+}

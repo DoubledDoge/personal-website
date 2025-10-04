@@ -54,17 +54,15 @@ export default defineConfig(({ mode }) => ({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
             $lib: fileURLToPath(new URL('./src/lib', import.meta.url)),
-            $data: fileURLToPath(new URL('./src/data', import.meta.url)), // Added
-            $components: fileURLToPath(new URL('./src/components', import.meta.url)), // Added
-            $styles: fileURLToPath(new URL('./src/styles', import.meta.url)), // Added
-            $assets: fileURLToPath(new URL('./src/assets', import.meta.url)), // Added - This fixes your error
+            $data: fileURLToPath(new URL('./src/data', import.meta.url)),
+            $components: fileURLToPath(new URL('./src/components', import.meta.url)),
+            $styles: fileURLToPath(new URL('./src/styles', import.meta.url)),
+            $assets: fileURLToPath(new URL('./src/assets', import.meta.url)),
         },
     },
 
     base: '/personal-website/',
-
-    // Explicitly include asset types
-    assetsInclude: ['**/*.webp', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg', '**/*.gif'], // Added
+    assetsInclude: ['**/*.webp', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg', '**/*.gif'],
 
     build: {
         rollupOptions: {

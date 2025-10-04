@@ -1,14 +1,14 @@
 <script lang="ts">
-    import type {Component} from 'svelte'
-    import {onMount} from 'svelte'
+    import type { Component } from 'svelte'
+    import { onMount } from 'svelte'
     import personalWebsiteImg from '$assets/personal-website.webp'
     import topPicture from '$assets/top_picture.webp'
     import Hero from '$components/Hero.svelte'
     import LoadingSpinner from '$components/LoadingSpinner.svelte'
     import Navigation from '$components/Navigation.svelte'
-    import {loadEmailJSAsync} from '$lib/emailUtils'
-    import {preloadImages} from '$lib/imagePreloader'
-    import {loadStructuredData} from '$lib/structuredData'
+    import { loadEmailJSAsync } from '$lib/emailUtils'
+    import { preloadImages } from '$lib/imagePreloader'
+    import { loadStructuredData } from '$lib/structuredData'
     import '$styles/globals.scss'
     import '$styles/components/app.scss'
 
@@ -214,7 +214,7 @@
 <div class="app-container">
     {#if loadingStatus === 'loading'}
         <div class="app-loading">
-            <LoadingSpinner/>
+            <LoadingSpinner />
         </div>
     {:else if loadingStatus === 'error'}
         <div class="app-error">
@@ -224,24 +224,24 @@
         </div>
     {:else if isAppReady}
         <div>
-            <Navigation/>
+            <Navigation />
             <main class="app-main">
-                <Hero/>
+                <Hero />
                 {#if canShowLazyContent}
                     {#if Services}
-                        <Services/>
+                        <Services />
                     {/if}
                     {#if About}
-                        <About/>
+                        <About />
                     {/if}
                     {#if Skills}
-                        <Skills/>
+                        <Skills />
                     {/if}
                     {#if Projects}
-                        <Projects/>
+                        <Projects />
                     {/if}
                     {#if Contact}
-                        <Contact emailjsReady={loadingState.isEmailJSReady}/>
+                        <Contact emailjsReady={loadingState.isEmailJSReady} />
                     {/if}
                 {:else}
                     <div class="app-lazy-loading">
@@ -257,10 +257,10 @@
 
             {#if canShowLazyContent}
                 {#if Footer}
-                    <Footer/>
+                    <Footer />
                 {/if}
                 {#if BackToTop}
-                    <BackToTop/>
+                    <BackToTop />
                 {/if}
             {/if}
         </div>

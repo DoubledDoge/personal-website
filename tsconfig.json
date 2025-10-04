@@ -46,7 +46,7 @@
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.svelte",
-    "src/*.svelte",
+    "src/App.svelte",
     "*.js",
     "*.ts",
     "vite.config.js",
