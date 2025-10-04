@@ -184,4 +184,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **v1.x.x** - Original Vue.js implementation
 
 ---
+
 _Last Updated: 2025_
