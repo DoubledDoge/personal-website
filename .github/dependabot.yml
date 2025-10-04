@@ -1,68 +1,73 @@
 version: 2
 updates:
-    - package-ecosystem: 'npm'
-      directory: '/'
-      schedule:
-          interval: 'weekly'
-          day: 'monday'
-          time: '09:00'
-      open-pull-requests-limit: 3
-      versioning-strategy: 'auto'
-      labels:
-          - 'dependencies'
-      reviewers:
-          - 'DoubledDoge'
-      assignees:
-          - 'DoubledDoge'
-      groups:
-          production-dependencies:
-              patterns:
-                  - '@emailjs/*'
-                  - 'svelte'
-              update-types:
-                  - 'minor'
-                  - 'patch'
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    open-pull-requests-limit: 3
+    versioning-strategy: 'auto'
+    labels:
+      - 'dependencies'
+    reviewers:
+      - 'DoubledDoge'
+    assignees:
+      - 'DoubledDoge'
+    groups:
+      production-dependencies:
+        patterns:
+          - '@emailjs/*'
+          - 'svelte'
+          - '@fontsource-variable/*'
+        update-types:
+          - 'minor'
+          - 'patch'
 
-          dev-dependencies:
-              patterns:
-                  - '@eslint/*'
-                  - '@sveltejs/*'
-                  - '@tailwindcss/*'
-                  - 'eslint*'
-                  - 'prettier*'
-                  - 'vite*'
-                  - 'husky'
-                  - 'lint-staged'
-                  - 'tailwindcss'
-                  - 'globals'
-              update-types:
-                  - 'minor'
-                  - 'patch'
+      dev-dependencies:
+        patterns:
+          - '@eslint/*'
+          - '@sveltejs/*'
+          - 'eslint*'
+          - 'prettier*'
+          - 'vite*'
+          - 'husky'
+          - 'lint-staged'
+          - 'globals'
+          - 'stylelint*'
+          - 'typescript*'
+          - 'unplugin-fonts'
+          - 'vite-plugin-*'
+          - 'sass'
+          - 'svelte-eslint-parser'
+        update-types:
+          - 'minor'
+          - 'patch'
 
-          major-updates:
-              patterns:
-                  - '*'
-              update-types:
-                  - 'major'
+      major-updates:
+        patterns:
+          - '*'
+        update-types:
+          - 'major'
 
-    - package-ecosystem: 'github-actions'
-      directory: '/'
-      schedule:
-          interval: 'weekly'
-          day: 'monday'
-          time: '09:00'
-      labels:
-          - 'dependencies'
-          - 'github-actions'
-      reviewers:
-          - 'DoubledDoge'
-      assignees:
-          - 'DoubledDoge'
-      groups:
-          actions-updates:
-              patterns:
-                  - '*'
-              update-types:
-                  - 'minor'
-                  - 'patch'
-                  - 'major'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+    labels:
+      - 'dependencies'
+      - 'github-actions'
+    reviewers:
+      - 'DoubledDoge'
+    assignees:
+      - 'DoubledDoge'
+    groups:
+      actions-updates:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+          - 'major'

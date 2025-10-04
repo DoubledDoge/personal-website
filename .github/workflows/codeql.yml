@@ -1,71 +1,72 @@
 name: CodeQL Security Analysis
 
 on:
-    push:
-        branches: ['main']
-    pull_request:
-        branches: ['main']
-    schedule:
-        - cron: '30 1 * * 0' # Weekly on Sundays
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ 'main' ]
+  schedule:
+    - cron: '30 1 * * 0' # Weekly on Sundays
 
 concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-    analyze:
-        name: Security Analysis
-        runs-on: ubuntu-latest
-        timeout-minutes: 360
-        permissions:
-            security-events: write
-            packages: read
-            actions: read
-            contents: read
-            pull-requests: write
+  analyze:
+    name: Security Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+      pull-requests: write
 
-        strategy:
-            fail-fast: false
-            matrix:
-                language: ['javascript-typescript']
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript-typescript' ]
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-            - name: Setup Node.js (for better JavaScript analysis)
-              uses: actions/setup-node@v5
-              with:
-                  node-version: '20'
-                  cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-            - name: Initialize CodeQL
-              uses: github/codeql-action/init@v3
-              with:
-                  languages: ${{ matrix.language }}
-                  build-mode: none
-                  queries: +security-and-quality
-                  config: |
-                      name: "Enhanced JavaScript Security Analysis"
-                      queries:
-                        - uses: security-and-quality
-                        - uses: security-extended
-                      paths-ignore:
-                        - "dist/"
-                        - "node_modules/"
-                        - "**/*.min.js"
-                        - "**/*.bundle.js"
-                      paths:
-                        - "src/"
-                        - "*.js"
-                        - "*.config.js"
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: +security-and-quality
+          config: |
+            name: "Enhanced JavaScript Security Analysis"
+            queries:
+              - uses: security-and-quality
+              - uses: security-extended
+            paths-ignore:
+              - "dist/"
+              - "node_modules/"
+              - "**/*.min.js"
+              - "**/*.bundle.js"
+            paths:
+              - "src/"
+              - "*.ts"
+              - "*.js"
+              - "*.config.js"
 
-            - name: Install dependencies (for better analysis context)
-              run: npm ci
-              continue-on-error: true
+      - name: Install dependencies (for better analysis context)
+        run: npm ci
+        continue-on-error: true
 
-            - name: Perform CodeQL Analysis
-              uses: github/codeql-action/analyze@v3
-              with:
-                  category: '/language:${{ matrix.language }}'
-                  upload: true
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:${{ matrix.language }}'
+          upload: true
