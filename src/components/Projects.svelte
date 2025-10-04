@@ -1,59 +1,88 @@
-<script>
+<script lang="ts">
     import {onMount} from 'svelte'
-    import androidImg from '../assets/android-university.webp'
-    import cPlusPlusUniversityImg from '../assets/cPlusPlus-university.webp'
-    import cSharpUniversityImg from '../assets/cSharp-university.webp'
-    import personalWebsiteImg from '../assets/personal-website.webp'
-    import projectsData from '../data/projects.json'
-    import {preloadImages} from '../lib/imagePreloader.js'
-    import '../styles/components/projects.scss'
+    import androidImg from '$assets/android-university.webp'
+    import cPlusPlusUniversityImg from '$assets/cPlusPlus-university.webp'
+    import cSharpUniversityImg from '$assets/cSharp-university.webp'
+    import personalWebsiteImg from '$assets/personal-website.webp'
+    import projectsData from '$data/projects.json'
+    import {preloadImages} from '$lib/imagePreloader'
+    import '$styles/components/projects.scss'
 
-    let projects = $state([])
-    let categories = $state([])
-    let selectedCategory = $state('All')
-    let loadedImages = $state(new Map())
+    interface Project {
+        id: number
+        category: string
+        image: string
+        title: string
+        description: string
+        technologies: string[]
+        gitURL: string | null
+        webURL: string | null
+    }
 
-    let filteredProjects = $derived(
+    type ImageMap = Record<string, string>
+
+    let projects: Project[] = $state([])
+    let categories: string[] = $state([])
+    let selectedCategory: string = $state('All')
+    let loadedImages: Map<string, string> = $state(new Map())
+
+    /**
+     * Filters projects based on a selected category
+     */
+    let filteredProjects: Project[] = $derived(
         selectedCategory === 'All'
             ? projects
-            : projects.filter(project => project.category === selectedCategory)
+                : projects.filter((project: Project) => project.category === selectedCategory)
     )
 
-    const getFilterButtonClasses = category => {
-        let classes = ['projects-filter-button']
+    /**
+     * Generates CSS classes for filter buttons based on active state
+     * @param category - The category to generate classes for
+     */
+    const getFilterButtonClasses = (category: string): string => {
+        const classes: string[] = ['projects-filter-button']
         classes.push(selectedCategory === category ? 'active' : 'inactive')
         return classes.join(' ')
     }
 
-    onMount(async () => {
+    /**
+     * Loads project data, maps image paths, and preloads images for performance
+     */
+    onMount(async (): Promise<void> => {
         try {
             projects = projectsData.projects
             categories = projectsData.categories
 
-            const imageMap = {
+            const imageMap: ImageMap = {
                 '/src/assets/personal-website.webp': personalWebsiteImg,
                 '/src/assets/cSharp-university.webp': cSharpUniversityImg,
                 '/src/assets/cPlusPlus-university.webp': cPlusPlusUniversityImg,
                 '/src/assets/android-university.webp': androidImg,
             }
 
-            projects = projects.map(project => ({
-                ...project,
-                image: imageMap[project.image] || project.image,
-            }))
+            projects = projects.map(
+                    (project: Project): Project => ({
+                        ...project,
+                        image: imageMap[project.image] || project.image,
+                    })
+            )
 
-            const imageSources = projects.map(project => project.image)
+            const imageSources: string[] = projects.map((project: Project) => project.image)
             await preloadImages(imageSources)
 
-            imageSources.forEach(src => {
+            imageSources.forEach((src: string): void => {
                 loadedImages.set(src, src)
             })
-        } catch (error) {
-            console.error('Error loading projects data:', error)
+        } catch (error: unknown) {
+            console.error('Error loading projects data or images:', error)
         }
     })
 
-    function handleCategorySelect(category) {
+    /**
+     * Handles category filter selection
+     * @param category - The category to filter projects by
+     */
+    function handleCategorySelect(category: string): void {
         selectedCategory = category
     }
 </script>

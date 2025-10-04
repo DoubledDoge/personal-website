@@ -1,11 +1,14 @@
-<script>
+<script lang="ts">
+    import {scrollToSection} from '$lib/scrollUtils'
     import {onMount} from 'svelte'
-    import {scrollToSection} from '../lib/scrollUtils'
+    import '$styles/components/navigation.scss'
 
-    // Import SCSS styles
-    import '../styles/components/navigation.scss'
+    interface NavItem {
+        name: string
+        href: string
+    }
 
-    const navItems = [
+    const navItems: NavItem[] = [
         {name: 'Home', href: '#hero'},
         {name: 'Services', href: '#services'},
         {name: 'About', href: '#about'},
@@ -14,35 +17,52 @@
         {name: 'Contact', href: '#contact'},
     ]
 
-    let isOpen = $state(false)
-    let scrolled = $state(false)
-    let ticking = $state(false)
+    let isOpen: boolean = $state(false)
+    let scrolled: boolean = $state(false)
+    let ticking: boolean = $state(false)
 
-    const navigationClasses = $derived(() => {
-        let classes = ['navigation-bar']
+    /**
+     * Computed navigation bar CSS classes based on scroll state
+     */
+    const navigationClasses = $derived((): string => {
+        const classes: string[] = ['navigation-bar']
         classes.push(scrolled ? 'scrolled' : 'default')
         return classes.join(' ')
     })
 
-    function toggleMenu() {
+    /**
+     * Toggles the mobile navigation menu open/closed state
+     */
+    function toggleMenu(): void {
         isOpen = !isOpen
     }
 
-    function closeMenu() {
+    /**
+     * Closes the mobile navigation menu
+     */
+    function closeMenu(): void {
         isOpen = false
     }
 
-    function handleNavigation(event, targetId) {
+    /**
+     * Handles navigation link clicks with smooth scrolling
+     * @param event - The click event
+     * @param targetId - The target section ID to scroll to
+     */
+    function handleNavigation(event: Event, targetId: string): void {
         event.preventDefault()
-        const success = scrollToSection(targetId)
+        const success: boolean = scrollToSection(targetId)
         if (success && isOpen) {
             closeMenu()
         }
     }
 
-    function handleScroll() {
+    /**
+     * Throttled scroll handler to update navigation bar appearance
+     */
+    function handleScroll(): void {
         if (!ticking) {
-            requestAnimationFrame(() => {
+            requestAnimationFrame((): void => {
                 scrolled = window.scrollY > 50
                 ticking = false
             })
@@ -50,18 +70,22 @@
         }
     }
 
-    function handleKeydown(e) {
+    /**
+     * Handles keyboard navigation for accessibility
+     * @param e - The keyboard event
+     */
+    function handleKeydown(e: KeyboardEvent): void {
         if (e.key === 'Escape' && isOpen) {
             closeMenu()
         }
     }
 
-    onMount(() => {
+    onMount((): (() => void) => {
         window.addEventListener('scroll', handleScroll, {passive: true})
         window.addEventListener('keydown', handleKeydown)
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll, false)
+        return (): void => {
+            window.removeEventListener('scroll', handleScroll)
             window.removeEventListener('keydown', handleKeydown)
         }
     })
@@ -73,7 +97,7 @@
             <div class="navigation-brand-section">
                 <button
                         class="navigation-brand-button"
-                        onclick={e => handleNavigation(e, '#hero')}
+                        onclick={(e: Event) => handleNavigation(e, '#hero')}
                         type="button"
                 >
                     Dihan Britz
@@ -85,7 +109,7 @@
                     {#each navItems as item (item.href)}
                         <button
                                 type="button"
-                                onclick={e => handleNavigation(e, item.href)}
+                                onclick={(e: Event) => handleNavigation(e, item.href)}
                                 class="navigation-desktop-link"
                         >
                             {item.name}
@@ -141,7 +165,7 @@
             onclick={closeMenu}
             role="button"
             tabindex="0"
-            onkeydown={e => e.key === 'Enter' && closeMenu()}
+            onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && closeMenu()}
             aria-label="Close navigation menu"
     ></div>
 
@@ -150,7 +174,7 @@
             {#each navItems as item (item.href)}
                 <button
                         type="button"
-                        onclick={e => handleNavigation(e, item.href)}
+                        onclick={(e: Event) => handleNavigation(e, item.href)}
                         class="mobile-menu-link"
                 >
                     {item.name}

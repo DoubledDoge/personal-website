@@ -1,32 +1,40 @@
-<script>
+<script lang="ts">
     import {onMount} from 'svelte'
-    import codeIcon from '../assets/code-icon.svg'
-    import cSharpIcon from '../assets/cSharp-icon.svg'
-    import databaseIcon from '../assets/database-icon.svg'
-    import servicesData from '../data/services.json'
-    import '../styles/components/services.scss'
+    import codeIcon from '$assets/code-icon.svg'
+    import cSharpIcon from '$assets/cSharp-icon.svg'
+    import databaseIcon from '$assets/database-icon.svg'
+    import servicesData from '$data/services.json'
+    import '$styles/components/services.scss'
 
-    let services = $state([])
-    let hasServices = $derived(services.length > 0)
+    interface Service {
+        id: number
+        icon: string
+        name: string
+        description: string
+    }
 
-    onMount(async () => {
+    type IconMap = Record<string, string>
+
+    let services: Service[] = $state([])
+    let hasServices: boolean = $derived(services.length > 0)
+
+    onMount(async (): Promise<void> => {
         try {
             services = servicesData.services
 
-            const iconMap = {
+            const iconMap: IconMap = {
                 '/src/assets/cSharp-icon.svg': cSharpIcon,
                 '/src/assets/database-icon.svg': databaseIcon,
                 '/src/assets/code-icon.svg': codeIcon,
             }
 
-            services = services.map(service => ({
-                ...service,
-                icon: iconMap[service.icon] || service.icon,
-            }))
-
-            console.info('Services loaded successfully:', services.length)
-        }
-        catch (error) {
+            services = services.map(
+                    (service: Service): Service => ({
+                        ...service,
+                        icon: iconMap[service.icon] || service.icon,
+                    })
+            )
+        } catch (error: unknown) {
             console.error('Error loading services data:', error)
         }
     })

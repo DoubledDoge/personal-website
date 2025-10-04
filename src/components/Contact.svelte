@@ -1,32 +1,58 @@
-<script>
+<script lang="ts">
     import {onMount} from 'svelte'
-    import contactsData from '../data/contacts.json'
-    import {isEmailJSConfigured, sendEmail, validateEmail} from '../lib/emailUtils.js'
+    import contactsData from '$data/contacts.json'
+    import {isEmailJSConfigured, sendEmail, validateEmail} from '$lib/emailUtils'
+    import '$styles/components/contact.scss'
 
-    // Import SCSS styles
-    import '../styles/components/contact.scss'
+    interface Props {
+        emailjsReady?: boolean
+    }
 
-    let { emailjsReady = false } = $props()
+    interface ContactFormData {
+        email: string
+        subject: string
+        message: string
 
-    let formData = $state({
+        [key: string]: string
+    }
+
+    interface SubmitStatus {
+        type: 'success' | 'error'
+        message: string
+    }
+
+    type ValidationClass = 'default' | 'valid' | 'invalid'
+
+    let {emailjsReady = false}: Props = $props()
+
+    let formData: ContactFormData = $state({
         email: '',
         subject: '',
         message: '',
     })
 
-    let isSubmitting = $state(false)
-    let submitStatus = $state(null)
-    let statusTimeoutId = $state(null)
+    let isSubmitting: boolean = $state(false)
+    let submitStatus: SubmitStatus | null = $state(null)
+    let statusTimeoutId: ReturnType<typeof setTimeout> | null = $state(null)
 
-    const isFormValid = $derived(
+    /**
+     * Validates if the form has all required fields with minimum lengths
+     */
+    const isFormValid: boolean = $derived(
             formData.email.length > 0 && formData.subject.length >= 3 && formData.message.length >= 10
     )
 
-    const canSubmitForm = $derived(
+    /**
+     * Determines if the form can be submitted based on validation and service availability
+     */
+    const canSubmitForm: boolean = $derived(
             isFormValid && emailjsReady && isEmailJSConfigured() && !isSubmitting
     )
 
-    const formCompletionPercentage = $derived(() => {
+    /**
+     * Calculates form completion percentage based on field validation
+     */
+    const formCompletionPercentage = $derived((): number => {
         let completed = 0
         if (formData.email.length > 0) completed += 33
         if (formData.subject.length >= 3) completed += 33
@@ -34,22 +60,31 @@
         return Math.min(completed, 100)
     })
 
-    const getEmailValidationClass = $derived(() => {
+    /**
+     * Returns CSS class for email field validation state
+     */
+    const getEmailValidationClass = $derived((): ValidationClass => {
         if (formData.email.length === 0) return 'default'
         return validateEmail(formData.email) ? 'valid' : 'invalid'
     })
 
-    const getSubjectValidationClass = $derived(() => {
+    /**
+     * Returns CSS class for subject field validation state
+     */
+    const getSubjectValidationClass = $derived((): ValidationClass => {
         if (formData.subject.length === 0) return 'default'
         return formData.subject.length >= 3 ? 'valid' : 'invalid'
     })
 
-    const getMessageValidationClass = $derived(() => {
+    /**
+     * Returns CSS class for message field validation state
+     */
+    const getMessageValidationClass = $derived((): ValidationClass => {
         if (formData.message.length === 0) return 'default'
         return formData.message.length >= 10 ? 'valid' : 'invalid'
     })
 
-    onMount(() => {
+    onMount((): void => {
         if (!isEmailJSConfigured()) {
             submitStatus = {
                 type: 'error',
@@ -58,7 +93,11 @@
         }
     })
 
-    async function handleSubmit(event) {
+    /**
+     * Handles form submission with email service integration
+     * @param event - The form submit event
+     */
+    async function handleSubmit(event: SubmitEvent): Promise<void> {
         event.preventDefault()
 
         try {
@@ -86,7 +125,7 @@
             }
 
             scheduleStatusClear(submitStatus)
-        } catch (error) {
+        } catch {
             submitStatus = {
                 type: 'error',
                 message: 'An unexpected error occurred. Please try again or use direct email.',
@@ -97,12 +136,16 @@
         }
     }
 
-    function scheduleStatusClear(status) {
+    /**
+     * Schedules automatic clearing of the status message after a delay
+     * @param status - The status object to clear
+     */
+    function scheduleStatusClear(status: SubmitStatus): void {
         if (statusTimeoutId) {
             clearTimeout(statusTimeoutId)
         }
 
-        statusTimeoutId = setTimeout(() => {
+        statusTimeoutId = setTimeout((): void => {
             if (submitStatus === status) {
                 submitStatus = null
             }
@@ -110,15 +153,15 @@
         }, 5000)
     }
 
-    $effect(() => {
+    $effect((): void => {
         if (submitStatus?.type === 'success') {
-            const announcement = document.createElement('div')
+            const announcement: HTMLDivElement = document.createElement('div')
             announcement.setAttribute('aria-live', 'polite')
             announcement.setAttribute('aria-atomic', 'true')
             announcement.className = 'sr-only'
             announcement.textContent = 'Message sent successfully!'
             document.body.appendChild(announcement)
-            setTimeout(() => document.body.removeChild(announcement), 1000)
+            setTimeout((): HTMLDivElement => document.body.removeChild(announcement), 1000)
         }
     })
 </script>

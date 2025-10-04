@@ -1,23 +1,29 @@
-<script>
-    // Import SCSS styles
-    import '../styles/components/footer.scss'
+<script lang="ts">
+    import '$styles/components/footer.scss'
 
-    let currentYear = $state(new Date().getFullYear())
+    interface SiteInfo {
+        name: string
+        githubRepo: string
+        licenseUrl: string
+    }
 
-    let siteInfo = $state({
+    let currentYear: number = $state(new Date().getFullYear())
+
+    let siteInfo: SiteInfo = $state({
         name: 'Dihan Britz',
         githubRepo: 'https://github.com/DoubledDoge/personal-website',
         licenseUrl: 'https://github.com/DoubledDoge/personal-website/blob/main/LICENSE',
     })
 
-    $effect(() => {
-        const interval = setInterval(() => {
-            const newYear = new Date().getFullYear()
+    $effect((): (() => void) => {
+        const interval: ReturnType<typeof setInterval> = setInterval((): void => {
+            const newYear: number = new Date().getFullYear()
             if (newYear !== currentYear) {
                 currentYear = newYear
             }
-        }, 604800000) // Check every week
-        return () => clearInterval(interval)
+        }, 604800000)
+
+        return (): void => clearInterval(interval)
     })
 </script>
 

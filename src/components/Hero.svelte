@@ -1,40 +1,48 @@
-<script>
-    import topPicture from '../assets/top_picture.webp'
-    import textContent from '../data/text-content.json'
-    import {downloadResume} from '../lib/downloadUtils.js'
-    import {scrollToContact} from '../lib/scrollUtils.js'
-    import '../styles/components/hero.scss'
+<script lang="ts">
+    import topPicture from '$assets/top_picture.webp'
+    import textContent from '$data/text-content.json'
+    import {downloadResume} from '$lib/downloadUtils'
+    import {scrollToContact} from '$lib/scrollUtils'
+    import '$styles/components/hero.scss'
 
-    let profileImage = $state(topPicture)
-    let isImageLoading = $state(false)
-    let imageLoadError = $state(false)
-    let isDownloading = $state(false)
-    let downloadError = $state('')
+    let profileImage: string = $state(topPicture)
+    let isImageLoading: boolean = $state(false)
+    let imageLoadError: boolean = $state(false)
+    let isDownloading: boolean = $state(false)
+    let downloadError: string = $state('')
 
-    async function handleDownload(event) {
+    /**
+     * Handles resume download with proper state management and error handling
+     * @param event - The click event from the download button
+     */
+    async function handleDownload(event: Event): Promise<void> {
         event.preventDefault()
         if (isDownloading) return
 
         await downloadResume({
-            onStart: () => {
+            onStart: (): void => {
                 isDownloading = true
                 downloadError = ''
             },
-            onSuccess: () => {
+            onSuccess: (): void => {
                 isDownloading = false
             },
-            onError: errorMessage => {
+            onError: (errorMessage: string): void => {
                 downloadError = errorMessage
                 isDownloading = false
             },
         })
     }
 
-    function clearDownloadError() {
+    /**
+     * Clears the download error message from the UI
+     */
+    function clearDownloadError(): void {
         downloadError = ''
     }
 </script>
 
+<!-- Rest of your template stays exactly the same -->
 <section class="hero-section" id="hero">
     <div class="hero-container">
         <div class="hero-content-grid">

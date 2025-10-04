@@ -1,62 +1,96 @@
-﻿import js from '@eslint/js'
-import prettier from 'eslint-config-prettier'
+﻿import eslint from '@eslint/js'
+import prettierConfig from 'eslint-config-prettier'
+import prettierPlugin from 'eslint-plugin-prettier'
 import svelte from 'eslint-plugin-svelte'
 import globals from 'globals'
+import svelteParser from 'svelte-eslint-parser'
+import tslint from 'typescript-eslint'
 import svelteConfig from './svelte.config.js'
 
 export default [
     {
         ignores: ['node_modules/**', 'dist/**', 'build/**', 'public/**', '.svelte-kit/**'],
     },
-
-    js.configs.recommended,
+    eslint.configs.recommended,
+    ...tslint.configs.strict,
+    ...tslint.configs.stylistic,
     ...svelte.configs['flat/recommended'],
-
     {
         languageOptions: {
             globals: {
                 ...globals.browser,
-                ...globals.node, // For build scripts and config files
+                ...globals.node,
             },
             ecmaVersion: 2022,
             sourceType: 'module',
         },
+    },
+    {
+        files: ['**/*.{js,ts}'],
+        languageOptions: {
+            parser: tslint.parser,
+            parserOptions: {
+                project: './tsconfig.json',
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
+        plugins: {
+            '@typescript-eslint': tslint.plugin,
+            prettier: prettierPlugin,
+        },
         rules: {
-            // Relax some overly strict rules for personal projects
-            'no-unused-vars': [
+            'no-unused-vars': 'off',
+            'no-console': 'warn',
+            '@typescript-eslint/no-unused-vars': [
                 'warn',
                 {
                     argsIgnorePattern: '^_',
                     varsIgnorePattern: '^_',
+                    destructuredArrayIgnorePattern: '^_',
                 },
             ],
-            'no-console': 'off',
+            semi: ['error', 'always'],
+            quotes: ['error', 'double'],
+            'prettier/prettier': 'error',
         },
     },
-
     {
         files: ['**/*.svelte'],
         languageOptions: {
+            parser: svelteParser,
             parserOptions: {
+                parser: tslint.parser,
+                project: './tsconfig.json',
+                tsconfigRootDir: import.meta.dirname,
                 svelteConfig,
+                extraFileExtensions: ['.svelte'],
             },
         },
         rules: {
-            // Svelte-specific rules
             'svelte/no-target-blank': 'error',
             'svelte/no-at-debug-tags': 'warn',
-            'svelte/no-reactive-functions': 'off', // Sometimes useful in personal projects
+            'svelte/no-reactive-functions': 'off',
+            '@typescript-eslint/no-unused-vars': [
+                'warn',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                    destructuredArrayIgnorePattern: '^_',
+                },
+            ],
         },
     },
-
     {
-        files: ['vite.config.js', 'svelte.config.js', 'eslint.config.js'],
+        files: ['vite.config.js', 'svelte.config.js', 'eslint.config.js', 'stylelint.config.js'],
         languageOptions: {
-            globals: {
-                ...globals.node,
+            parser: tslint.parser,
+            parserOptions: {
+                project: null,
             },
         },
+        rules: {
+            '@typescript-eslint/no-unused-vars': 'off',
+        },
     },
-
-    prettier, // Keep Prettier as the last config
+    prettierConfig,
 ]

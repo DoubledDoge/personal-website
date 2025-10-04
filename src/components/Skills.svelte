@@ -1,55 +1,81 @@
-<script>
+<script lang="ts">
     import {onMount} from 'svelte'
-    import graduationIcon from '../assets/graduation-icon.svg'
-    import skillsData from '../data/skills.json'
+    import graduationIcon from '$assets/graduation-icon.svg'
+    import skillsData from '$data/skills.json'
+    import '$styles/components/skills.scss'
 
-    // Import SCSS styles
-    import '../styles/components/skills.scss'
+    interface Skill {
+        id: number
+        name: string
+        proficiency: number
+        category: 'Frontend' | 'Backend' | 'Database'
+    }
 
-    let skills = $state([])
-    let experiences = $state([])
-    let animatedWidths = $state({})
-    let isLoading = $state(true)
-    let loadError = $state(null)
+    interface Experience {
+        id: number
+        role: string
+        company: string
+        date: string
+        description: string
+        icon: string
+    }
 
-    onMount(async () => {
+    type IconMap = Record<string, string>
+
+    type AnimatedWidths = Record<number, string>
+
+    let skills: Skill[] = $state([])
+    let experiences: Experience[] = $state([])
+    let animatedWidths: AnimatedWidths = $state({})
+    let isLoading: boolean = $state(true)
+    let loadError: string | null = $state(null)
+
+    /**
+     * Loads skills and experiences data, maps icons, and sets up progress bar animations
+     */
+    onMount(async (): Promise<void> => {
         try {
-            skills = skillsData.skills
+            skills = skillsData.skills as Skill[]
             experiences = skillsData.experiences
 
-            const iconMap = {
+            const iconMap: IconMap = {
                 '/src/assets/graduation-icon.svg': graduationIcon,
             }
 
-            experiences = experiences.map(experience => ({
-                ...experience,
-                icon: iconMap[experience.icon] || experience.icon,
-            }))
+            experiences = experiences.map(
+                    (experience: Experience): Experience => ({
+                        ...experience,
+                        icon: iconMap[experience.icon] || experience.icon,
+                    })
+            )
 
-            console.info('Skills loaded successfully:', skills.length)
-            console.info('Experiences loaded successfully:', experiences.length)
-
-            const initialWidths = {}
-            skills.forEach(skill => {
+            const initialWidths: AnimatedWidths = {}
+            skills.forEach((skill: Skill): void => {
                 initialWidths[skill.id] = '0%'
             })
             animatedWidths = initialWidths
 
             isLoading = false
 
-            setTimeout(() => {
-                const targetWidths = {}
-                skills.forEach(skill => {
+            setTimeout((): void => {
+                const targetWidths: AnimatedWidths = {}
+                skills.forEach((skill: Skill): void => {
                     targetWidths[skill.id] = `${skill.proficiency}%`
                 })
                 animatedWidths = targetWidths
             }, 200)
-        } catch (error) {
-            console.error('Error loading skills data:', error)
+        } catch {
             loadError = 'Failed to load skills data'
             isLoading = false
         }
     })
+
+    /**
+     * Handles retry button click to reload the page
+     */
+    function handleRetry(): void {
+        window.location.reload()
+    }
 </script>
 
 <section class="skills-section" id="skills">
@@ -58,7 +84,7 @@
             <div class="skills-loading-column">
                 <div class="skills-loading-title"></div>
                 <div class="skills-loading-list">
-                    {#each Array(6).fill(0) as _, i (i)}
+                    {#each Array(6).fill(0) as _item, i (i)}
                         <div class="skills-loading-item">
                             <div class="skills-loading-header">
                                 <div class="skills-loading-name"></div>
@@ -95,11 +121,7 @@
     {:else if loadError}
         <div class="skills-error-container">
             <p class="skills-error-text">{loadError}</p>
-            <button
-                    type="button"
-                    onclick={() => window.location.reload()}
-                    class="skills-retry-button"
-            >
+            <button type="button" onclick={handleRetry} class="skills-retry-button">
                 Retry Loading
             </button>
         </div>

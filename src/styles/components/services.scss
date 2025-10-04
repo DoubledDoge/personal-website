@@ -3,115 +3,115 @@
 
 // ===== SERVICES SECTION =====
 .services-section {
-    @include section-container;
+  @include section-container;
 }
 
 .section-header {
-    @include section-header;
+  @include section-header;
 }
 
 .services-title {
-    @include section-title;
+  @include section-title;
 
-    text-align: center;
+  text-align: center;
 }
 
 .services-subtitle {
-    max-width: 42rem;
-    margin-right: auto;
-    margin-left: auto;
-    color: $color-text-muted;
-    font-size: $font-size-xl;
-    line-height: 1.625;
-    text-align: center;
+  color: $color-text-muted;
+  font-size: $font-size-xl;
+  line-height: 1.625;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 42rem;
+  text-align: center;
 }
 
 // ===== EMPTY STATES =====
 .services-empty-container {
-    text-align: center;
+  text-align: center;
 }
 
 .services-empty-text {
-    color: $color-text-muted;
+  color: $color-text-muted;
 }
 
 // ===== SERVICES GRID =====
 .services-grid {
-    @include responsive-grid(280px);
+  @include responsive-grid(280px);
 
-    @include mobile-only {
-        grid-template-columns: 1fr;
-    }
+  @include mobile-only {
+    grid-template-columns: 1fr;
+  }
 }
 
 // ===== SERVICE CARD =====
 .service-card {
-    @include card-glass;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+  @include card-glass;
 
-    align-items: center;
-    padding: $spacing-xl;
-    overflow: hidden;
-    border-radius: $radius-xl;
-    box-shadow: $shadow-card;
-    cursor: default;
-    backdrop-filter: blur(8px);
-    transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  backdrop-filter: blur(8px);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: $spacing-xl;
+  position: relative;
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
 
-    &:hover {
-        box-shadow: $shadow-card-elevated;
-    }
+  &:hover {
+    box-shadow: $shadow-card-elevated;
+  }
 }
 
 .service-icon-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: clamp(6.25rem, 8vw, 7.5rem);
-    height: clamp(6.25rem, 8vw, 7.5rem);
-    margin: 0 auto;
+  align-items: center;
+  display: flex;
+  height: clamp(6.25rem, 8vw, 7.5rem);
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  width: clamp(6.25rem, 8vw, 7.5rem);
 }
 
 .service-icon {
-    display: block !important;
-    width: clamp(6.25rem, 8vw, 7.5rem);
-    height: clamp(6.25rem, 8vw, 7.5rem);
-    object-fit: contain;
-    opacity: 1 !important;
-    transition: all $duration-normal ease;
+  display: block !important;
+  height: clamp(6.25rem, 8vw, 7.5rem);
+  object-fit: contain;
+  opacity: 1 !important;
+  transition: all $duration-normal ease;
+  width: clamp(6.25rem, 8vw, 7.5rem);
 
-    .service-card:hover & {
-        @include hover-scale;
+  .service-card:hover & {
+    @include hover-scale;
 
-        filter: brightness(1.1);
-    }
+    filter: brightness(1.1);
+  }
 }
 
 // ===== SERVICE CONTENT =====
 .service-content {
-    width: 100%;
-    margin-top: $spacing-xl;
-    text-align: center;
+  margin-top: $spacing-xl;
+  text-align: center;
+  width: 100%;
 }
 
 .service-title {
-    margin-bottom: $spacing-lg;
-    font-weight: 600;
-    font-size: clamp($font-size-lg, 3vw, $font-size-xl);
-    text-transform: uppercase;
+  font-size: clamp($font-size-lg, 3vw, $font-size-xl);
+  font-weight: 600;
+  margin-bottom: $spacing-lg;
+  text-transform: uppercase;
 
-    @include text-gradient;
+  @include text-gradient;
 }
 
 .service-description {
-    color: $color-text-muted;
-    line-height: 1.6;
-    transition: color $duration-normal ease;
+  color: $color-text-muted;
+  line-height: 1.6;
+  transition: color $duration-normal ease;
 
-    .service-card:hover & {
-        color: $color-text-light;
-    }
+  .service-card:hover & {
+    color: $color-text-light;
+  }
 }

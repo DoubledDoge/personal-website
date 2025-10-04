@@ -4,6 +4,8 @@
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout
 *.js text eol=lf
+*.ts text eol=lf
+*.scss text eol=lf
 *.mjs text eol=lf
 *.svelte text eol=lf
 *.ts text eol=lf
@@ -75,6 +77,8 @@ PULL_REQUEST_TEMPLATE.md text eol=lf
 # GitHub language detection improvements
 *.svelte linguist-language=Svelte
 *.css linguist-language=CSS
+*.scss linguist-language=SCSS
+*.ts linguist-language=TypeScript
 docs/* linguist-documentation
 *.yml linguist-language=YAML
 *.md linguist-documentation
@@ -94,5 +98,9 @@ docs/ export-ignore
 .prettierrc export-ignore
 eslint.config.js export-ignore
 stylelint.config.js export-ignore
+.stylelintcache/ export-ignore
+.eslintcache/ export-ignore
+node_modules/ export-ignore
+dist/ export-ignore
 .env export-ignore
 .env.example export-ignore

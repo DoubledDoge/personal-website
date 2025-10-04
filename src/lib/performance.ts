@@ -1,28 +1,31 @@
-﻿/**
- * Performance timing and loader management utilities
- */
+﻿interface WindowWithPerformance extends Window {
+    hideInitialLoader: () => void
+    getLoadTime: () => number
+}
 
 class PerformanceManager {
+    private readonly startTime: number
+
     constructor() {
         this.startTime = performance.now()
     }
 
     /**
      * Get the current load time in milliseconds
-     * @returns {number} Load time since initialization
+     * @returns Load time since initialization
      */
-    getLoadTime() {
+    getLoadTime(): number {
         return performance.now() - this.startTime
     }
 
     /**
      * Hide the initial loading screen with a smooth transition
      */
-    hideInitialLoader() {
-        const loader = document.getElementById('initial-loading')
+    hideInitialLoader(): void {
+        const loader: HTMLElement | null = document.getElementById('initial-loading')
         if (loader) {
             loader.style.opacity = '0'
-            setTimeout(() => {
+            setTimeout((): void => {
                 loader.remove()
             }, 500)
         }
@@ -31,16 +34,15 @@ class PerformanceManager {
     /**
      * Set up global functions for compatibility with existing code
      */
-    setupGlobalFunctions() {
-        window.hideInitialLoader = () => this.hideInitialLoader()
-        window.getLoadTime = () => this.getLoadTime()
+    setupGlobalFunctions(): void {
+        const windowWithPerf = window as unknown as WindowWithPerformance
+        windowWithPerf.hideInitialLoader = (): void => this.hideInitialLoader()
+        windowWithPerf.getLoadTime = (): number => this.getLoadTime()
     }
 }
 
-// Create a singleton instance
 const performanceManager = new PerformanceManager()
 
-// Auto-setup global functions
 performanceManager.setupGlobalFunctions()
 
 export default performanceManager

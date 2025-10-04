@@ -15,8 +15,11 @@
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -24,16 +27,33 @@
       ],
       "$lib/*": [
         "src/lib/*"
+      ],
+      "$data/*": [
+        "src/data/*"
+      ],
+      "$components/*": [
+        "src/components/*"
+      ],
+      "$styles/*": [
+        "src/styles/*"
+      ],
+      "$assets/*": [
+        "src/assets/*"
       ]
     }
   },
   "include": [
+    "src/**/*.ts",
     "src/**/*.js",
-    "src/**/*.svelte"
+    "src/**/*.svelte",
+    "vite.config.js",
+    "svelte.config.js",
+    "vite-env.d.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "build"
+    "build",
+    ".svelte-kit"
   ]
 }

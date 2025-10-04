@@ -1,5 +1,13 @@
-<script>
-    import '../styles/components/loading-spinner.scss'
+<script lang="ts">
+    import '$styles/components/loading-spinner.scss'
+
+    interface Props {
+        label?: string
+        size?: 'small' | 'default' | 'large'
+        variant?: 'default' | 'overlay' | 'inline'
+        showText?: boolean
+        text?: string
+    }
 
     let {
         label = 'Loading content',
@@ -7,12 +15,21 @@
         variant = 'default',
         showText = false,
         text = 'Loading...',
-    } = $props()
+    }: Props = $props()
 
-    let gradientId = $derived(`spinner-gradient-${Math.random().toString(36).substring(2, 9)}`)
+    /**
+     * Generates a unique gradient ID for the spinner to avoid conflicts
+     * when multiple spinners are rendered on the same page
+     */
+    let gradientId: string = $derived(
+            `spinner-gradient-${Math.random().toString(36).substring(2, 9)}`
+    )
 
-    let spinnerClasses = $derived(() => {
-        let classes = []
+    /**
+     * Computes CSS classes for the spinner based on variant and size props
+     */
+    let spinnerClasses = $derived((): string => {
+        const classes: string[] = []
 
         if (variant === 'overlay') {
             classes.push('loading-spinner-overlay')

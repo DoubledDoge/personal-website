@@ -14,7 +14,6 @@ export default defineConfig(({ mode }) => ({
                 dev: mode === 'development',
                 css: 'external',
             },
-            // Remove comments from Svelte components in production
             preprocess:
                 mode === 'production'
                     ? {
@@ -55,10 +54,17 @@ export default defineConfig(({ mode }) => ({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
             $lib: fileURLToPath(new URL('./src/lib', import.meta.url)),
+            $data: fileURLToPath(new URL('./src/data', import.meta.url)), // Added
+            $components: fileURLToPath(new URL('./src/components', import.meta.url)), // Added
+            $styles: fileURLToPath(new URL('./src/styles', import.meta.url)), // Added
+            $assets: fileURLToPath(new URL('./src/assets', import.meta.url)), // Added - This fixes your error
         },
     },
 
     base: '/personal-website/',
+
+    // Explicitly include asset types
+    assetsInclude: ['**/*.webp', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.svg', '**/*.gif'], // Added
 
     build: {
         rollupOptions: {
@@ -76,7 +82,6 @@ export default defineConfig(({ mode }) => ({
                     const extType = fileName.split('.').pop()?.toLowerCase() || 'asset'
 
                     if (extType === 'svelte') {
-                        console.warn('WARNING: .svelte file being processed as asset:', fileName)
                         return 'assets/js/[name]-[hash].js'
                     }
 
@@ -93,13 +98,10 @@ export default defineConfig(({ mode }) => ({
                 },
             },
 
-            // Cleanup externals and warnings
             external: [],
             onwarn: (warning, defaultHandler) => {
-                // Be more permissive with warnings during debugging
                 if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return
                 if (warning.code === 'CIRCULAR_DEPENDENCY') return
-                console.warn('Build warning:', warning.message)
                 defaultHandler(warning)
             },
         },
@@ -113,15 +115,9 @@ export default defineConfig(({ mode }) => ({
         target: 'esnext',
 
         ...(mode === 'production' && {
-            terserOptions: {
-                compress: {
-                    drop_console: true,
-                    drop_debugger: true,
-                    pure_funcs: ['console.log', 'console.info', 'console.debug'],
-                },
-                format: {
-                    comments: false,
-                },
+            esbuild: {
+                target: 'esnext',
+                drop: ['console', 'debugger'],
             },
         }),
     },

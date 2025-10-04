@@ -1,26 +1,42 @@
-<script>
+<script lang="ts">
     import {onMount} from 'svelte'
-    import educationData from '../data/education.json'
-    import textContent from '../data/text-content.json'
+    import educationData from '$data/education.json'
+    import textContent from '$data/text-content.json'
+    import '$styles/components/about.scss'
 
-    // Import SCSS styles
-    import '../styles/components/about.scss'
+    interface EducationItem {
+        id: number
+        School: string
+        Degree: string
+        Year: string
+        description?: string
+    }
 
-    let education = $state([])
-    let stats = $state([])
-    const hasStats = $derived(stats.length > 0)
+    interface Statistic {
+        id: number
+        value: string
+        label: string
+        description: string
+        category: 'academic' | 'projects' | 'skills'
+    }
 
-    onMount(async () => {
+    let education: EducationItem[] = $state([])
+    let stats: Statistic[] = $state([])
+    const hasStats: boolean = $derived(stats.length > 0)
+
+    /**
+     * Loads education and statistics data from the JSON file with error handling
+     */
+    onMount(async (): Promise<void> => {
         try {
             education = educationData.education || []
-            stats = educationData.statistics || []
+            stats = (educationData.statistics || []) as Statistic[]
 
             if (!Array.isArray(education) || !Array.isArray(stats)) {
                 return Promise.reject(new Error('Invalid data structure in education.json'))
             }
-        }
-        catch (error) {
-            console.error('Error loading education/statistics data:', error)
+        } catch (error: unknown) {
+            console.error('Error loading education data:', error)
         }
     })
 </script>
