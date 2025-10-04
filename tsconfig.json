@@ -46,6 +46,9 @@
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.svelte",
+    "src/*.svelte",
+    "*.js",
+    "*.ts",
     "vite.config.js",
     "svelte.config.js",
     "vite-env.d.ts"
@@ -53,7 +56,6 @@
   "exclude": [
     "node_modules",
     "dist",
-    "build",
-    ".svelte-kit"
+    "build"
   ]
 }
