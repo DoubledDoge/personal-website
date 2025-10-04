@@ -49,7 +49,7 @@
   }
 
   &.active {
-    background-color: rgb(245 158 11 / 10%);
+    background-color: oklch(76.9% 0.165 70.08deg / 10%);
     border-color: $color-primary;
     color: $color-primary;
   }
@@ -69,8 +69,8 @@
 // ===== PROJECT CARD =====
 .project-card {
   @include card-base;
-
   display: flex;
+
   flex-direction: column;
   height: 100%;
   overflow: hidden;
@@ -136,7 +136,7 @@
   width: 3.5rem;
 
   &:hover {
-    background-color: rgb(245 158 11 / 10%);
+    background-color: oklch(76.9% 0.165 70.08deg / 10%);
     border-color: $color-primary;
 
     .project-action-icon {
@@ -147,7 +147,7 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 4px rgb(245 158 11 / 30%);
+    box-shadow: 0 0 0 4px oklch(76.9% 0.165 70.08deg / 30%);
     outline: none;
   }
 }

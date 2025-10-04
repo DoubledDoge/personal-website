@@ -21,8 +21,8 @@
 
 .skills-loading-title {
   @include loading-skeleton;
-
   height: $spacing-2xl;
+
   margin-bottom: $spacing-2xl;
   width: 8rem;
 }
@@ -46,30 +46,30 @@
 
 .skills-loading-name {
   @include loading-skeleton;
-
   height: $spacing-xl;
+
   width: 6rem;
 }
 
 .skills-loading-percentage {
   @include loading-skeleton;
-
   height: $spacing-xl;
+
   width: $spacing-3xl;
 }
 
 .skills-loading-bar {
   @include loading-skeleton;
-
   height: $spacing-sm;
+
   overflow: hidden;
   width: 100%;
 }
 
 .skills-loading-progress {
   @include loading-skeleton;
-
   height: 100%;
+
   width: 75%;
 }
 
@@ -79,17 +79,17 @@
 
 .skills-loading-tag {
   @include loading-skeleton;
-
   border-radius: $radius-xl;
   height: $spacing-lg;
+
   width: $spacing-4xl;
 }
 
 // ===== EXPERIENCES LOADING =====
 .experiences-loading-title {
   @include loading-skeleton;
-
   height: $spacing-2xl;
+
   margin-bottom: $spacing-2xl;
   width: 10rem;
 }
@@ -102,16 +102,16 @@
 
 .experiences-loading-item {
   @include loading-skeleton;
-
   align-items: flex-start;
   display: flex;
+
   gap: $spacing-lg;
 }
 
 .experiences-loading-icon {
   @include loading-skeleton;
-
   align-items: flex-start;
+
   border-radius: $radius-lg;
   display: flex;
   height: 5rem;
@@ -123,9 +123,9 @@
 
 .experiences-loading-icon-placeholder {
   @include loading-skeleton;
-
   height: 100%;
   max-height: 3.5rem;
+
   max-width: 3.5rem;
   width: 100%;
 }
@@ -139,29 +139,29 @@
 
 .experiences-loading-role {
   @include loading-skeleton;
-
   height: $spacing-xl;
+
   width: 8rem;
 }
 
 .experiences-loading-company {
   @include loading-skeleton;
-
   height: $spacing-lg;
+
   width: 6rem;
 }
 
 .experiences-loading-date {
   @include loading-skeleton;
-
   height: 0.875rem;
+
   width: 5rem;
 }
 
 .experiences-loading-description {
   @include loading-skeleton;
-
   height: 0.875rem;
+
   width: 100%;
 }
 
@@ -203,15 +203,15 @@
 // ===== SKILL ITEM =====
 .skill-item {
   @include card-glass;
-
   backdrop-filter: blur(5px);
   border-radius: $radius-xl;
+
   padding: $spacing-lg;
   transition: all $duration-normal ease;
 
   &:hover {
     border-color: $color-border-hover;
-    box-shadow: 0 10px 25px rgb(0 0 0 / 20%);
+    box-shadow: 0 10px 25px oklch(0% 0 0deg / 20%);
 
     @include hover-lift;
   }
@@ -248,7 +248,7 @@
 .skill-progress-bar {
   background: $color-primary-gradient;
   border-radius: $radius-sm;
-  box-shadow: 0 0 10px rgb(245 158 11 / 40%);
+  box-shadow: 0 0 10px oklch(76.9% 0.165 70.08deg / 40%);
   height: 100%;
   transition: width 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -283,9 +283,9 @@
 
 .experience-card {
   @include card-base;
-
   align-items: flex-start;
   backdrop-filter: blur(8px);
+
   background-color: $color-surface-card;
   border: 1px solid $color-border-subtle;
   border-radius: $radius-xl;

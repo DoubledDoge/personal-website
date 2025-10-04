@@ -17,9 +17,7 @@
     /**
      * Determines if the back-to-top button should be visible
      */
-    const isVisible = $derived(
-            isMounted && hasScrolledPastThreshold(VISIBILITY_THRESHOLD, scrollY)
-    )
+    const isVisible = $derived(isMounted && hasScrolledPastThreshold(VISIBILITY_THRESHOLD, scrollY))
 
     /**
      * Calculates scroll progress as a percentage (0-1)

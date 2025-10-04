@@ -1,33 +1,44 @@
 // ===== COLOR =====
 // Primary brand colors
-$color-primary: rgb(245 158 11);
-$color-secondary: rgb(236 72 153);
-$color-error: rgb(239 68 68);
-$color-success: rgb(34 197 94);
+$color-primary: oklch(76.9% 0.165 70.08deg);
+$color-secondary: oklch(65.6% 0.212 354.308deg);
+$color-error: oklch(63.7% 0.208 25.331deg);
+$color-success: oklch(72.3% 0.192 149.579deg);
 
 // Background colors
-$color-background: rgb(15 23 42);
-$color-surface-card: rgb(31 41 55 / 50%);
-$color-surface-elevated: rgb(31 41 55 / 80%);
-$color-surface-overlay: rgb(17 24 39 / 80%);
+$color-background: oklch(20.8% 0.04 265.755deg);
+$color-surface-card: oklch(27.8% 0.03 256.848deg / 50%);
+$color-surface-elevated: oklch(27.8% 0.03 256.848deg / 80%);
+$color-surface-overlay: oklch(21% 0.032 264.665deg / 80%);
 
 // Text colors
-$color-text: rgb(243 244 246);
-$color-text-muted: rgb(156 163 175);
-$color-text-light: rgb(209 213 219);
-$color-text-white: rgb(255 255 255);
+$color-text: oklch(96.7% 0.003 264.542deg);
+$color-text-muted: oklch(71.4% 0.019 261.325deg);
+$color-text-light: oklch(87.2% 0.009 258.338deg);
+$color-text-white: oklch(100% 0 89.876deg);
 
 // Border colors
-$color-border: rgb(75 85 99);
-$color-border-subtle: rgb(75 85 99 / 50%);
-$color-border-hover: rgb(245 158 11 / 30%);
+$color-border: oklch(44.6% 0.026 256.802deg);
+$color-border-subtle: oklch(44.6% 0.026 256.802deg / 50%);
+$color-border-hover: oklch(76.9% 0.165 70.08deg / 30%);
+$color-border-card: oklch(55.1% 0.023 264.364deg / 20%);
 
 // State colors
-$color-surface-hover: rgb(55 65 81);
-$color-surface-focus: rgb(55 65 81 / 80%);
+$color-surface-hover: oklch(37.3% 0.031 259.733deg);
+$color-surface-focus: oklch(37.3% 0.031 259.733deg / 80%);
 
 // Gradients
 $color-primary-gradient: linear-gradient(to right, $color-primary, $color-secondary);
+$color-primary-gradient-alternate: linear-gradient(
+                to right,
+                $color-primary,
+                oklch(70.5% 0.187 47.604deg)
+);
+$color-card-gradient: linear-gradient(
+                135deg,
+                oklch(21% 0.032 264.665deg / 80%) 0%,
+                oklch(27.8% 0.03 256.848deg / 60%) 100%
+);
 
 // ===== SPACING =====
 $spacing-xs: 0.25rem; // 4px
@@ -68,18 +79,16 @@ $duration-slow: 0.5s;
 $container-padding: clamp(1rem, 3vw, 2rem);
 
 // ===== SHADOWS =====
-$shadow-card:
-    0 4px 6px -1px rgb(0 0 0 / 10%),
-    0 2px 4px -2px rgb(0 0 0 / 10%);
-$shadow-card-hover:
-    0 10px 15px -3px rgb(0 0 0 / 10%),
-    0 4px 6px -4px rgb(0 0 0 / 10%);
-$shadow-card-elevated:
-    0 25px 50px -12px rgb(0 0 0 / 40%),
-    0 0 0 1px rgb(245 158 11 / 10%),
-    0 0 30px rgb(245 158 11 / 10%);
-$shadow-spinner: 0 0 8px rgb(245 158 11 / 40%);
-$shadow-spinner-indicator: 0 0 6px rgb(245 158 11 / 60%);
+$shadow-card: 0 4px 6px -1px oklch(0% 0 0deg / 10%),
+0 2px 4px -2px oklch(0% 0 0deg / 10%);
+$shadow-card-hover: 0 10px 15px -3px oklch(0% 0 0deg / 10%),
+0 4px 6px -4px oklch(0% 0 0deg / 10%);
+$shadow-card-elevated: 0 25px 50px -12px oklch(0% 0 0deg / 40%),
+0 0 0 1px oklch(76.9% 0.165 70.08deg / 10%),
+0 0 30px oklch(76.9% 0.165 70.08deg / 10%);
+$shadow-spinner: 0 0 8px oklch(76.9% 0.165 70.08deg / 40%);
+$shadow-spinner-indicator: 0 0 6px oklch(76.9% 0.165 70.08deg / 60%);
+$shadow-button: 0 0 0 4px oklch(76.9% 0.165 70.08deg / 30%);
 
 // ===== Z-INDEX SCALE =====
 $z-content: 1;

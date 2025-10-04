@@ -47,8 +47,8 @@
 .contact-icon-wrapper {
   align-items: center;
   backdrop-filter: blur(9px);
-  background: rgb(17 26 62);
-  border: 1px solid rgb(17 26 62);
+  background: oklch(23.3% 0.07 269.715deg);
+  border: 1px solid oklch(23.3% 0.07 269.715deg);
   border-radius: $radius-full;
   display: flex;
   height: 3.125rem;
@@ -109,13 +109,13 @@
 // ===== CONTACT FORM CONTAINER =====
 .contact-form-container {
   @include card-glass;
-
   backdrop-filter: blur(12px);
   border-radius: $radius-xl;
   box-shadow: $shadow-card;
   display: flex;
   flex-direction: column;
   min-height: 500px;
+
   padding: $spacing-xl;
   transition: all $duration-normal ease;
 
@@ -176,19 +176,19 @@
 
   &.valid {
     border-color: $color-success;
-    box-shadow: 0 0 0 1px rgb(34 197 94 / 20%);
+    box-shadow: 0 0 0 1px oklch(72.3% 0.192 149.579deg / 20%);
   }
 
   &.invalid {
     border-color: $color-error;
-    box-shadow: 0 0 0 1px rgb(239 68 68 / 20%);
+    box-shadow: 0 0 0 1px oklch(63.7% 0.208 25.331deg / 20%);
   }
 }
 
 .form-textarea {
   @include form-input;
-
   font-family: inherit;
+
   line-height: 1.6;
   min-height: 120px;
   resize: vertical;
@@ -221,7 +221,7 @@
 }
 
 .form-progress-bar {
-  background: linear-gradient(to right, $color-primary, rgb(249 115 22));
+  background: $color-primary-gradient;
   border-radius: $radius-sm;
   height: $spacing-xs;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -229,9 +229,9 @@
 
 .form-submit-button {
   @include btn-primary;
-
   padding: $spacing-lg $spacing-xl;
   position: relative;
+
   transition: all $duration-normal ease;
   width: 100%;
 
@@ -254,7 +254,7 @@
     cursor: pointer;
 
     &:hover {
-      background: linear-gradient(to right, rgb(217 136 9), rgb(222 63 143));
+      background: $color-card-gradient;
       transform: scale(1.02);
     }
   }
@@ -268,12 +268,12 @@
 
 .form-loading-spinner {
   @include loading-skeleton;
-
   border: 2px solid currentcolor;
   border-radius: $radius-full;
   border-top-color: transparent;
   color: $color-background;
   height: $spacing-xl;
+
   margin-left: -$spacing-xs;
   margin-right: $spacing-md;
   width: $spacing-xl;
@@ -297,16 +297,16 @@
   transition: all $duration-normal ease;
 
   &.success {
-    background-color: rgb(5 46 22);
+    background-color: oklch(26.6% 0.063 152.934deg);
     border-left-color: $color-success;
-    color: rgb(187 247 208);
+    color: oklch(92.5% 0.081 155.995deg);
     padding: $spacing-lg;
   }
 
   &.error {
-    background-color: rgb(69 10 10);
+    background-color: oklch(25.8% 0.089 26.042deg);
     border-left-color: $color-error;
-    color: rgb(254 202 202);
+    color: oklch(88.5% 0.059 18.334deg);
     padding: $spacing-lg;
   }
 }

@@ -157,8 +157,8 @@
 
 // ===== ERROR HANDLING =====
 .hero-error-message {
-  background-color: rgb(127 29 29 / 20%);
-  border: 1px solid rgb(239 68 68 / 30%);
+  background-color: oklch(39.6% 0.133 25.723deg / 20%);
+  border: 1px solid oklch(63.7% 0.208 25.331deg / 30%);
   border-radius: $radius-md;
   margin-top: $spacing-lg;
   padding: $spacing-md;
@@ -177,14 +177,14 @@
 }
 
 .hero-error-text {
-  color: rgb(248 113 113);
+  color: oklch(71.1% 0.166 22.216deg);
   font-size: $font-size-base;
 }
 
 .hero-dismiss-button {
   background: none;
   border: none;
-  color: rgb(252 165 165);
+  color: oklch(80.8% 0.103 19.571deg);
   cursor: pointer;
   font-size: $font-size-sm;
   margin-top: $spacing-sm;
@@ -192,7 +192,7 @@
   transition: color $duration-normal ease;
 
   &:hover {
-    color: rgb(254 202 202);
+    color: oklch(88.5% 0.059 18.334deg);
   }
 }
 

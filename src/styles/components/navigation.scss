@@ -5,7 +5,7 @@
 .navigation-bar {
   backdrop-filter: blur(8px);
   background: $color-surface-overlay;
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  border-bottom: 1px solid oklch(100% 0 89.876deg / 10%);
   left: 0;
   position: fixed;
   right: 0;
@@ -15,7 +15,7 @@
 
   &.scrolled {
     backdrop-filter: blur(20px);
-    background: rgb(17 24 39 / 95%);
+    background: oklch(21% 0.032 264.665deg / 95%);
     border-bottom: 1px solid $color-border-subtle;
   }
 }
@@ -171,9 +171,9 @@
 
 .mobile-menu-panel {
   backdrop-filter: blur(16px);
-  background: rgb(31 41 55 / 95%);
+  background: oklch(27.8% 0.03 256.848deg / 95%);
   border-top: 1px solid $color-surface-hover;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+  box-shadow: 0 25px 50px -12px oklch(0% 0 0deg / 25%);
   left: 0;
   position: fixed;
   right: 0;

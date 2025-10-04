@@ -2,256 +2,256 @@
 
 // ===== TEXT UTILITIES =====
 @mixin text-gradient {
-    color: transparent;
-    background: $color-primary-gradient;
-    background-clip: text;
+  color: transparent;
+  background: $color-primary-gradient;
+  background-clip: text;
 }
 
 @mixin visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    border: 0;
-    clip-path: inset(50%);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
 }
 
 // ===== CARD SYSTEM =====
 @mixin card-base {
-    padding: clamp($spacing-xl, 4vw, $spacing-2xl);
-    background-color: $color-surface-card;
-    border: 1px solid $color-border-subtle;
-    border-radius: $radius-xl;
-    box-shadow: $shadow-card;
-    backdrop-filter: blur(8px);
-    transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+  padding: clamp($spacing-xl, 4vw, $spacing-2xl);
+  background-color: $color-surface-card;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  backdrop-filter: blur(8px);
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @mixin card-hover {
-    border-color: $color-border-hover;
-    box-shadow: $shadow-card-elevated;
-    transform: translateY(-0.25rem);
+  border-color: $color-border-hover;
+  box-shadow: $shadow-card-elevated;
+  transform: translateY(-0.25rem);
 }
 
 @mixin card-glass {
-    background: linear-gradient(135deg, rgb(17 24 39 / 80%) 0%, rgb(31 41 55 / 60%) 100%);
-    border: 1px solid rgb(107 114 128 / 20%);
-    backdrop-filter: blur(8px);
+  background: $color-card-gradient;
+  border: 1px solid $color-border-card;
+  backdrop-filter: blur(8px);
 }
 
 // ===== BUTTON SYSTEM =====
 @mixin btn-base {
-    display: inline-flex;
-    gap: $spacing-sm;
-    align-items: center;
-    justify-content: center;
-    padding: $spacing-md $spacing-2xl;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: $radius-lg;
-    cursor: pointer;
-    transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  gap: $spacing-sm;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md $spacing-2xl;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $duration-normal cubic-bezier(0.4, 0, 0.2, 1);
 
-    &:focus {
-        outline: 2px solid $color-primary;
-        outline-offset: 2px;
-        box-shadow: 0 0 0 4px rgb(245 158 11 / 30%);
-    }
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    box-shadow: $shadow-button;
+  }
 
-    &:disabled {
-        transform: none !important;
-        cursor: not-allowed;
-        opacity: 0.6;
-    }
+  &:disabled {
+    transform: none !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
 
 @mixin btn-primary {
-    @include btn-base;
+  @include btn-base;
 
-    color: $color-background;
-    background: $color-primary-gradient;
+  color: $color-background;
+  background: $color-primary-gradient;
 
-    &:hover:not(:disabled) {
-        box-shadow: $shadow-card-hover;
-        transform: scale(1.05);
-    }
+  &:hover:not(:disabled) {
+    box-shadow: $shadow-card-hover;
+    transform: scale(1.05);
+  }
 }
 
 @mixin btn-secondary {
-    @include btn-base;
+  @include btn-base;
 
-    color: $color-primary;
-    background: transparent;
-    border: 2px solid $color-primary;
+  color: $color-primary;
+  background: transparent;
+  border: 2px solid $color-primary;
 
-    &:hover:not(:disabled) {
-        color: $color-background;
-        background-color: $color-primary;
-    }
+  &:hover:not(:disabled) {
+    color: $color-background;
+    background-color: $color-primary;
+  }
 }
 
 // ===== LAYOUT UTILITIES =====
 @mixin section-container {
-    width: 100%;
-    max-width: none;
-    margin-right: auto;
-    margin-left: auto;
-    padding: clamp($spacing-3xl, 8vw, $spacing-5xl) $container-padding;
+  width: 100%;
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
+  padding: clamp($spacing-3xl, 8vw, $spacing-5xl) $container-padding;
 }
 
 @mixin section-header {
-    margin-bottom: $spacing-4xl;
-    text-align: center;
+  margin-bottom: $spacing-4xl;
+  text-align: center;
 }
 
 @mixin section-title {
-    @include text-gradient;
+  @include text-gradient;
 
-    margin-bottom: $spacing-xl;
-    font-weight: bold;
-    font-size: $font-size-title;
-    text-align: left;
+  margin-bottom: $spacing-xl;
+  font-weight: bold;
+  font-size: $font-size-title;
+  text-align: left;
 
-    @include mobile-only {
-        text-align: center;
-    }
+  @include mobile-only {
+    text-align: center;
+  }
 }
 
 @mixin card-title {
-    @include text-gradient;
+  @include text-gradient;
 
-    margin-bottom: $spacing-md;
-    font-weight: 600;
-    font-size: $font-size-project-title;
-    line-height: 1.3;
+  margin-bottom: $spacing-md;
+  font-weight: 600;
+  font-size: $font-size-project-title;
+  line-height: 1.3;
 }
 
 @mixin responsive-grid($min-width: 20rem) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min($min-width, 100%), 1fr));
-    gap: clamp($spacing-xl, 5vw, $spacing-4xl);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min($min-width, 100%), 1fr));
+  gap: clamp($spacing-xl, 5vw, $spacing-4xl);
 }
 
 // ===== LOADING STATES =====
 @mixin loading-skeleton {
-    background-color: $color-surface-hover;
-    border-radius: $radius-sm;
+  background-color: $color-surface-hover;
+  border-radius: $radius-sm;
 }
 
 @mixin loading-shimmer {
-    @include loading-skeleton;
+  @include loading-skeleton;
 
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    &::after {
-        content: '';
-        position: absolute;
-        background: linear-gradient(90deg, transparent, rgb(255 255 255 / 10%), transparent);
-        transform: translateX(-100%);
-        animation: shimmer 1.5s infinite;
-        inset: 0;
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(90deg, transparent, oklch(100% 0 89.876deg / 10%), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 1.5s infinite;
+    inset: 0;
+  }
 }
 
 // ===== FORM ELEMENTS =====
 @mixin form-input {
-    width: 100%;
-    padding: $spacing-md;
-    color: $color-text;
-    font-size: $font-size-md;
-    background-color: $color-surface-elevated;
-    border: 1px solid $color-border-subtle;
-    border-radius: $radius-lg;
-    backdrop-filter: blur(4px);
-    transition: all $duration-normal ease;
+  width: 100%;
+  padding: $spacing-md;
+  color: $color-text;
+  font-size: $font-size-md;
+  background-color: $color-surface-elevated;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  backdrop-filter: blur(4px);
+  transition: all $duration-normal ease;
 
-    &::placeholder {
-        color: $color-text-muted;
-    }
+  &::placeholder {
+    color: $color-text-muted;
+  }
 
-    &:focus {
-        border-color: $color-primary;
-        outline: none;
-        box-shadow: 0 0 0 2px rgb(245 158 11 / 20%);
-    }
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+    box-shadow: 0 0 0 2px oklch(76.9% 0.165 70.08deg / 20%);
+  }
 
-    &:disabled {
-        background-color: rgb(17 24 39 / 80%);
-        cursor: not-allowed;
-        opacity: 0.6;
-    }
+  &:disabled {
+    background-color: oklch(21% 0.032 264.665deg / 80%);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
 
 // ===== HOVER EFFECTS =====
 @mixin hover-lift {
-    transition: transform $duration-normal ease;
+  transition: transform $duration-normal ease;
 
-    &:hover {
-        transform: translateY(-2px);
-    }
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 
 @mixin hover-scale {
-    transition: transform $duration-normal ease;
+  transition: transform $duration-normal ease;
 
-    &:hover {
-        transform: scale(1.05);
-    }
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 @mixin hover-glow($color: $color-primary) {
-    transition: box-shadow $duration-normal ease;
+  transition: box-shadow $duration-normal ease;
 
-    &:hover {
-        box-shadow: 0 0 20px rgb(245 158 11 / 20%);
-    }
+  &:hover {
+    box-shadow: 0 0 20px oklch(76.9% 0.165 70.08deg / 20%);
+  }
 }
 
 // ===== ICON UTILITIES =====
 @mixin icon-base($size: 1.5rem) {
-    flex-shrink: 0;
-    width: $size;
-    height: $size;
-    transition: transform $duration-normal ease;
+  flex-shrink: 0;
+  width: $size;
+  height: $size;
+  transition: transform $duration-normal ease;
 }
 
 @mixin icon-interactive {
-    @include icon-base;
+  @include icon-base;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 // ===== MEDIA QUERIES =====
 @mixin mobile-only {
-    @media (width <= 767px) {
-        @content;
-    }
+  @media (width <= 767px) {
+    @content;
+  }
 }
 
 @mixin tablet-up {
-    @media (width >= 768px) {
-        @content;
-    }
+  @media (width >= 768px) {
+    @content;
+  }
 }
 
 @mixin desktop-up {
-    @media (width >= 1024px) {
-        @content;
-    }
+  @media (width >= 1024px) {
+    @content;
+  }
 }
 
 @mixin large-desktop-up {
-    @media (width >= 1280px) {
-        @content;
-    }
+  @media (width >= 1280px) {
+    @content;
+  }
 }

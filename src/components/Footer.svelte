@@ -70,6 +70,4 @@
             </p>
         </div>
     </div>
-
-    <div class="footer-decoration"></div>
 </footer>
