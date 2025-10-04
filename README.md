@@ -4,53 +4,78 @@
 
 ## 📖 Overview
 
-This is a personal portfolio website showcasing skills, projects, and contact information. The site features a modern design with smooth animations, responsive layouts, and interactive components. Built with Svelte for optimal performance and simplicity.
+This is a modern personal portfolio website showcasing skills, projects, and professional experience. Built with Svelte
+5 and TypeScript, the site features a contemporary design with smooth animations, responsive layouts, and interactive
+components. Optimized for performance with Vite and deployed automatically via GitHub Actions.
 
 ## ✨ Features
 
-- 🎨 Modern and responsive design
-- ⚡ Optimized performance with Svelte's compiled approach
-- 📱 Mobile-friendly navigation
-- 🌙 Dark theme with custom styling
-- 📧 Contact form with EmailJS integration
-- 🎯 Smooth scroll navigation
-- 📊 Skills visualization
-- 💼 Project portfolio with filtering
-- 🗜️ Automatic build compression for faster loading
-- 🔒 Enhanced security headers and CSP
-- 📈 SEO optimized with structured data
+- 🎨 **Modern Design:** Clean, responsive interface with smooth animations
+- ⚡ **High Performance:** Svelte 5 with TypeScript for optimal bundle size and type safety
+- 📱 **Mobile-First:** Fully responsive design that works on all devices
+- 🌙 **Custom Theming:** Professional dark theme with CSS custom properties
+- 📧 **Contact Integration:** Working contact form with EmailJS integration
+- 🎯 **Smooth Navigation:** Scroll-based navigation with back-to-top functionality
+- 📊 **Interactive Skills:** Animated progress bars and skill visualization
+- 💼 **Project Portfolio:** Filterable project showcase with live demos
+- 🗜️ **Build Optimization:** Automatic compression, code splitting, and asset optimization
+- 🔒 **Security Ready:** Enhanced security headers and Content Security Policy
+- 📈 **SEO Optimized:** Structured data, meta tags, and performance optimization
+- ♿ **Accessibility:** WCAG compliant with proper ARIA labels and keyboard navigation
 
-## 🛠️ Technologies Used
+## 🛠️ Technology Stack
 
-- **Frontend Framework:** Svelte 5
-- **Styling:** TailwindCSS 4
+### Core Framework
+
+- **Framework:** Svelte 5
+- **Backend:** TypeScript
 - **Build Tool:** Vite 7
-- **Email Integration:** EmailJS
-- **Code Quality:** ESLint + Prettier
-- **Security:** CodeQL analysis
-- **Deployment:** GitHub Pages with automated CI/CD
+- **Frontend:** SCSS with modular component styles
 
-## 🚀 Setup Instructions
+### Development Tools
 
-1. Clone the repository:
+- **Type Safety:** TypeScript with strict configuration
+- **Code Quality:** ESLint + Prettier + Stylelint
+- **Git Hooks:** Husky + lint-staged for pre-commit validation
+- **Testing:** Automated CI/CD with GitHub Actions
+
+### External Services
+
+- **Email:** EmailJS for contact form functionality
+- **Fonts:** Inter Variable via Fontsource
+- **Deployment:** GitHub Pages with automated workflows
+
+### Performance Features
+
+- **Compression:** Gzip and Brotli compression
+- **Code Splitting:** Intelligent chunking and lazy loading
+- **Asset Optimization:** Image preloading and optimization
+- **Modern Output:** ESNext target for smaller bundles
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 20+ and npm
+- Git for version control
+
+### Installation
+
+1. **Clone the repository:**
 
 ```bash
 git clone https://github.com/DoubledDoge/personal-website.git
-```
-
-2. Navigate to the directory:
-
-```bash
 cd personal-website
 ```
 
-3. Install dependencies:
+2. **Install dependencies:**
 
 ```bash
 npm install
 ```
 
-4. Create `.env` file based on `.env.example`:
+3. **Environment setup:**
+   Create `.env` file for EmailJS integration:
 
 ```env
 VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
@@ -58,112 +83,105 @@ VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
 VITE_EMAILJS_SERVICE_ID=your_service_id_here
 ```
 
-5. Run development server:
+4. **Start development server:**
 
 ```bash
 npm run dev
 ```
 
-6. Build for production:
+5. **Build for production:**
 
 ```bash
-npm run build
+npm run build:production
 ```
 
-## 🛠️ Development
-
-Available scripts in the project:
+## 🛠️ Development Scripts
 
 ```bash
-npm run dev             # Start development server with host access
-npm run build           # Build for production with compression
-npm run preview         # Preview production build
-npm run format          # Format code with Prettier
-npm run lint            # Run ESLint
-npm run lint:check      # Check linting with codeframe format
-npm run lint:fix        # Auto-fix linting issues
-npm run security-audit  # Audit dependencies for vulnerabilities
+# Development
+npm run dev                 # Start dev server with host access
+npm run preview            # Preview production build
+
+# Building
+npm run build              # Standard build
+npm run build:production   # Optimized production build
+npm run clean              # Clean build artifacts
+
+# Code Quality
+npm run format             # Format all code with Prettier
+npm run lint               # Run ESLint and Stylelint
+npm run lint:js           # ESLint only
+npm run lint:css          # Stylelint only
+npm run lint:fix          # Auto-fix all linting issues
+npm run lint:staged       # Lint staged files (used by Husky)
+
+# Security
+npm run security-audit     # Audit dependencies for vulnerabilities
 ```
 
-## 📁 Project Structure
+## 🚀 Deployment & CI/CD
 
-```
-├── src/
-│   ├── components/     # Svelte components
-│   ├── assets/        # Images and static assets
-│   ├── lib/           # Utility functions and shared code
-|   ├── App.svelte     # Main application component
-|   ├── globals.css    # Global styles (And TailwindCSS)
-│   └── main.js        # Application entry point
-├── public/            # Static files
-├── .github/
-│   └── workflows/     # CI/CD automation
-├── dist/              # Production build output
-└── package.json       # Project configuration
-```
+### Automated Deployment
 
-## 🚀 Deployment
+- **GitHub Actions:** Automatic build and deploy on push to main
+- **GitHub Pages:** Static hosting with custom domain support
+- **Performance:** Build optimization and compression
 
-The project uses automated GitHub Actions for:
+### Continuous Integration
 
-- **Continuous Integration:** Code quality checks, linting, and security audits
-- **Automated Deployment:** Builds and deploys to GitHub Pages on every push to main
-- **Security Scanning:** Weekly CodeQL analysis for vulnerability detection
-- **Dependency Management:** Automated dependency updates via Dependabot
+- **Code Quality:** Automated linting and formatting checks
+- **Security:** Weekly CodeQL analysis and dependency audits
+- **Dependencies:** Automated updates via Dependabot
 
-## ⚡ Performance Features
+### Build Process
 
-- **Build Compression:** Automatic gzip and brotli compression
-- **Code Splitting:** Optimized chunks for faster loading
-- **Asset Optimization:** Efficient handling of images and fonts
-- **Modern Build Target:** ESNext for smaller bundle sizes
-- **Critical CSS:** Inline styles for immediate rendering
-- **Preload Hints:** Strategic resource preloading
+1. TypeScript compilation and type checking
+2. Svelte component compilation
+3. SCSS processing and optimization
+4. Asset bundling and compression
+5. Performance optimization (tree-shaking, code splitting)
+6. Security header configuration
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! Please follow these guidelines:
+
+### Getting Started
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Ensure all linting passes: `npm run lint`
+4. Test thoroughly in development: `npm run dev`
+5. Commit with conventional commits: `git commit -m 'feat: add amazing feature'`
+6. Push and create a Pull Request
 
-### Development Guidelines
+### Development Standards
 
-- Follow the existing code style (enforced by Prettier and ESLint)
-- Ensure all CI checks pass
-- Write meaningful commit messages
-- Test your changes thoroughly
+- **TypeScript:** Use strict typing throughout
+- **Components:** Follow existing Svelte 5 patterns
+- **Styling:** Use modular SCSS with design tokens
+- **Accessibility:** Maintain WCAG compliance
+- **Performance:** Consider bundle size and loading performance
 
-## 🏆 Special Thanks
+## 🏆 Acknowledgments
 
-Thanks to the following resources that inspired and helped with this project:
+Special thanks to the following resources and inspirations:
 
-1. ["How To Make A Portfolio Website Using Vue JS 3 , Vite , Tailwind CSS"](https://youtu.be/U10h8rrPe6g?si=FprBplIGIb9CdQrr) by OualiCode (Original design inspiration)
-2. [Svelte Documentation](https://svelte.dev/) - Excellent framework documentation
-3. [TailwindCSS Documentation](https://tailwindcss.com/) - Comprehensive styling guide
-4. [Vite Documentation](https://vitejs.dev/) - Modern build tooling
+- **[Svelte](https://svelte.dev/)** - Revolutionary frontend framework
+- **[TypeScript](https://www.typescriptlang.org/)** - Type safety and developer experience
+- **[Vite](https://vitejs.dev/)** - Lightning-fast build tooling
+- **[EmailJS](https://www.emailjs.com/)** - Client-side email functionality
+- **Original Design Inspiration:** ["Portfolio Website Using Vue JS 3"](https://youtu.be/U10h8rrPe6g) by OualiCode
 
 ## 📜 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## 📌 Notes
-
-- **Node.js 20+** required for development
-- **EmailJS credentials** needed for contact form functionality
-- **Development server** runs on `http://localhost:5000` (Vite default)
-- **Production builds** include automatic compression and optimization
-- **Security headers** configured for GitHub Pages deployment
-- **Automated updates** managed through Dependabot
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📋 Version History
 
-- **v2.x.x** - Complete migration to Svelte with a complete overhaul of the internal design and structure
+- **v2.1.0** - Complete TypeScript migration with enhanced type safety
+- **v2.0.0** - Svelte 5 migration with modern architecture
 - **v1.x.x** - Original Vue.js implementation
 
 ---
-
 _Last Updated: 2025_
