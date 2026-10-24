@@ -47,7 +47,7 @@ jobs:
 
   build-site:
     runs-on: ubuntu-latest
-    needs: [validate-tag]
+    needs: [ validate-tag ]
     if: always() && !cancelled() && !failure() && (needs.validate-tag.result == 'success' || needs.validate-tag.result == 'skipped')
 
     steps:
@@ -60,7 +60,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "pnpm"
 
       - name: Install dependencies
@@ -109,7 +109,7 @@ jobs:
   create-release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
-    needs: [validate-tag, deploy]
+    needs: [ validate-tag, deploy ]
 
     steps:
       - name: Checkout repository
