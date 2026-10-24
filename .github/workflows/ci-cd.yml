@@ -1,8 +1,8 @@
-name: CI
+name: CI/CD
 
 on:
   pull_request:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 concurrency:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   ci:
-    name: Continuous Integration
+    name: Build + Check Website
     runs-on: ubuntu-latest
 
     steps:
