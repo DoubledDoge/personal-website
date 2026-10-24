@@ -1,26 +1,26 @@
 # Personal Website
 
-![Personal Website Screenshot](/src/lib/assets/Preview-Image.webp "Preview Screenshot")
+![Personal Website Screenshot](/static/preview.jpg)
 
-## 📖 Overview
+## Overview
 
 This is a modern personal portfolio website showcasing skills, projects, and professional experience.
 
-## ✨ Features
+## Features
 
-- 🎨 **Modern Design:** Clean, responsive interface with smooth animations
-- ⚡ **High Performance:** Svelte 5 with TypeScript for optimal bundle size and type safety
-- 📱 **Mobile-First:** Fully responsive design that works on all devices
-- 🌙 **Custom Theming:** Professional dark theme with CSS custom properties
-- 🎯 **Smooth Navigation:** Scroll-based navigation with back-to-top functionality
-- 📊 **Interactive Skills:** Animated progress bars and skill visualization
-- 💼 **Project Portfolio:** Filterable project showcase with live demos
-- 🗜️ **Build Optimization:** Automatic compression, code splitting, and asset optimization
-- 🔒 **Security Ready:** Enhanced security headers and Content Security Policy
-- 📈 **SEO Optimized:** Structured data, meta tags, and performance optimization
-- ♿ **Accessibility:** WCAG compliant with proper ARIA labels and keyboard navigation
+- **Modern Design:** Clean, responsive interface with smooth animations
+- **High Performance:** Svelte 5 with TypeScript for optimal bundle size and type safety
+- **Mobile-First:** Fully responsive design that works on all devices
+- **Custom Theming:** Professional dark theme with CSS custom properties
+- **Smooth Navigation:** Scroll-based navigation with back-to-top functionality
+- **Interactive Skills:** Animated progress bars and skill visualization
+- **Project Portfolio:** Filterable project showcase with live demos
+-  **Build Optimization:** Automatic compression, code splitting, and asset optimization
+- **Security Ready:** Enhanced security headers and Content Security Policy
+- **SEO Optimized:** Structured data, meta tags, and performance optimization
+- **Accessibility:** WCAG compliant with proper ARIA labels and keyboard navigation
 
-## 🛠️ Technology Stack
+##️ Technology Stack
 
 ### Core Framework
 
@@ -28,30 +28,16 @@ This is a modern personal portfolio website showcasing skills, projects, and pro
 - **Backend:** TypeScript
 - **Build Tool:** Vite 7
 
-### Development Tools
-
-- **Type Safety:** TypeScript with strict configuration
-- **Code Quality:** ESLint + Prettier + Stylelint
-- **Git Hooks:** Husky + lint-staged for pre-commit validation
-- **Testing:** Automated CI/CD with GitHub Actions
-
 ### External Services
 
 - **Fonts:** Inter Variable via Fontsource
 - **Deployment:** GitHub Pages with automated workflows
 
-### Performance Features
-
-- **Compression:** Gzip and Brotli compression
-- **Code Splitting:** Intelligent chunking and lazy loading
-- **Asset Optimization:** Image preloading and optimization
-- **Modern Output:** ESNext target for smaller bundles
-
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 20+ and npm
+- Node.js 20+ and pnpm
 - Git for version control
 
 ### Installation
@@ -66,78 +52,51 @@ cd personal-website
 2. **Install dependencies:**
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. **Start development server:**
 
 ```bash
-bun run dev
+pnpm run dev
 ```
 
-4. **Build for production:**
+4. **Build project:**
 
 ```bash
-bun run build:production
+pnpm run build
 ```
 
-## 🛠️ Development Scripts
+## Development Scripts
 
 ```bash
 # Development
-bun run dev                 # Start dev server with host access
-bun run preview            # Preview production build
+pnpm run dev
+pnpm run preview
 
 # Building
-bun run build              # Standard build
-bun run build:production   # Optimized production build
-bun run clean              # Clean build artifacts
+pnpm run build
 
 # Code Quality
-bun run format             # Format all code with Prettier
-bun run lint               # Run ESLint and Stylelint
-bun run lint:fix          # Auto-fix all linting issues
-bun run lint:staged       # Lint staged files (used by Husky)
+pnpm run format
+pnpm run lint
 
 # Security
-buns run security-audit     # Audit dependencies for vulnerabilities
+buns run security-audit
 ```
 
-## 🚀 Deployment & CI/CD
-
-### Automated Deployment
-
-- **GitHub Actions:** Automatic build and deploy on push to main
-- **GitHub Pages:** Static hosting with custom domain support
-- **Performance:** Build optimization and compression
-
-### Continuous Integration
-
-- **Code Quality:** Automated linting and formatting checks via oxc
-- **Security:** Weekly CodeQL analysis
-- **Dependencies:** Automated updates via Dependabot
-
-### Build Process
-
-1. TypeScript compilation and type checking
-2. Svelte component compilation
-3. Asset bundling and compression
-4. Performance optimization (tree-shaking, code splitting)
-5. Security header configuration
-
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these preferred guidelines:
 
 ### Getting Started
 
 1. Fork the repository
-2. Install bun globally (Preferred package manager): `npm install -g bun`
-3. Create a feature branch: `git checkout -b feature/amazing-feature`
-4. Ensure all linting passes: `bun run lint`
-5. Test thoroughly in development: `bun run dev`
-6. Commit with conventional commits: `git commit -m 'feat: add amazing feature'`
-7. Push and create a Pull Request
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Ensure all linting passes: `pnpm run lint`
+4. Test thoroughly in development: `pnpm run dev`
+5. Commit with conventional commits: `git commit -m 'feat: add feature'`
+6. Push and create a Pull Request
 
 ### Development Standards
 
@@ -147,7 +106,7 @@ Contributions are welcome! Please follow these preferred guidelines:
 - **Accessibility:** Maintain WCAG compliance
 - **Performance:** Consider bundle size and loading performance
 
-## 🏆 Acknowledgments
+## Acknowledgments
 
 Special thanks to the following resources:
 - **[Svelte](https://svelte.dev/)** - Revolutionary frontend framework
@@ -161,6 +120,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📋 Version History
 
+- **v3.0.0** - Yet another rework and redesign for sveltekit
 - **v2.1.0** - Complete TypeScript migration with enhanced type safety
 - **v2.0.0** - Svelte 5 migration with modern architecture
 - **v1.x.x** - Original Vue.js implementation
