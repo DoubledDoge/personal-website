@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   ci:
-    name: Build + Check Website
+    name: Build + Check
     runs-on: ubuntu-latest
 
     steps:
