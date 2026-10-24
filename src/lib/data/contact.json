@@ -1,0 +1,55 @@
+{
+	"title": "Contact Me!",
+	"subtitle": "Let's connect. Every value below is a seperate link.",
+	"contacts": [
+		{
+			"contactText": "dbritz22@proton.me",
+			"external": false,
+			"header": "Primary Email",
+			"id": "primary-email",
+			"link": "mailto:dbritz22@proton.me",
+			"type": "email"
+		},
+		{
+			"contactText": "dihanbritz05@gmail.com",
+			"external": false,
+			"header": "Secondary Email",
+			"id": "secondary-email",
+			"link": "mailto:dihanbritz05@gmail.com",
+			"type": "email"
+		},
+		{
+			"contactText": "+27 66 337 0662",
+			"external": false,
+			"header": "Phone",
+			"id": "phone",
+			"link": "tel:+27663370662",
+			"type": "phone"
+		},
+		{
+			"contactText": "linkedin.com/in/dihan-britz",
+			"external": true,
+			"header": "LinkedIn",
+			"id": "linkedin",
+			"link": "https://www.linkedin.com/in/dihan-britz/",
+			"type": "social"
+		},
+		{
+			"contactText": "github.com/DoubledDoge",
+			"external": true,
+			"header": "GitHub",
+			"id": "github",
+			"link": "https://github.com/DoubledDoge",
+			"type": "social"
+		}
+	],
+	"status": [
+		{
+			"name": "Location",
+			"label": "Location",
+			"value": "Cape Town, South Africa"
+		},
+		{ "name": "TimeZone", "label": "Time zone", "value": "SAST (UTC+2)" },
+		{ "name": "CurrentTime", "label": "Current Time" }
+	]
+}

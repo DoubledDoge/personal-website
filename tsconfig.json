@@ -1,61 +1,10 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "bundler",
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2022"
-    ],
-    "allowJs": true,
-    "checkJs": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "$lib/*": [
-        "src/lib/*"
-      ],
-      "$data/*": [
-        "src/data/*"
-      ],
-      "$components/*": [
-        "src/components/*"
-      ],
-      "$styles/*": [
-        "src/styles/*"
-      ],
-      "$assets/*": [
-        "src/assets/*"
-      ]
-    }
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.js",
-    "src/**/*.svelte",
-    "src/App.svelte",
-    "*.js",
-    "*.ts",
-    "vite.config.js",
-    "svelte.config.js",
-    "vite-env.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build"
-  ]
+	"compilerOptions": {
+		"sourceMap": true,
+		"strict": true,
+		"types": ["$app/types", "vite/client"]
+	},
+	"exclude": ["node_modules", "build", ".svelte-kit", "src/service-worker"],
+	"extends": "$app/tsconfig",
+	"include": ["src", "*"]
 }

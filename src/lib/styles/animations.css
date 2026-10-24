@@ -1,0 +1,44 @@
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes drift {
+	from {
+		transform: translate3d(-2%, -3%, 0) scale(0.96);
+	}
+	to {
+		transform: translate3d(3%, 2%, 0) scale(1.04);
+	}
+}
+
+::view-transition-old(root) {
+	animation: root-fade-out 200ms ease both;
+}
+
+::view-transition-new(root) {
+	animation: root-fade-in 200ms ease both;
+}
+
+@keyframes root-fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes root-fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: none;
+	}
+}

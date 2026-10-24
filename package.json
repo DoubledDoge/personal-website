@@ -1,89 +1,64 @@
 {
-  "name": "personal-website",
-  "version": "2.2.0",
-  "private": true,
-  "description": "Dihan Britz's Personal Website for Jobs and Projects",
-  "keywords": [
-    "personal",
-    "website",
-    "portfolio",
-    "jobs",
-    "projects"
-  ],
-  "repository": "https://github.com/DoubledDoge/personal-website",
-  "license": "MIT",
-  "author": "DoubledDoge",
-  "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "build:production": "vite build --mode production",
-    "clean": "rm -rf dist",
-    "dev": "vite --host",
-    "format": "prettier --write .",
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:css": "stylelint '**/*.scss' --custom-formatter stylelint-formatter-pretty",
-    "lint:css:fix": "stylelint '**/*.scss' --fix",
-    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix",
-    "lint:js": "eslint '**/*.{svelte,js}' --format codeframe --format=pretty",
-    "lint:js:fix": "eslint '**/*.{svelte,js}' --fix",
-    "lint:staged": "lint-staged",
-    "prepare": "husky",
-    "preview": "vite preview --host",
-    "security-audit": "npm audit --omit=dev"
-  },
-  "lint-staged": {
-    "*.{js,svelte}": [
-      "eslint --cache --fix",
-      "prettier --write"
-    ],
-    "*.{scss}": [
-      "stylelint --cache --fix",
-      "prettier --write"
-    ],
-    "*.svelte": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.{md,json}": "prettier --write",
-    "package*.json": "npm audit --audit-level=high"
-  },
-  "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "@fontsource-variable/inter": "^5.2.6",
-    "svelte": "^5.39.9"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "@eslint/js": "^9.39.1",
-    "@sveltejs/vite-plugin-svelte": "^6.1.0",
-    "@types/node": "^24.9.1",
-    "eslint": "^9.39.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-formatter-codeframe": "^7.32.2",
-    "eslint-formatter-pretty": "^7.0.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-svelte": "^3.13.0",
-    "globals": "^16.5.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "prettier": "^3.7.3",
-    "prettier-plugin-packagejson": "^2.5.20",
-    "prettier-plugin-rational-order": "^1.0.3",
-    "prettier-plugin-svelte": "^3.4.0",
-    "sass": "^1.94.2",
-    "stylelint": "^16.26.1",
-    "stylelint-config-standard-scss": "^16.0.0",
-    "stylelint-formatter-pretty": "^4.0.1",
-    "stylelint-prettier": "^5.0.3",
-    "svelte-eslint-parser": "^1.3.3",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.0",
-    "unplugin-fonts": "^1.4.0",
-    "vite": "^7.2.6",
-    "vite-plugin-compression2": "^2.3.1",
-    "vite-plugin-eslint2": "^5.0.4",
-    "vite-plugin-stylelint": "^6.0.2",
-    "vite-preload": "^1.0.5"
-  }
+	"name": "personal-website",
+	"version": "3.0.0",
+	"private": true,
+	"description": "Dihan Britz's Personal Website for Jobs and Projects",
+	"keywords": [
+		"jobs",
+		"personal",
+		"portfolio",
+		"projects",
+		"website"
+	],
+	"bugs": "https://github.com/DoubledDoge/personal-website/issues",
+	"license": "MIT",
+	"author": "DoubledDoge",
+	"repository": "git@github.com:DoubledDoge/personal-website.git",
+	"type": "module",
+	"main": "src/app.html",
+	"types": "vite-env.d.ts",
+	"scripts": {
+		"build": "vite build",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && tsc -p src/service-worker",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"ci": "biome ci --no-errors-on-unmatched",
+		"security-audit": "pnpm audit --prod",
+		"dev": "vite dev",
+		"prepare": "svelte-kit sync",
+		"preview": "vite preview"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.ts",
+		"#lib/*": "./src/lib/*",
+		"#assets/*": "./src/lib/assets/*",
+		"#components/*": "./src/lib/components/*",
+		"#data/*": "./src/lib/data/*",
+		"#styles/*": "./src/lib/styles/*"
+	},
+	"packageManager": "pnpm@11.16.0",
+	"dependencies": {
+		"@fontsource-variable/inter": "^5.3.0",
+		"@fontsource-variable/jetbrains-mono": "^5.3.0",
+		"svelte-meta-tags": "^5.0.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.6.2",
+		"@commitlint/cli": "^21.2.4",
+		"@commitlint/config-conventional": "^21.2.4",
+		"@iconify-json/lucide": "^1.2.147",
+		"@sveltejs/adapter-static": "^4.0.0",
+		"@sveltejs/enhanced-img": "^1.0.0",
+		"@sveltejs/kit": "^3.1.0",
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"browserslist": "^4.29.4",
+		"lefthook": "^2.2.2",
+		"lightningcss": "^1.33.0",
+		"svelte": "^5.57.2",
+		"svelte-check": "^4.7.7",
+		"typescript": "^6.0.3",
+		"unplugin-icons": "^24.0.0",
+		"vite": "^8.3.5"
+	}
 }

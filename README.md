@@ -1,12 +1,10 @@
 # Personal Website
 
-![Personal Website Screenshot](/public/Preview-Image.webp 'Preview Screenshot')
+![Personal Website Screenshot](/src/lib/assets/Preview-Image.webp "Preview Screenshot")
 
 ## 📖 Overview
 
-This is a modern personal portfolio website showcasing skills, projects, and professional experience. Built with Svelte
-5 and TypeScript, the site features a contemporary design with smooth animations, responsive layouts, and interactive
-components. Optimized for performance with Vite and deployed automatically via GitHub Actions.
+This is a modern personal portfolio website showcasing skills, projects, and professional experience.
 
 ## ✨ Features
 
@@ -14,7 +12,6 @@ components. Optimized for performance with Vite and deployed automatically via G
 - ⚡ **High Performance:** Svelte 5 with TypeScript for optimal bundle size and type safety
 - 📱 **Mobile-First:** Fully responsive design that works on all devices
 - 🌙 **Custom Theming:** Professional dark theme with CSS custom properties
-- 📧 **Contact Integration:** Working contact form with EmailJS integration
 - 🎯 **Smooth Navigation:** Scroll-based navigation with back-to-top functionality
 - 📊 **Interactive Skills:** Animated progress bars and skill visualization
 - 💼 **Project Portfolio:** Filterable project showcase with live demos
@@ -30,7 +27,6 @@ components. Optimized for performance with Vite and deployed automatically via G
 - **Framework:** Svelte 5
 - **Backend:** TypeScript
 - **Build Tool:** Vite 7
-- **Frontend:** SCSS with modular component styles
 
 ### Development Tools
 
@@ -41,7 +37,6 @@ components. Optimized for performance with Vite and deployed automatically via G
 
 ### External Services
 
-- **Email:** EmailJS for contact form functionality
 - **Fonts:** Inter Variable via Fontsource
 - **Deployment:** GitHub Pages with automated workflows
 
@@ -64,7 +59,7 @@ components. Optimized for performance with Vite and deployed automatically via G
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/DoubledDoge/personal-website.git
+git clone https://github.com/DoubledDoge/personal-website
 cd personal-website
 ```
 
@@ -74,49 +69,38 @@ cd personal-website
 npm install
 ```
 
-3. **Environment setup:**
-   Create `.env` file for EmailJS integration:
-
-```env
-VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
-VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
-VITE_EMAILJS_SERVICE_ID=your_service_id_here
-```
-
-4. **Start development server:**
+3. **Start development server:**
 
 ```bash
-npm run dev
+bun run dev
 ```
 
-5. **Build for production:**
+4. **Build for production:**
 
 ```bash
-npm run build:production
+bun run build:production
 ```
 
 ## 🛠️ Development Scripts
 
 ```bash
 # Development
-npm run dev                 # Start dev server with host access
-npm run preview            # Preview production build
+bun run dev                 # Start dev server with host access
+bun run preview            # Preview production build
 
 # Building
-npm run build              # Standard build
-npm run build:production   # Optimized production build
-npm run clean              # Clean build artifacts
+bun run build              # Standard build
+bun run build:production   # Optimized production build
+bun run clean              # Clean build artifacts
 
 # Code Quality
-npm run format             # Format all code with Prettier
-npm run lint               # Run ESLint and Stylelint
-npm run lint:js           # ESLint only
-npm run lint:css          # Stylelint only
-npm run lint:fix          # Auto-fix all linting issues
-npm run lint:staged       # Lint staged files (used by Husky)
+bun run format             # Format all code with Prettier
+bun run lint               # Run ESLint and Stylelint
+bun run lint:fix          # Auto-fix all linting issues
+bun run lint:staged       # Lint staged files (used by Husky)
 
 # Security
-npm run security-audit     # Audit dependencies for vulnerabilities
+buns run security-audit     # Audit dependencies for vulnerabilities
 ```
 
 ## 🚀 Deployment & CI/CD
@@ -129,49 +113,47 @@ npm run security-audit     # Audit dependencies for vulnerabilities
 
 ### Continuous Integration
 
-- **Code Quality:** Automated linting and formatting checks
-- **Security:** Weekly CodeQL analysis and dependency audits
+- **Code Quality:** Automated linting and formatting checks via oxc
+- **Security:** Weekly CodeQL analysis
 - **Dependencies:** Automated updates via Dependabot
 
 ### Build Process
 
 1. TypeScript compilation and type checking
 2. Svelte component compilation
-3. SCSS processing and optimization
-4. Asset bundling and compression
-5. Performance optimization (tree-shaking, code splitting)
-6. Security header configuration
+3. Asset bundling and compression
+4. Performance optimization (tree-shaking, code splitting)
+5. Security header configuration
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these guidelines:
+Contributions are welcome! Please follow these preferred guidelines:
 
 ### Getting Started
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Ensure all linting passes: `npm run lint`
-4. Test thoroughly in development: `npm run dev`
-5. Commit with conventional commits: `git commit -m 'feat: add amazing feature'`
-6. Push and create a Pull Request
+2. Install bun globally (Preferred package manager): `npm install -g bun`
+3. Create a feature branch: `git checkout -b feature/amazing-feature`
+4. Ensure all linting passes: `bun run lint`
+5. Test thoroughly in development: `bun run dev`
+6. Commit with conventional commits: `git commit -m 'feat: add amazing feature'`
+7. Push and create a Pull Request
 
 ### Development Standards
 
 - **TypeScript:** Use strict typing throughout
 - **Components:** Follow existing Svelte 5 patterns
-- **Styling:** Use modular SCSS with design tokens
+- **Styling:** Use the latest supported styling options
 - **Accessibility:** Maintain WCAG compliance
 - **Performance:** Consider bundle size and loading performance
 
 ## 🏆 Acknowledgments
 
-Special thanks to the following resources and inspirations:
-
+Special thanks to the following resources:
 - **[Svelte](https://svelte.dev/)** - Revolutionary frontend framework
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety and developer experience
 - **[Vite](https://vitejs.dev/)** - Lightning-fast build tooling
-- **[EmailJS](https://www.emailjs.com/)** - Client-side email functionality
-- **Original Design Inspiration:** ["Portfolio Website Using Vue JS 3"](https://youtu.be/U10h8rrPe6g) by OualiCode
+- **[MDN](https://developer.mozilla.org/en-US/)** - Web Documentation
 
 ## 📜 License
 
@@ -185,4 +167,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-_Last Updated: 2025_
+_Last Updated: 2026_

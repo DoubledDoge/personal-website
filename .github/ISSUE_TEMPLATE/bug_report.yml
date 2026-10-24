@@ -50,3 +50,5 @@ body:
         - Microsoft Edge
         - Mobile Safari
         - Mobile Chrome
+        - Mobile Firefox
+        - Other

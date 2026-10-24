@@ -1,0 +1,29 @@
+{
+	"title": "Colophon",
+	"subtitle": "Behind the scenes of this website's construction.",
+	"sections": [
+		{
+			"kind": "object",
+			"title": "Technology Stack",
+			"entries": [
+				{ "name": "Framework", "value": "SvelteKit 3 with Svelte 5" },
+				{
+					"name": "Styling",
+					"value": "LightningCSS"
+				},
+				{ "name": "Icons", "value": "Lucide via unplugin-icons" },
+				{ "name": "Deployment", "value": "GitHub Pages" }
+			]
+		},
+		{
+			"kind": "text",
+			"title": "Design Philosophy",
+			"text": "The site is purely designed to reflect my passion for C# and .NET development, mimicking the aesthetic of an IDE. It uses a restrained color palette and monospace fonts for technical details to enhance the \"editor\" feel without being distracting."
+		},
+		{
+			"kind": "text",
+			"title": "Accessibility",
+			"text": "Care has been taken to ensure decorative elements (like the syntax) are hidden from screen readers, while providing meaningful text equivalents. Motion is reduced or disabled for users who prefer it."
+		}
+	]
+}

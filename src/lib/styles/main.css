@@ -1,0 +1,7 @@
+@layer variables, property, globals, animations, reveal;
+
+@import "variables.css" layer(variables);
+@import "property.css" layer(property);
+@import "globals.css" layer(globals);
+@import "animations.css" layer(animations);
+@import "reveal.css" layer(reveal);

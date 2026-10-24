@@ -1,0 +1,29 @@
+@property --gradient-angle {
+	syntax: "<angle>";
+	initial-value: 270deg;
+	inherits: false;
+}
+
+@property --phover-light {
+	syntax: "<color>";
+	initial-value: oklch(65% 0.2179 156deg);
+	inherits: false;
+}
+
+@property --phover-dark {
+	syntax: "<color>";
+	initial-value: oklch(80% 0.2679 156deg);
+	inherits: false;
+}
+
+@property --pactive-light {
+	syntax: "<color>";
+	initial-value: oklch(65% 0.2179 156deg);
+	inherits: false;
+}
+
+@property --pactive-dark {
+	syntax: "<color>";
+	initial-value: oklch(80% 0.2679 156deg);
+	inherits: false;
+}

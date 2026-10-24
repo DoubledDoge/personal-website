@@ -1,0 +1,49 @@
+{
+	"title": "Now",
+	"subtitle": "What I'm focused on at the moment.",
+	"sections": [
+		{
+			"kind": "list",
+			"title": "Current Focus",
+			"items": [
+				"Building this website and refining its design.",
+				"Maintaining other finished projects (to the best of my ability)",
+				"Improving my C# and .NET skills through niche applications.",
+				"Casually playing games that I love in my backlog."
+			]
+		},
+		{
+			"kind": "list",
+			"title": "Life & Interests",
+			"items": [
+				"Obsessing over dogs (instead has a cat).",
+				"Trying to find the perfect coffee bean.",
+				"Planning out my 'perfect' hardware setup.",
+				"Coding random things that I personally want to use.",
+				"Literature of all shapes and sizes! (Movies, series, books, GAMES, etc.)"
+			]
+		},
+		{
+			"kind": "list",
+			"title": "Reading & Learning",
+			"items": [
+				"Exploring modern frontend architectures.",
+				"Reading about distributed systems.",
+				"Discovering all the different rust rewrites.",
+				"Watching the decompilation and reverse engineering trend.",
+				"Steps to being a IT project manager."
+			]
+		},
+		{
+			"kind": "list",
+			"title": "Favourite Games",
+			"items": [
+				"1. Undertale",
+				"2. Super Mario Galaxy 1/2",
+				"3. Clair Obscur: Expedition 33",
+				"4. Final Fantasy X",
+				"5. Trails in the Sky 2nd Chapter (Remake)"
+			]
+		}
+	]
+}

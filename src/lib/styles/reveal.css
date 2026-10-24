@@ -1,0 +1,18 @@
+.reveal {
+	transition:
+		opacity var(--reveal-duration, 0.45s) ease var(--reveal-delay, 0s),
+		translate var(--reveal-duration, 0.45s) ease var(--reveal-delay, 0s),
+		transform 0.2s,
+		border-color 0.2s;
+
+	@starting-style {
+		opacity: 0;
+		translate: 0 10px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		transition: none;
+	}
+}

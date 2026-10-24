@@ -1,0 +1,33 @@
+{
+	"console": [
+		{ "delay": 600, "text": "> git log -1 --format='%h %s'" },
+		{
+			"color": "var(--text-muted)",
+			"delay": 400,
+			"text": "8a2f9c feat: implemented hireability improvements"
+		},
+		{ "delay": 800, "text": "> dotnet build --configuration Release" },
+		{
+			"color": "var(--text-muted)",
+			"delay": 300,
+			"text": "Determining projects to restore..."
+		},
+		{
+			"color": "var(--primary-accent)",
+			"delay": 400,
+			"text": "Build succeeded. (0 Errors, 0 Warnings)"
+		},
+		{ "delay": 600, "text": "> Starting development server..." },
+		{
+			"color": "var(--primary-accent)",
+			"delay": 0,
+			"text": "✔ Server Status: Online (Port 5173)"
+		}
+	],
+	"stats": [
+		{ "label": "Years Writing Code", "value": 3, "icon": "Calendar" },
+		{ "label": "Cups of Coffee", "value": 9999, "icon": "Coffee" },
+		{ "label": "Known Bugs", "value": 0, "icon": "Bug" },
+		{ "label": "Exceptions Survived", "value": 42, "icon": "ShieldAlert" }
+	]
+}

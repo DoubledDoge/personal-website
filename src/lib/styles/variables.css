@@ -1,0 +1,121 @@
+:root {
+	/* --- BASE COLOURS --- */
+
+	/* Accent */
+	--primary-light: oklch(65% 0.2179 156deg);
+	--primary-dark: oklch(80% 0.2679 156deg);
+	--primary-accent: light-dark(var(--primary-light), var(--primary-dark));
+
+	--phover-light: oklch(
+		from var(--primary-light) calc(l - 12%) calc(c - 0.03) h
+	);
+	--phover-dark: oklch(from var(--primary-dark) calc(l + 4%) calc(c - 0.03) h);
+	--primary-hover: light-dark(var(--phover-light), var(--phover-dark));
+
+	--pactive-light: oklch(
+		from var(--primary-light) calc(l - 25%) calc(c - 0.07) h
+	);
+	--pactive-dark: oklch(from var(--primary-dark) calc(l + 9%) calc(c - 0.07) h);
+	--primary-active: light-dark(var(--pactive-light), var(--pactive-dark));
+
+	--secondary-light: oklch(95% 0.0428 164deg);
+	--secondary-dark: oklch(26% 0.0514 164deg);
+	--secondary-accent: light-dark(var(--secondary-light), var(--secondary-dark));
+
+	/* Background */
+	--bg-light: oklch(98% 0 0);
+	--bg-dark: oklch(15% 0 0);
+	--bg-colour: light-dark(var(--bg-light), var(--bg-dark));
+
+	/* Card */
+	--card-light: oklch(94% 0.015 156deg);
+	--card-dark: oklch(20% 0.015 156deg);
+	--card-colour: light-dark(var(--card-light), var(--card-dark));
+
+	/* Border */
+	--border-light: oklch(88% 0.02 156deg);
+	--border-dark: oklch(26% 0.02 156deg);
+	--border-colour: light-dark(var(--border-light), var(--border-dark));
+
+	/* Text */
+	--text-light: oklch(20% 0 0);
+	--text-dark: oklch(90% 0 0);
+	--text-colour: light-dark(var(--text-light), var(--text-dark));
+
+	/* Text Muted */
+	--tmuted-light: oklch(45% 0 0);
+	--tmuted-dark: oklch(65% 0 0);
+	--text-muted: light-dark(var(--tmuted-light), var(--tmuted-dark));
+
+	/* Number */
+	--number-light: oklch(55% 0.18 70deg);
+	--number-dark: oklch(78% 0.16 75deg);
+	--number-color: light-dark(var(--number-light), var(--number-dark));
+
+	/* Gradient */
+	--gradient-start: var(--primary-accent);
+	--gradient-end: var(--secondary-accent);
+
+	--gradient: linear-gradient(
+		var(--gradient-angle, 270deg),
+		var(--gradient-start, --primary-accent),
+		var(--gradient-end, --secondary-accent)
+	);
+
+	/* Hover */
+	--card-hover-colour: light-dark(
+		oklch(from var(--card-light) calc(l - 3%) c h),
+		oklch(from var(--card-dark) calc(l + 4%) c h)
+	);
+
+	/* Shadows */
+	--shadow-md: 0 4px 6px -1px oklch(0 0 0deg / 10%);
+
+	/* --- THEME COLOURS --- */
+
+	/* Comment */
+	--comment-light: oklch(53% 0.1978 140deg);
+	--comment-dark: oklch(63% 0.2065 133deg);
+	--comment-color: light-dark(var(--comment-light), var(--comment-dark));
+
+	/* Function */
+	--function-light: oklch(41% 0.1869 29deg);
+	--function-dark: oklch(84% 0.15 80deg);
+	--function-color: light-dark(var(--function-light), var(--function-dark));
+
+	/* Keyword */
+	--keyword-light: oklch(45% 0.2027 257deg);
+	--keyword-dark: oklch(78% 0.1619 225deg);
+	--keyword-color: light-dark(var(--keyword-light), var(--keyword-dark));
+
+	/* String */
+	--string-light: oklch(46% 0.2086 15deg);
+	--string-dark: oklch(71% 0.0899 52deg);
+	--string-color: light-dark(var(--string-light), var(--string-dark));
+
+	/* Type */
+	--type-light: oklch(40% 0.2494 263deg);
+	--type-dark: oklch(82% 0.1983 182deg);
+	--type-color: light-dark(var(--type-light), var(--type-dark));
+
+	/* Variable */
+	--variable-light: oklch(35% 0.12 265deg);
+	--variable-dark: oklch(87% 0.08 225deg);
+	--variable-color: light-dark(var(--variable-light), var(--variable-dark));
+
+	/* --- GENERAL VARIABLES --- */
+
+	--font-family: "Inter Variable", "Inter Fallback", system-ui, sans-serif;
+	--font-mono: "JetBrains Mono Variable", "JetBrains Mono Fallback", monospace;
+
+	--header-height: 4rem;
+	--z-back: -1;
+	--z-normal: 1;
+	--z-sticky: 50;
+
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 1rem;
+
+	--max-width: 1600px;
+}

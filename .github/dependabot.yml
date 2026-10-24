@@ -1,73 +1,70 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
     open-pull-requests-limit: 3
-    versioning-strategy: 'auto'
+    versioning-strategy: "auto"
     labels:
-      - 'dependencies'
+      - "dependencies"
+      - "pnpm"
     reviewers:
-      - 'DoubledDoge'
+      - "DoubledDoge"
     assignees:
-      - 'DoubledDoge'
+      - "DoubledDoge"
     groups:
       production-dependencies:
         patterns:
-          - '@emailjs/*'
-          - 'svelte'
-          - '@fontsource-variable/*'
+          - "@fontsource-variable/*"
+          - "svelte-meta-tags"
         update-types:
-          - 'minor'
-          - 'patch'
+          - "minor"
+          - "patch"
 
       dev-dependencies:
         patterns:
-          - '@eslint/*'
-          - '@sveltejs/*'
-          - 'eslint*'
-          - 'prettier*'
-          - 'vite*'
-          - 'husky'
-          - 'lint-staged'
-          - 'globals'
-          - 'stylelint*'
-          - 'typescript*'
-          - 'unplugin-fonts'
-          - 'vite-plugin-*'
-          - 'sass'
-          - 'svelte-eslint-parser'
+          - "svelte"
+          - "svelte-check"
+          - "@sveltejs/*"
+          - "@commitlint/*"
+          - "@biomejs/*"
+          - "vite"
+          - "lefthook"
+          - "lightningcss"
+          - "typescript"
+          - "browserslist"
+          - "uplugin-icons"
         update-types:
-          - 'minor'
-          - 'patch'
+          - "minor"
+          - "patch"
 
       major-updates:
         patterns:
-          - '*'
+          - "*"
         update-types:
-          - 'major'
+          - "major"
 
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
     labels:
-      - 'dependencies'
-      - 'github-actions'
+      - "dependencies"
+      - "github-actions"
     reviewers:
-      - 'DoubledDoge'
+      - "DoubledDoge"
     assignees:
-      - 'DoubledDoge'
+      - "DoubledDoge"
     groups:
       actions-updates:
         patterns:
-          - '*'
+          - "*"
         update-types:
-          - 'minor'
-          - 'patch'
-          - 'major'
+          - "minor"
+          - "patch"
+          - "major"

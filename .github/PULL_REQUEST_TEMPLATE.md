@@ -1,7 +1,6 @@
 ## Description
 
 Please include:
-
 - A summary of the changes
 - Which issue is fixed (if applicable)
 - Relevant motivation and context

@@ -1,0 +1,6 @@
+{
+	"compilerOptions": {
+		"strict": true
+	},
+	"extends": "$app/tsconfig/service-worker"
+}

@@ -1,0 +1,34 @@
+{
+	"title": "About Me",
+	"subtitle": "Who I am, what I study and what I work with.",
+	"skills": {
+		"frameworks": [
+			{ "icon": "smartphone", "id": "android", "name": "Android SDK" },
+			{ "icon": "layout-template", "id": "svelte", "name": "Svelte" },
+			{ "icon": "boxes", "id": "dotnet", "name": ".NET" },
+			{ "icon": "globe-code", "id": "aspnet", "name": "ASP.NET" },
+			{ "icon": "panels-top-left", "id": "avalonia", "name": "Avalonia" }
+		],
+		"languages": [
+			{ "icon": "palette", "id": "css", "name": "CSS" },
+			{ "icon": "terminal", "id": "csharp", "name": "C#" },
+			{ "icon": "coffee", "id": "java", "name": "Java" },
+			{ "icon": "file-code", "id": "typescript", "name": "TypeScript" },
+			{ "icon": "smartphone-user-round", "id": "kotlin", "name": "Kotlin" },
+			{
+				"icon": "square-chevron-right",
+				"id": "shell",
+				"name": "Shell Scripting"
+			},
+			{ "icon": "code", "id": "html", "name": "HTML" },
+			{ "icon": "server", "id": "php", "name": "PHP" }
+		],
+		"tools": [
+			{ "icon": "database", "id": "sql", "name": "SQL" },
+			{ "icon": "database-zap", "id": "sqlite", "name": "SQLite" },
+			{ "icon": "git-branch", "id": "git", "name": "Git" },
+			{ "icon": "leaf", "id": "mongodb", "name": "MongoDB" },
+			{ "icon": "computer", "id": "linux", "name": "Linux" }
+		]
+	}
+}

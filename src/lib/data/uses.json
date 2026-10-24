@@ -1,0 +1,45 @@
+{
+	"title": "Uses",
+	"subtitle": "A list of the tools, software, and gear I use daily.",
+	"sections": [
+		{
+			"kind": "object",
+			"title": "Development",
+			"entries": [
+				{ "name": "OS", "value": "Windows 11 (Sadly at the moment)" },
+				{
+					"name": "Editor",
+					"value": "JetBrains WebStorm / Rider (dark mode lover, obviously)"
+				},
+				{ "name": "Terminal", "value": "PowerShell / Windows Terminal" },
+				{ "name": "Language", "value": "C#, TypeScript, Kotlin (learning)" },
+				{ "name": "Browser", "value": "Helium / Brave" }
+			]
+		},
+		{
+			"kind": "object",
+			"title": "Hardware",
+			"entries": [
+				{ "name": "Machine", "value": "ASUS Laptop" },
+				{
+					"name": "Keyboard",
+					"value": "Mechanical keyboard with tactile switches"
+				},
+				{
+					"name": "Mouse",
+					"value": "A random basic wired mouse"
+				}
+			]
+		},
+		{
+			"kind": "object",
+			"title": "Design & Productivity",
+			"entries": [
+				{ "name": "Design", "value": "Figma (for rough drafts)" },
+				{ "name": "Notes", "value": "Obsidian" },
+				{ "name": "Music", "value": "Spotify" },
+				{ "name": "Documents", "value": "MS Office (for now)" }
+			]
+		}
+	]
+}
