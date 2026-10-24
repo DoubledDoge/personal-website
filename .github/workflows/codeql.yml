@@ -48,7 +48,7 @@ jobs:
           languages: ${{ matrix.language }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm i
         continue-on-error: true
 
       - name: Perform CodeQL Analysis
