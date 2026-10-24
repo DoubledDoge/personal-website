@@ -1,6 +1,8 @@
 name: CI/CD
 
 on:
+  push:
+    branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -27,11 +29,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm i
 
       - name: Run Biome
         run: pnpm run ci

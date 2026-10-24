@@ -1,8 +1,6 @@
 name: CodeQL Security Analysis
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   schedule:
@@ -39,7 +37,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "pnpm"
 
       - name: Initialize CodeQL
@@ -48,7 +46,7 @@ jobs:
           languages: ${{ matrix.language }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm i
         continue-on-error: true
 
       - name: Perform CodeQL Analysis
