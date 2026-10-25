@@ -15,7 +15,7 @@
 			"id": "tripbuddy",
 			"title": "TripBuddy",
 			"description": "A comprehensive Android travel companion app featuring photo galleries with metadata and trip planning tools.",
-			"gitURL": "https://github.com/DoubledDoge/TripBuddy",
+			"gitURL": "https://github.com/DoubledDoge/tripbuddy",
 			"image": "tripbuddy.jxl",
 			"technologies": ["Java", "Android SDK", "XML", "SQLite"]
 		},
@@ -23,7 +23,7 @@
 			"id": "buzzbets",
 			"title": "BuzzBets",
 			"description": "Terminal-based drone racing betting game featuring race simulation mechanics through a console interface.",
-			"gitURL": "https://github.com/DoubledDoge/DroneRacingSimulator",
+			"gitURL": "https://github.com/DoubledDoge/buzzbets",
 			"image": "buzzbets.jxl",
 			"technologies": ["C#", "Console", "TypeGuard", "ConsolePrism"]
 		},
@@ -48,7 +48,7 @@
 			"id": "consoleprism",
 			"title": "ConsolePrism",
 			"description": "Console styling utility for C# that simplifies error messages, success notifications, and formatted output - a beginner-friendly alternative to Spectre.Console.",
-			"gitURL": "https://github.com/DoubledDoge/ConsoleDesign",
+			"gitURL": "https://github.com/DoubledDoge/consoleprism",
 			"image": "consoleprism.jxl",
 			"technologies": ["C#", ".NET"]
 		},
