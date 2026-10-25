@@ -6,7 +6,7 @@
 			"id": "personal-website",
 			"title": "Personal Website",
 			"description": "A personal website showcasing my skills and projects. You are on it right now!",
-			"webURL": "https://doubleddoge.github.io/personal-website/",
+			"webURL": "https://doubleddoge.github.io/personal-website",
 			"gitURL": "https://github.com/DoubledDoge/personal-website",
 			"image": "personal-website.jxl",
 			"technologies": ["TypeScript", "Svelte", "Vite", "CSS", "SvelteKit"]
