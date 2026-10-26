@@ -1,5 +1,15 @@
 <script lang="ts">
-import { Button, Card, Console, HeroImage, Resume, Stat, StatData } from "#lib";
+import {
+	Button,
+	Card,
+	Console,
+	HeroImage,
+	HeroImageJpg,
+	HeroImageWebp,
+	Resume,
+	Stat,
+	StatData,
+} from "#lib";
 import { goto } from "$app/navigation";
 import { resolve } from "$app/paths";
 import Bug from "~icons/lucide/bug";
@@ -108,12 +118,17 @@ const iconMap = {
 	</article>
 
 	<aside>
-		<enhanced:img
-			alt="Dihan Britz"
-			fetchpriority="high"
-			loading="eager"
-			src="{HeroImage}"
-		/>
+		<picture>
+			<source srcset={HeroImage} type="image/jxl" />
+			<source srcset={HeroImageWebp} type="image/webp" />
+
+			<img
+				alt="Dihan Britz"
+				fetchpriority="high"
+				loading="eager"
+				src={HeroImageJpg}
+			/>
+		</picture>
 	</aside>
 </section>
 
@@ -157,7 +172,7 @@ aside {
 	position: relative;
 	width: 100%;
 
-	& :global(img) {
+	img {
 		aspect-ratio: 2 / 3;
 		background-color: var(--card-colour);
 		border: 2px solid var(--border-colour);
@@ -168,7 +183,7 @@ aside {
 		z-index: var(--z-normal);
 	}
 
-	& :global(picture) {
+	picture {
 		align-items: center;
 		display: flex;
 		justify-content: center;

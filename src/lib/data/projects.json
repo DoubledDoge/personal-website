@@ -8,7 +8,7 @@
 			"description": "A personal website showcasing my skills and projects. You are on it right now!",
 			"webURL": "https://doubleddoge.github.io/personal-website",
 			"gitURL": "https://github.com/DoubledDoge/personal-website",
-			"image": "personal-website.jxl",
+			"image": "personal-website",
 			"technologies": ["TypeScript", "Svelte", "Vite", "CSS", "SvelteKit"]
 		},
 		{
@@ -16,7 +16,7 @@
 			"title": "TripBuddy",
 			"description": "A comprehensive Android travel companion app featuring photo galleries with metadata and trip planning tools.",
 			"gitURL": "https://github.com/DoubledDoge/tripbuddy",
-			"image": "tripbuddy.jxl",
+			"image": "tripbuddy",
 			"technologies": ["Java", "Android SDK", "XML", "SQLite"]
 		},
 		{
@@ -24,7 +24,7 @@
 			"title": "BuzzBets",
 			"description": "Terminal-based drone racing betting game featuring race simulation mechanics through a console interface.",
 			"gitURL": "https://github.com/DoubledDoge/buzzbets",
-			"image": "buzzbets.jxl",
+			"image": "buzzbets",
 			"technologies": ["C#", "Console", "TypeGuard", "ConsolePrism"]
 		},
 		{
@@ -32,7 +32,7 @@
 			"title": "TypeGuard",
 			"description": "Beginner-friendly C# utility library that simplifies input validation.",
 			"gitURL": "https://github.com/DoubledDoge/typeguard",
-			"image": "typeguard.jxl",
+			"image": "typeguard",
 			"technologies": [
 				"C#",
 				".NET",
@@ -49,7 +49,7 @@
 			"title": "ConsolePrism",
 			"description": "Console styling utility for C# that simplifies error messages, success notifications, and formatted output - a beginner-friendly alternative to Spectre.Console.",
 			"gitURL": "https://github.com/DoubledDoge/consoleprism",
-			"image": "consoleprism.jxl",
+			"image": "consoleprism",
 			"technologies": ["C#", ".NET"]
 		},
 		{
@@ -58,7 +58,7 @@
 			"description": "An e-commerce website involving peer-to-peer transactions between users.",
 			"webURL": "https://doubleddoge.github.io/peerly-website/",
 			"gitURL": "https://github.com/DoubledDoge/peerly-website",
-			"image": "peerly-website.jxl",
+			"image": "peerly-website",
 			"technologies": ["JavaScript", "HTML", "CSS", "mySQL", "PHP", "Vite"]
 		},
 		{
@@ -66,7 +66,7 @@
 			"title": "Split Happens",
 			"description": "Blackjack game made for Android with a gamemode of a slight twist.",
 			"gitURL": "https://github.com/DoubledDoge/splithappens-game",
-			"image": "splithappens.jxl",
+			"image": "splithappens",
 			"technologies": ["Kotlin", "Jetpack Compose", "Jetpack Room"]
 		},
 		{
@@ -74,7 +74,7 @@
 			"title": "Pulse Monitor",
 			"description": "Library for overlaying real time resource monitoring.",
 			"gitURL": "https://github.com/DoubledDoge/pulsemonitor-library",
-			"image": "pulsemonitor.jxl",
+			"image": "pulsemonitor",
 			"technologies": ["Kotlin", "Jetpack Compose", "Jitpack", "Android SDK"]
 		},
 		{
@@ -82,7 +82,7 @@
 			"title": "Notewright",
 			"description": "A assistive tool for playing piano through a keyboard. To be used with an online website or piano tool.",
 			"gitURL": "https://github.com/DoubledDoge/notewright",
-			"image": "notewright.jxl",
+			"image": "notewright",
 			"technologies": ["C#", ".NET", "Avalonia", "Windows", "macOS", "Linux"]
 		}
 	]

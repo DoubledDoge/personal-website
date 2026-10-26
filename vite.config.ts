@@ -1,5 +1,4 @@
 import adapter from "@sveltejs/adapter-static";
-import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
 import browserslist from "browserslist";
 import { browserslistToTargets } from "lightningcss";
@@ -31,7 +30,6 @@ export default defineConfig({
 		transformer: "lightningcss",
 	},
 	plugins: [
-		enhancedImages(),
 		sveltekit({
 			compilerOptions: {
 				runes: true,
