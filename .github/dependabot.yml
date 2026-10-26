@@ -32,7 +32,6 @@ updates:
           - "@commitlint/*"
           - "@biomejs/*"
           - "vite"
-          - "lefthook"
           - "lightningcss"
           - "typescript"
           - "browserslist"

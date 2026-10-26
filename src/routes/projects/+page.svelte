@@ -6,10 +6,28 @@ import {
 	ProjectsPageData,
 	toCamelCase,
 } from "#lib";
-import { asset } from "$app/paths";
-import type { AssetPath } from "$app/types";
 import Github from "~icons/lucide/github";
 import Globe from "~icons/lucide/globe";
+
+const projectImages = {
+	jxl: import.meta.glob<string>("../../lib/assets/projects/jxl/*.jxl", {
+		eager: true,
+		import: "default",
+		query: "?url",
+	}),
+	webp: import.meta.glob<string>("../../lib/assets/projects/webp/*.webp", {
+		eager: true,
+		import: "default",
+		query: "?url",
+	}),
+	jpg: import.meta.glob<string>("../../lib/assets/projects/jpg/*.jpg", {
+		eager: true,
+		import: "default",
+		query: "?url",
+	}),
+};
+const projectImageKey = (format: "jxl" | "webp" | "jpg", image: string) =>
+	`../../lib/assets/projects/${format}/${image}.${format}`;
 </script>
 
 <section>
@@ -39,8 +57,30 @@ import Globe from "~icons/lucide/globe";
 
 						{#if project.image}
 							<picture>
+								{#if projectImages.jxl[projectImageKey("jxl", project.image)]}
+									<source
+										srcset={projectImages.jxl[
+											projectImageKey("jxl", project.image)
+										]}
+										type="image/jxl"
+									/>
+								{/if}
+								{#if projectImages.webp[projectImageKey("webp", project.image)]}
+									<source
+										srcset={projectImages.webp[
+											projectImageKey("webp", project.image)
+										]}
+										type="image/webp"
+									/>
+								{/if}
 								<img
-									src={asset(`projects/${project.image}` as AssetPath)}
+									src={projectImages.jpg[
+										projectImageKey("jpg", project.image)
+									] ??
+										projectImages.webp[
+											projectImageKey("webp", project.image)
+										] ??
+										projectImages.jxl[projectImageKey("jxl", project.image)]}
 									alt={project.imageAlt ?? `Screenshot of ${project.title}`}
 									loading="lazy"
 								/>
