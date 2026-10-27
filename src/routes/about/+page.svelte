@@ -4,8 +4,8 @@ import {
 	AboutPageData,
 	Button,
 	CodeWindow,
+	Cv,
 	PageHeader,
-	Resume,
 	SkillBadge,
 } from "#lib";
 import Boxes from "~icons/lucide/boxes";
@@ -20,7 +20,6 @@ import FileCode from "~icons/lucide/file-code";
 import GitBranch from "~icons/lucide/git-branch";
 import GlobeCode from "~icons/lucide/globe-code";
 import LayoutTemplate from "~icons/lucide/layout-template";
-import Leaf from "~icons/lucide/leaf";
 import Palette from "~icons/lucide/palette";
 import PanelsTopLeft from "~icons/lucide/panels-top-left";
 import Server from "~icons/lucide/server";
@@ -45,7 +44,6 @@ const iconMap: Record<string, Component> = {
 	"globe-code": GlobeCode,
 	"panels-top-left": PanelsTopLeft,
 	"database-zap": DatabaseZap,
-	leaf: Leaf,
 	palette: Palette,
 	smartphone: Smartphone,
 	terminal: Terminal,
@@ -169,8 +167,8 @@ const skillGroups = [
 		</div>
 
 		<div class="panel action-panel reveal" style="--reveal-delay: 0.3s">
-			<Button class="full-width" href={Resume} icon={Download} variant="solid">
-				Download Resume
+			<Button class="full-width" href={Cv} icon={Download} variant="solid">
+				Download CV
 			</Button>
 		</div>
 	</aside>

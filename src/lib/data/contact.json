@@ -41,6 +41,22 @@
 			"id": "github",
 			"link": "https://github.com/DoubledDoge",
 			"type": "social"
+		},
+		{
+			"contactText": "orcid.org/0009-0009-1494-9018",
+			"external": true,
+			"header": "Orcid",
+			"id": "orcid",
+			"link": "https://orcid.org/0009-0009-1494-9018",
+			"type": "social"
+		},
+		{
+			"contactText": "discord.com/users/1186273583547297804",
+			"external": true,
+			"header": "Discord",
+			"id": "discord",
+			"link": "http://discord.com/users/1186273583547297804",
+			"type": "social"
 		}
 	],
 	"status": [

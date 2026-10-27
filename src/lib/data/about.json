@@ -27,7 +27,6 @@
 			{ "icon": "database", "id": "sql", "name": "SQL" },
 			{ "icon": "database-zap", "id": "sqlite", "name": "SQLite" },
 			{ "icon": "git-branch", "id": "git", "name": "Git" },
-			{ "icon": "leaf", "id": "mongodb", "name": "MongoDB" },
 			{ "icon": "computer", "id": "linux", "name": "Linux" }
 		]
 	}

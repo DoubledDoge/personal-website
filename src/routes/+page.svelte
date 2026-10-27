@@ -3,10 +3,10 @@ import {
 	Button,
 	Card,
 	Console,
+	Cv,
 	HeroImage,
 	HeroImageJpg,
 	HeroImageWebp,
-	Resume,
 	Stat,
 	StatData,
 } from "#lib";
@@ -89,7 +89,7 @@ const iconMap = {
 						// Aspiring Full Stack .NET Engineer
 					</p>
 					<footer class="reveal">
-						<Button href={Resume} icon={Download} variant="solid">
+						<Button href={Cv} icon={Download} variant="solid">
 							Download CV
 						</Button>
 
