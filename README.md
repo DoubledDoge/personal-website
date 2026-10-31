@@ -20,7 +20,7 @@ This is a modern personal portfolio website showcasing skills, projects, and pro
 - **SEO Optimized:** Structured data, meta tags, and performance optimization
 - **Accessibility:** WCAG compliant with proper ARIA labels and keyboard navigation
 
-##️ Technology Stack
+## Technology Stack
 
 ### Core Framework
 
@@ -33,7 +33,7 @@ This is a modern personal portfolio website showcasing skills, projects, and pro
 - **Fonts:** Inter Variable via Fontsource
 - **Deployment:** GitHub Pages with automated workflows
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -114,11 +114,11 @@ Special thanks to the following resources:
 - **[Vite](https://vitejs.dev/)** - Lightning-fast build tooling
 - **[MDN](https://developer.mozilla.org/en-US/)** - Web Documentation
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📋 Version History
+## Version History
 
 - **v3.0.0** - Yet another rework and redesign for sveltekit
 - **v2.1.0** - Complete TypeScript migration with enhanced type safety
