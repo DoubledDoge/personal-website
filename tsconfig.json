@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"sourceMap": true,
 		"strict": true,
-		"types": ["$app/types", "vite/client"]
+		"types": ["$app/types", "vite/client", "node"]
 	},
 	"exclude": ["node_modules", "build", ".svelte-kit", "src/service-worker"],
 	"extends": "$app/tsconfig",

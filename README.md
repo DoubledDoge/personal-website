@@ -91,6 +91,7 @@ Contributions are welcome! Please follow these preferred guidelines:
 ## Acknowledgments
 
 Special thanks to the following resources:
+
 - **[Svelte](https://svelte.dev/)** - Revolutionary frontend framework
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety and developer experience
 - **[Vite](https://vitejs.dev/)** - Lightning-fast build tooling

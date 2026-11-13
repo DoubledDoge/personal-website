@@ -22,6 +22,7 @@ As soon as I can, as its only just me who manages this repository.
 ## Security Measures
 
 This project implements:
+
 - Dependency scanning with GitHub's Dependabot
 - Automated security updates
 - Semi-regular security audits
@@ -30,6 +31,7 @@ This project implements:
 ## Best Practices
 
 When contributing, please:
+
 1. Keep dependencies up to date
 2. Use secure coding practices
 3. Implement proper input validation
@@ -38,12 +40,14 @@ When contributing, please:
 ## Security Updates
 
 Security updates are released as:
+
 - Patch versions for critical fixes
 - Minor versions for non-critical updates
 
 ## Contact
 
 For sensitive security matters:
+
 - Email: dbritz22@proton.me
 - Phone: +27663370662
 
