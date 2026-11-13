@@ -20,13 +20,13 @@ const projectImages = {
 		import: "default",
 		query: "?url",
 	}),
-	jpg: import.meta.glob<string>("../../lib/assets/projects/jpg/*.jpg", {
+	avif: import.meta.glob<string>("../../lib/assets/projects/avif/*.avif", {
 		eager: true,
 		import: "default",
 		query: "?url",
 	}),
 };
-const projectImageKey = (format: "jxl" | "webp" | "jpg", image: string) =>
+const projectImageKey = (format: "jxl" | "webp" | "avif", image: string) =>
 	`../../lib/assets/projects/${format}/${image}.${format}`;
 </script>
 
@@ -65,6 +65,14 @@ const projectImageKey = (format: "jxl" | "webp" | "jpg", image: string) =>
 										type="image/jxl"
 									/>
 								{/if}
+								{#if projectImages.avif[projectImageKey("avif", project.image)]}
+									<source
+										srcset={projectImages.avif[
+											projectImageKey("avif", project.image)
+										]}
+										type="image/avif"
+									/>
+								{/if}
 								{#if projectImages.webp[projectImageKey("webp", project.image)]}
 									<source
 										srcset={projectImages.webp[
@@ -74,11 +82,11 @@ const projectImageKey = (format: "jxl" | "webp" | "jpg", image: string) =>
 									/>
 								{/if}
 								<img
-									src={projectImages.jpg[
-										projectImageKey("jpg", project.image)
+									src={projectImages.webp[
+										projectImageKey("webp", project.image)
 									] ??
-										projectImages.webp[
-											projectImageKey("webp", project.image)
+										projectImages.avif[
+											projectImageKey("avif", project.image)
 										] ??
 										projectImages.jxl[projectImageKey("jxl", project.image)]}
 									alt={project.imageAlt ?? `Screenshot of ${project.title}`}

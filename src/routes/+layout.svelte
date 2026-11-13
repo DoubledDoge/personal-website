@@ -48,7 +48,21 @@ onNavigate((navigation) => {
 		media="(prefers-color-scheme: dark)"
 		name="theme-color"
 	/>
-	<link href={asset("favicon.svg")} rel="icon" type="image/svg+xml" />
+
+	<link rel="icon" href={asset("favicon.ico")} sizes="48x48" type="image/ico" />
+	<link
+		rel="icon"
+		href={asset("favicon-32.png")}
+		type="image/png"
+		sizes="32x32"
+	/>
+	<link
+		rel="icon"
+		href={asset("favicon-16.png")}
+		type="image/png"
+		sizes="16x16"
+	/>
+	<link rel="apple-touch-icon" href={asset("apple-touch-icon.png")} />
 	<link href={resolve("/manifest.webmanifest")} rel="manifest" />
 	<link
 		as="font"

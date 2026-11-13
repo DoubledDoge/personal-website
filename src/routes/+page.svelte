@@ -1,15 +1,5 @@
 <script lang="ts">
-import {
-	Button,
-	Card,
-	Console,
-	Cv,
-	HeroImage,
-	HeroImageJpg,
-	HeroImageWebp,
-	Stat,
-	StatData,
-} from "#lib";
+import { Button, Card, Console, Cv, HeroImageSet, Stat, StatData } from "#lib";
 import { goto } from "$app/navigation";
 import { resolve } from "$app/paths";
 import Bug from "~icons/lucide/bug";
@@ -119,14 +109,25 @@ const iconMap = {
 
 	<aside>
 		<picture>
-			<source srcset={HeroImage} type="image/jxl" />
-			<source srcset={HeroImageWebp} type="image/webp" />
-
+			<source
+				srcset={HeroImageSet.avif}
+				sizes={HeroImageSet.sizes}
+				type="image/avif"
+			/>
+			<source
+				srcset={HeroImageSet.jxl}
+				sizes={HeroImageSet.sizes}
+				type="image/jxl"
+			/>
 			<img
 				alt="Dihan Britz"
 				fetchpriority="high"
+				height={HeroImageSet.height}
 				loading="eager"
-				src={HeroImageJpg}
+				sizes={HeroImageSet.sizes}
+				src={HeroImageSet.fallbackSrc}
+				srcset={HeroImageSet.webp}
+				width={HeroImageSet.width}
 			/>
 		</picture>
 	</aside>

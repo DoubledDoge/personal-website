@@ -13,16 +13,16 @@ export const GET: RequestHandler = ({ url }) => {
 		icons: [
 			{
 				purpose: "any",
-				sizes: "any",
-				src: `${scope}favicon.svg`,
-				type: "image/svg+xml",
+				sizes: "192x192",
+				src: `icon-192.png`,
+				type: "image/png",
 			},
 		],
 		lang: "en-ZA",
 		name: site.name,
-		scope,
+		scope: "./",
 		short_name: site.name,
-		start_url: scope,
+		start_url: "./",
 		theme_color: site.themeColour.dark,
 	};
 
