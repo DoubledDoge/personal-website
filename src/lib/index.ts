@@ -24,6 +24,5 @@ export {
 	StatData,
 	UsesData,
 } from "#data/index.ts";
-export { toCamelCase, toPascalCase } from "./identifiers.ts";
-
 export { HeroImageSet } from "./hero-image.ts";
+export { toCamelCase, toPascalCase } from "./identifiers.ts";

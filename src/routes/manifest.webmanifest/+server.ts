@@ -4,7 +4,7 @@ import type { RequestHandler } from "./$types";
 export const prerender = true;
 
 export const GET: RequestHandler = ({ url }) => {
-	const scope: string = new URL(".", url).pathname;
+	const _scope: string = new URL(".", url).pathname;
 
 	const manifest = {
 		background_color: site.themeColour.dark,

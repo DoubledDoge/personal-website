@@ -1,8 +1,8 @@
 import avif405 from "#assets/hero-image-405w.avif";
-import avif627 from "#assets/hero-image-627w.avif";
 import jxl405 from "#assets/hero-image-405w.jxl";
-import jxl627 from "#assets/hero-image-627w.jxl";
 import webp405 from "#assets/hero-image-405w.webp";
+import avif627 from "#assets/hero-image-627w.avif";
+import jxl627 from "#assets/hero-image-627w.jxl";
 import webp627 from "#assets/hero-image-627w.webp";
 
 export const HeroImageSet = {
