@@ -20,25 +20,7 @@ This is a modern personal portfolio website showcasing skills, projects, and pro
 - **SEO Optimized:** Structured data, meta tags, and performance optimization
 - **Accessibility:** WCAG compliant with proper ARIA labels and keyboard navigation
 
-## Technology Stack
-
-### Core Framework
-
-- **Framework:** Svelte 5
-- **Backend:** TypeScript
-- **Build Tool:** Vite 7
-
-### External Services
-
-- **Fonts:** Inter Variable via Fontsource
-- **Deployment:** GitHub Pages with automated workflows
-
 ## Quick Start
-
-### Prerequisites
-
-- Node.js 20+ and pnpm
-- Git for version control
 
 ### Installation
 
