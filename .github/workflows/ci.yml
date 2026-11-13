@@ -1,0 +1,76 @@
+name: Website CI
+run-name: CI for ${{ github.event.pull_request.title || github.sha }}
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**.md", "LICENSE"]
+  pull_request:
+    branches: [main]
+    paths-ignore: ["**.md", "LICENSE"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-typecheck:
+    name: Lint Project
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up project
+        uses: ./.github/actions/setup
+
+      - name: Run Linter
+        run: pnpm run ci
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up project
+        uses: ./.github/actions/setup
+
+      - name: Run Checker
+        run: pnpm run check
+
+  build:
+    name: Build Site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up project
+        uses: ./.github/actions/setup
+
+      - name: Build static site
+        run: pnpm run build
+        env:
+          BASE_PATH: "/${{ github.event.repository.name }}"
+
+  security-audit:
+    name: Dependency Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up project
+        uses: ./.github/actions/setup
+
+      - name: Audit dependencies
+        run: pnpm run security-audit

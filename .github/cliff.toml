@@ -7,14 +7,14 @@ header = ""
 body = """
 ## What's Changed\n
 {% for group, commits in commits | group_by(attribute="group") %}
-### {{ group | upper_first }}
+### {{ group | striptags | trim | upper_first }}
 {% for commit in commits %}
 - {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/DoubledDoge/personal-website/commit/{{ commit.id }}))
 {% endfor %}
 {% endfor %}
 
 {% if github.contributors | filter(attribute="is_first_time", value=true) | length != 0 %}
-### 🌱 New Contributors
+### New Contributors
 {% for contributor in github.contributors | filter(attribute="is_first_time", value=true) %}
 - @{{ contributor.username }} made their first contribution
 {% endfor %}
@@ -28,13 +28,15 @@ conventional_commits = true
 filter_unconventional = true
 split_commits = false
 commit_parsers = [
-    { message = "^feat!", group = "💥 Breaking Changes" },
-    { message = "^feat",  group = "🚀 Features" },
-    { message = "^fix",   group = "🐛 Bug Fixes" },
-    { message = "^docs",  group = "📚 Documentation" },
-    { message = "^style", group = "🎨 Styling & Theming" },
-    { message = "^perf",  group = "🚅 Performance" },
-    { message = "^chore|^refactor|^build|^ci", group = "🧹 Maintenance" },
+    { message = '^chore\(deps', skip = true },
+    { breaking = true,                     group = "<!-- 0 --> Breaking Changes" },
+    { message = "^feat",                   group = "<!-- 1 --> Features" },
+    { message = "^fix",                    group = "<!-- 2 --> Bug Fixes" },
+    { message = "^perf",                   group = "<!-- 3 --> Performance" },
+    { message = "^style",                  group = "<!-- 4 --> Styling & Theming" },
+    { message = "^docs",                   group = "<!-- 5 --> Documentation" },
+    { message = "^chore|^refactor|^build|^ci", group = "<!-- 6 --> Maintenance" },
+    { message = ".*",                      group = "<!-- 7 --> Other" },
 ]
 filter_commits = false
 tag_pattern = "v[0-9].*"

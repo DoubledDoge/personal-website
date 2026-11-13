@@ -8,11 +8,11 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 3
     versioning-strategy: "auto"
+    cooldown:
+      default-days: 2
     labels:
       - "dependencies"
       - "pnpm"
-    reviewers:
-      - "DoubledDoge"
     assignees:
       - "DoubledDoge"
     groups:
@@ -20,9 +20,7 @@ updates:
         patterns:
           - "@fontsource-variable/*"
           - "svelte-meta-tags"
-        update-types:
-          - "minor"
-          - "patch"
+        update-types: ["minor", "patch"]
 
       dev-dependencies:
         patterns:
@@ -31,39 +29,34 @@ updates:
           - "@sveltejs/*"
           - "@commitlint/*"
           - "@biomejs/*"
+          - "@iconify-json/*"
           - "vite"
           - "lightningcss"
           - "typescript"
           - "browserslist"
-          - "uplugin-icons"
-        update-types:
-          - "minor"
-          - "patch"
+          - "unplugin-icons"
+        update-types: ["minor", "patch"]
 
       major-updates:
-        patterns:
-          - "*"
-        update-types:
-          - "major"
+        patterns: ["*"]
+        update-types: ["major"]
 
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directories:
+      - "/"
+      - "/.github/actions/setup"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+    cooldown:
+      default-days: 2
     labels:
       - "dependencies"
       - "github-actions"
-    reviewers:
-      - "DoubledDoge"
     assignees:
       - "DoubledDoge"
     groups:
       actions-updates:
-        patterns:
-          - "*"
-        update-types:
-          - "minor"
-          - "patch"
-          - "major"
+        patterns: ["*"]
+        update-types: ["minor", "patch", "major"]
