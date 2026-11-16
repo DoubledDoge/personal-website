@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  lint-and-typecheck:
+  lint:
     name: Lint Project
     runs-on: ubuntu-latest
     timeout-minutes: 10
